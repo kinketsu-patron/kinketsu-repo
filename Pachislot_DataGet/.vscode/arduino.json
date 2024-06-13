@@ -1,8 +1,0 @@
-{
-    "port": "COM3",
-    "configuration": "mode=on",
-    "board": "arduino:megaavr:nona4809",
-    "programmer": "medbg",
-    "sketch": "Pachislot_DataGet.ino",
-    "output": "./.build"
-}
