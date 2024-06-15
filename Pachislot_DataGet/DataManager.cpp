@@ -16,10 +16,10 @@
 // =======================================================
 // 静的変数
 // =======================================================
-static volatile uint32 mIN_Coin;
-static volatile uint32 mOUT_Coin;
-static volatile uint32 mRB;
-static volatile uint32 mBB;
+static uint32 mIN_Coin;
+static uint32 mOUT_Coin;
+static uint32 mRB;
+static uint32 mBB;
 
 /**
  * =======================================================
