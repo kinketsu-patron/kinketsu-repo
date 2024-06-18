@@ -1,2 +1,6 @@
+*.lock
 .build
 .vscode
+.vs
+obj
+bin
