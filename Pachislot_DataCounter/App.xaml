@@ -1,9 +1,29 @@
-﻿<prism:PrismApplication x:Class="Pachislot_DataCounter.App"
-                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                xmlns:local="clr-namespace:Pachislot_DataCounter"
-                xmlns:prism="http://prismlibrary.com/" >
-        <Application.Resources>
+﻿<!--============================================================-->
+<!--File        :App.xaml                                       -->
+<!--Summary     :WPFのエントリーポイント                        -->
+<!--Author      :kinketsu patron (https://kinketsu-patron.com)  -->
+<!--Ver         :1.0                                            -->
+<!--Date        :2024/06/18                                     -->
+<!--============================================================-->
+<prism:PrismApplication x:Class="Pachislot_DataCounter.App"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:Pachislot_DataCounter"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:prism="http://prismlibrary.com/" >
 
+        <Application.Resources>
+                <!--ここから記述-->
+                <ResourceDictionary>
+                        <ResourceDictionary.MergedDictionaries>
+                                <materialDesign:BundledTheme
+                                        BaseTheme="Dark"
+                                        PrimaryColor="Amber"
+                                        SecondaryColor="Lime" />
+                                <!--MaterialDesignThemesのVer.5.0以降ではMaterialDesign.Defaults.xaml⇒MaterialDesign3.Defaults.xaml-->
+                                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
+                        </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
         </Application.Resources>
+
 </prism:PrismApplication>

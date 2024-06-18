@@ -1,4 +1,17 @@
-﻿using Pachislot_DataCounter.Views;
+﻿/**
+ * =============================================================
+ * File         :App.xaml.cs
+ * Summary      :App.xamlのコードビハインドクラス
+ * Author       :kinketsu patron (https://kinketsu-patron.com)
+ * Ver          :1.0
+ * Date         :2024/06/18
+ * =============================================================
+ */
+
+// =======================================================
+// using
+// =======================================================
+using Pachislot_DataCounter.Views;
 using Prism.Ioc;
 using System.Windows;
 
@@ -25,7 +38,7 @@ namespace Pachislot_DataCounter
                 /// <param name="containerRegistry"></param>
                 protected override void RegisterTypes(IContainerRegistry containerRegistry)
                 {
-
+            
                 }
         }
 }
