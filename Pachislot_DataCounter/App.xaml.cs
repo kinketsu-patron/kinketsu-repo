@@ -12,33 +12,37 @@
 // using
 // =======================================================
 using Pachislot_DataCounter.Views;
+using Pachislot_DataCounter.ViewModels;
 using Prism.Ioc;
+using Prism.Unity;
 using System.Windows;
 
 namespace Pachislot_DataCounter
 {
+    /// <summary>
+    /// Interaction logic for App.xaml
+    /// </summary>
+    public partial class App : PrismApplication
+    {
         /// <summary>
-        /// Interaction logic for App.xaml
+        /// Prismフレームワークで自動生成されるメソッド
+        /// アプリ開始時に起動するWindowを設定する
         /// </summary>
-        public partial class App
+        /// <returns>MainWindowのインスタンス</returns>
+        protected override Window CreateShell ( )
         {
-                /// <summary>
-                /// Prismフレームワークで自動生成されるメソッド
-                /// アプリ開始時に起動するWindowを設定する
-                /// </summary>
-                /// <returns>MainWindowのType</returns>
-                protected override Window CreateShell()
-                {
-                        return Container.Resolve<MainWindow>();
-                }
-
-                /// <summary>
-                /// ViewとViewModelの関連付けを登録する
-                /// </summary>
-                /// <param name="containerRegistry"></param>
-                protected override void RegisterTypes(IContainerRegistry containerRegistry)
-                {
-            
-                }
+            return Container.Resolve<MainWindow> ( );
         }
+
+        /// <summary>
+        /// ViewとViewModelの関連付けを行いDIコンテナに登録する
+        /// </summary>
+        /// <param name="containerRegistry">DIコンテナ</param>
+        protected override void RegisterTypes ( IContainerRegistry containerRegistry )
+        {
+            containerRegistry.RegisterForNavigation<BonusCounter, BonusCounterViewModel> ( );
+            containerRegistry.RegisterForNavigation<GameCounter, GameCounterViewModel> ( );
+            containerRegistry.RegisterForNavigation<CoinCounter, CoinCounterViewModel> ( );
+        }
+    }
 }
