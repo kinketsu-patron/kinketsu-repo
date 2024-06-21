@@ -11,6 +11,7 @@
                    xmlns:local="clr-namespace:Pachislot_DataCounter.Views"
                    xmlns:prism="http://prismlibrary.com/"
                    xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+                   xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                    prism:ViewModelLocator.AutoWireViewModel="True"
                    Title="{Binding Title}" Height="900" Width="1600"
                    GlowBrush="{DynamicResource MahApps.Brushes.Accent}"
@@ -174,10 +175,30 @@
         <!--ボタン類                              -->
         <!--======================================-->
         <StackPanel Grid.Row="0" Grid.Column="6" Grid.RowSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-        <Button Style={DynamicResource MahApps.Styles.Button.Circle} />
-
-            <!--<Button FontSize="54" FontFamily="/DataCounter_v2;component/Font/#Togalite Heavy" Width="160" Height="80" Margin="0,0,20,0" Command="{Binding ConnectCommand}" Style="{StaticResource MaterialDesignOutlinedDarkButton}">接続</Button>
-            <Button FontSize="54" FontFamily="/DataCounter_v2;component/Font/#Togalite Heavy" Width="160" Height="80" Margin="0,0,20,0" Command="{Binding ExitCommand}" Style="{StaticResource MaterialDesignOutlinedDarkButton}">終了</Button>-->
+            <Button 
+                Command="{Binding Click_Connect}"
+                Content="{iconPacks:Material Kind=Connection, Width=40, Height=40}"
+                Style="{StaticResource MahApps.Styles.Button.Circle}"
+                Foreground="{StaticResource MahApps.Brushes.Accent}"
+                BorderBrush="{StaticResource MahApps.Brushes.Accent}"
+                BorderThickness="3"
+                Width="80"
+                Height="80"
+                Margin="0,0,30,0"
+                ToolTip="Connect">
+            </Button>
+            <Button 
+                Command="{Binding Click_Exit}"
+                CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:MainWindow}}"
+                Content="{iconPacks:Material Kind=ExitToApp, Width=40, Height=40}"
+                Style="{StaticResource MahApps.Styles.Button.Circle}"
+                Foreground="{StaticResource MahApps.Brushes.Accent}"
+                BorderBrush="{StaticResource MahApps.Brushes.Accent}"
+                BorderThickness="3"
+                Width="80"
+                Height="80"
+                ToolTip="Exit">
+            </Button>
         </StackPanel>
 
         <!--======================================-->
@@ -188,7 +209,7 @@
         <!--======================================-->
         <!--ボーナス履歴                          -->
         <!--======================================-->
-        <ScrollViewer Grid.Row="6" Grid.Column="4" Grid.RowSpan="4" Grid.ColumnSpan="3" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
+        <!--    <ScrollViewer Grid.Row="6" Grid.Column="4" Grid.RowSpan="4" Grid.ColumnSpan="3" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
             <StackPanel VerticalAlignment="Bottom" Background="#141414">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                     <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="10,0,0,0">
@@ -368,6 +389,6 @@
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
-        </ScrollViewer>
+        </ScrollViewer>-->
     </Grid>
 </metro:MetroWindow>

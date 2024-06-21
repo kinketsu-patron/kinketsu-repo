@@ -11,8 +11,8 @@
 // =======================================================
 // using
 // =======================================================
-using Pachislot_DataCounter.Views;
 using Pachislot_DataCounter.ViewModels;
+using Pachislot_DataCounter.Views;
 using Prism.Ioc;
 using Prism.Unity;
 using System.Windows;
@@ -40,9 +40,7 @@ namespace Pachislot_DataCounter
         /// <param name="containerRegistry">DIコンテナ</param>
         protected override void RegisterTypes ( IContainerRegistry containerRegistry )
         {
-            containerRegistry.RegisterForNavigation<BonusCounter, BonusCounterViewModel> ( );
-            containerRegistry.RegisterForNavigation<GameCounter, GameCounterViewModel> ( );
-            containerRegistry.RegisterForNavigation<CoinCounter, CoinCounterViewModel> ( );
+            containerRegistry.RegisterForNavigation<Counter, CounterViewModel> ( );
         }
     }
 }
