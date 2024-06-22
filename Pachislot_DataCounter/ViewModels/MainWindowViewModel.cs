@@ -11,20 +11,27 @@
 // =======================================================
 // using
 // =======================================================
+using Pachislot_DataCounter.Models;
 using Pachislot_DataCounter.Views;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
+using System.Linq;
 
 namespace Pachislot_DataCounter.ViewModels
 {
     public class MainWindowViewModel : BindableBase
     {
-        /// <summary>
-        /// リージョンマネージャー
-        /// </summary>
-        private readonly IRegionManager _RegionManager;
+        // =======================================================
+        // メンバ変数
+        // =======================================================
+        private readonly IRegionManager _RegionManager = null;
+        private SerialCom _SerialCom = null;
+        private string _Title = "金ぱと データカウンター";
 
+        // =======================================================
+        // プロパティ
+        // =======================================================
         /// <summary>
         /// Connectボタンクリックコマンド
         /// </summary>
@@ -35,7 +42,6 @@ namespace Pachislot_DataCounter.ViewModels
         /// </summary>
         public DelegateCommand<MainWindow> Click_Exit { get; private set; }
 
-        private string _Title = "金ぱと データカウンター";
         /// <summary>
         /// アプリタイトルのプロパティ
         /// </summary>
@@ -45,10 +51,13 @@ namespace Pachislot_DataCounter.ViewModels
             set { SetProperty ( ref _Title, value ); }
         }
 
+        // =======================================================
+        // メソッド
+        // =======================================================
         /// <summary>
         /// MainWindowのビューモデルのコンストラクタ
         /// </summary>
-        /// <param name="pRegionManager"></param>
+        /// <param name="pRegionManager">リージョン</param>
         public MainWindowViewModel ( IRegionManager pRegionManager )
         {
             this._RegionManager = pRegionManager;
@@ -59,8 +68,11 @@ namespace Pachislot_DataCounter.ViewModels
             this._RegionManager.RegisterViewWithRegion ( "InCoinCounter", typeof ( Counter ) );
             this._RegionManager.RegisterViewWithRegion ( "OutCoinCounter", typeof ( Counter ) );
 
+            this._SerialCom = new SerialCom ( _RegionManager );
             this.Click_Connect = new DelegateCommand ( OnConnectClicked );
             this.Click_Exit = new DelegateCommand<MainWindow> ( OnExitClicked );
+
+
         }
 
         /// <summary>
@@ -68,7 +80,7 @@ namespace Pachislot_DataCounter.ViewModels
         /// </summary>
         private void OnConnectClicked ( )
         {
-
+            _SerialCom.ComStart ( );                    // シリアル通信を開始する
         }
 
         /// <summary>
@@ -76,6 +88,7 @@ namespace Pachislot_DataCounter.ViewModels
         /// </summary>
         private void OnExitClicked ( MainWindow pWindow )
         {
+            _SerialCom.ComStop ( ); // シリアル通信を停止する
             pWindow?.Close ( );     // nullでなければウィンドウを閉じる
         }
     }

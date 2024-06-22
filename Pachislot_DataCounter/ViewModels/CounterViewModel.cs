@@ -23,8 +23,8 @@ namespace Pachislot_DataCounter.ViewModels
     public class CounterViewModel : BindableBase
     {
         /// <summary>
-	/// 数字と数字画像の1対1の対応付けを行うディクショナリ
-	/// </summary>
+        /// 数字と数字画像の1対1の対応付けを行うディクショナリ
+        /// </summary>
         private Dictionary<ulong, string> _NumDictionary = new Dictionary<ulong, string>
         {
             { 0, "pack://application:,,,/Resource/数字/数字(0).png" },
@@ -49,36 +49,54 @@ namespace Pachislot_DataCounter.ViewModels
         private BitmapImage _SecondDigit;
         private BitmapImage _FirstDigit;
 
+        /// <summary>
+        /// 6桁目の数値
+        /// </summary>
         public BitmapImage SixthDigit
         {
             get { return _SixthDigit; }
             set { SetProperty ( ref _SixthDigit, value ); }
         }
-        
+
+        /// <summary>
+        /// 5桁目の数値
+        /// </summary>
         public BitmapImage FifthDigit
         {
             get { return _FifthDigit; }
             set { SetProperty ( ref _FifthDigit, value ); }
         }
-        
+
+        /// <summary>
+        /// 4桁目の数値
+        /// </summary>
         public BitmapImage ForthDigit
         {
             get { return _ForthDigit; }
             set { SetProperty ( ref _ForthDigit, value ); }
         }
-        
+
+        /// <summary>
+        /// 3桁目の数値
+        /// </summary>
         public BitmapImage ThirdDigit
         {
             get { return _ThirdDigit; }
             set { SetProperty ( ref _ThirdDigit, value ); }
         }
-        
+
+        /// <summary>
+        /// 2桁目の数値
+        /// </summary>
         public BitmapImage SecondDigit
         {
             get { return _SecondDigit; }
             set { SetProperty ( ref _SecondDigit, value ); }
         }
-        
+
+        /// <summary>
+        /// 1桁目の数値
+        /// </summary>
         public BitmapImage FirstDigit
         {
             get { return _FirstDigit; }
