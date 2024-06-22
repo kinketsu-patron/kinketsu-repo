@@ -23,7 +23,7 @@ namespace Pachislot_DataCounter.ViewModels
         /// <summary>
         /// リージョンマネージャー
         /// </summary>
-        private readonly IRegionManager _regionManager;
+        private readonly IRegionManager _RegionManager;
 
         /// <summary>
         /// Connectボタンクリックコマンド
@@ -35,14 +35,14 @@ namespace Pachislot_DataCounter.ViewModels
         /// </summary>
         public DelegateCommand<MainWindow> Click_Exit { get; private set; }
 
-        private string _title = "金ぱと データカウンター";
+        private string _Title = "金ぱと データカウンター";
         /// <summary>
         /// アプリタイトルのプロパティ
         /// </summary>
         public string Title
         {
-            get { return _title; }
-            set { SetProperty ( ref _title, value ); }
+            get { return _Title; }
+            set { SetProperty ( ref _Title, value ); }
         }
 
         /// <summary>
@@ -51,13 +51,13 @@ namespace Pachislot_DataCounter.ViewModels
         /// <param name="pRegionManager"></param>
         public MainWindowViewModel ( IRegionManager pRegionManager )
         {
-            this._regionManager = pRegionManager;
-            this._regionManager.RegisterViewWithRegion ( "BigBonusCounter", typeof ( Counter ) );
-            this._regionManager.RegisterViewWithRegion ( "RegularBonusCounter", typeof ( Counter ) );
-            this._regionManager.RegisterViewWithRegion ( "AllGameCounter", typeof ( Counter ) );
-            this._regionManager.RegisterViewWithRegion ( "CurrentGameCounter", typeof ( Counter ) );
-            this._regionManager.RegisterViewWithRegion ( "InCoinCounter", typeof ( Counter ) );
-            this._regionManager.RegisterViewWithRegion ( "OutCoinCounter", typeof ( Counter ) );
+            this._RegionManager = pRegionManager;
+            this._RegionManager.RegisterViewWithRegion ( "BigBonusCounter", typeof ( Counter ) );
+            this._RegionManager.RegisterViewWithRegion ( "RegularBonusCounter", typeof ( Counter ) );
+            this._RegionManager.RegisterViewWithRegion ( "AllGameCounter", typeof ( Counter ) );
+            this._RegionManager.RegisterViewWithRegion ( "CurrentGameCounter", typeof ( Counter ) );
+            this._RegionManager.RegisterViewWithRegion ( "InCoinCounter", typeof ( Counter ) );
+            this._RegionManager.RegisterViewWithRegion ( "OutCoinCounter", typeof ( Counter ) );
 
             this.Click_Connect = new DelegateCommand ( OnConnectClicked );
             this.Click_Exit = new DelegateCommand<MainWindow> ( OnExitClicked );

@@ -1,4 +1,17 @@
-﻿using Prism.Commands;
+﻿/**
+ * =============================================================
+ * File         :CounterViewModel.cs
+ * Summary      :Counterコントロールのビューモデル
+ * Author       :kinketsu patron (https://kinketsu-patron.com)
+ * Ver          :1.0
+ * Date         :2024/06/21
+ * =============================================================
+ */
+
+// =======================================================
+// using
+// =======================================================
+using Prism.Commands;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
@@ -9,7 +22,10 @@ namespace Pachislot_DataCounter.ViewModels
 {
     public class CounterViewModel : BindableBase
     {
-        private Dictionary<ulong, string> _num_dictionary = new Dictionary<ulong, string>
+        /// <summary>
+	/// 数字と数字画像の1対1の対応付けを行うディクショナリ
+	/// </summary>
+        private Dictionary<ulong, string> _NumDictionary = new Dictionary<ulong, string>
         {
             { 0, "pack://application:,,,/Resource/数字/数字(0).png" },
             { 1, "pack://application:,,,/Resource/数字/数字(1).png" },
@@ -23,41 +39,50 @@ namespace Pachislot_DataCounter.ViewModels
             { 9, "pack://application:,,,/Resource/数字/数字(9).png" }
         };
 
-        public BitmapImage _sixthdigit;
+        // =======================================================
+        // プロパティのメンバ変数
+        // =======================================================
+        private BitmapImage _SixthDigit;
+        private BitmapImage _FifthDigit;
+        private BitmapImage _ForthDigit;
+        private BitmapImage _ThirdDigit;
+        private BitmapImage _SecondDigit;
+        private BitmapImage _FirstDigit;
+
         public BitmapImage SixthDigit
         {
-            get { return _sixthdigit; }
-            set { SetProperty ( ref _sixthdigit, value ); }
+            get { return _SixthDigit; }
+            set { SetProperty ( ref _SixthDigit, value ); }
         }
-        public BitmapImage _fifthdigit;
+        
         public BitmapImage FifthDigit
         {
-            get { return _fifthdigit; }
-            set { SetProperty ( ref _fifthdigit, value ); }
+            get { return _FifthDigit; }
+            set { SetProperty ( ref _FifthDigit, value ); }
         }
-        public BitmapImage _forthdigit;
+        
         public BitmapImage ForthDigit
         {
-            get { return _forthdigit; }
-            set { SetProperty ( ref _forthdigit, value ); }
+            get { return _ForthDigit; }
+            set { SetProperty ( ref _ForthDigit, value ); }
         }
-        public BitmapImage _thirddigit;
+        
         public BitmapImage ThirdDigit
         {
-            get { return _thirddigit; }
-            set { SetProperty ( ref _thirddigit, value ); }
+            get { return _ThirdDigit; }
+            set { SetProperty ( ref _ThirdDigit, value ); }
         }
-        public BitmapImage _seconddigit;
+        
         public BitmapImage SecondDigit
         {
-            get { return _seconddigit; }
-            set { SetProperty ( ref _seconddigit, value ); }
+            get { return _SecondDigit; }
+            set { SetProperty ( ref _SecondDigit, value ); }
         }
-        public BitmapImage _firstdigit;
+        
         public BitmapImage FirstDigit
         {
-            get { return _firstdigit; }
-            set { SetProperty ( ref _firstdigit, value ); }
+            get { return _FirstDigit; }
+            set { SetProperty ( ref _FirstDigit, value ); }
         }
 
         /// <summary>
@@ -70,7 +95,7 @@ namespace Pachislot_DataCounter.ViewModels
             ForthDigit = null;
             ThirdDigit = null;
             SecondDigit = null;
-            FirstDigit = create_bitmap_image ( _num_dictionary[ 0 ] );
+            FirstDigit = create_bitmap_image ( _NumDictionary[ 0 ] );
         }
 
         /// <summary>
@@ -97,7 +122,7 @@ namespace Pachislot_DataCounter.ViewModels
                 ForthDigit = null;
                 ThirdDigit = null;
                 SecondDigit = null;
-                FirstDigit = create_bitmap_image ( _num_dictionary[ pNumber ] );
+                FirstDigit = create_bitmap_image ( _NumDictionary[ pNumber ] );
             }
             else if( pNumber >= 10 && pNumber < 100 )
             {
@@ -105,68 +130,68 @@ namespace Pachislot_DataCounter.ViewModels
                 FifthDigit = null;
                 ForthDigit = null;
                 ThirdDigit = null;
-                SecondDigit = create_bitmap_image ( _num_dictionary[ pNumber / 10 ] );
+                SecondDigit = create_bitmap_image ( _NumDictionary[ pNumber / 10 ] );
                 l_Temp = pNumber % 10;
-                FirstDigit = create_bitmap_image ( _num_dictionary[ l_Temp ] );
+                FirstDigit = create_bitmap_image ( _NumDictionary[ l_Temp ] );
             }
             else if( pNumber >= 100 && pNumber < 1000 )
             {
                 SixthDigit = null;
                 FifthDigit = null;
                 ForthDigit = null;
-                ThirdDigit = create_bitmap_image ( _num_dictionary[ pNumber / 100 ] );
+                ThirdDigit = create_bitmap_image ( _NumDictionary[ pNumber / 100 ] );
                 l_Temp = pNumber % 100;
-                SecondDigit = create_bitmap_image ( _num_dictionary[ l_Temp / 10 ] );
+                SecondDigit = create_bitmap_image ( _NumDictionary[ l_Temp / 10 ] );
                 l_Temp = pNumber % 10;
-                FirstDigit = create_bitmap_image ( _num_dictionary[ l_Temp ] );
+                FirstDigit = create_bitmap_image ( _NumDictionary[ l_Temp ] );
             }
             else if( pNumber >= 1000 && pNumber < 10000 )
             {
                 SixthDigit = null;
                 FifthDigit = null;
-                ForthDigit = create_bitmap_image ( _num_dictionary[ pNumber / 1000 ] );
+                ForthDigit = create_bitmap_image ( _NumDictionary[ pNumber / 1000 ] );
                 l_Temp = pNumber % 1000;
-                ThirdDigit = create_bitmap_image ( _num_dictionary[ l_Temp / 100 ] );
+                ThirdDigit = create_bitmap_image ( _NumDictionary[ l_Temp / 100 ] );
                 l_Temp = pNumber % 100;
-                SecondDigit = create_bitmap_image ( _num_dictionary[ l_Temp / 10 ] );
+                SecondDigit = create_bitmap_image ( _NumDictionary[ l_Temp / 10 ] );
                 l_Temp = pNumber % 10;
-                FirstDigit = create_bitmap_image ( _num_dictionary[ l_Temp ] );
+                FirstDigit = create_bitmap_image ( _NumDictionary[ l_Temp ] );
             }
             else if( pNumber >= 10000 && pNumber < 100000 )
             {
                 SixthDigit = null;
-                FifthDigit = create_bitmap_image ( _num_dictionary[ pNumber / 10000 ] );
+                FifthDigit = create_bitmap_image ( _NumDictionary[ pNumber / 10000 ] );
                 l_Temp = pNumber % 10000;
-                ForthDigit = create_bitmap_image ( _num_dictionary[ l_Temp / 1000 ] );
+                ForthDigit = create_bitmap_image ( _NumDictionary[ l_Temp / 1000 ] );
                 l_Temp = pNumber % 1000;
-                ThirdDigit = create_bitmap_image ( _num_dictionary[ l_Temp / 100 ] );
+                ThirdDigit = create_bitmap_image ( _NumDictionary[ l_Temp / 100 ] );
                 l_Temp = pNumber % 100;
-                SecondDigit = create_bitmap_image ( _num_dictionary[ l_Temp / 10 ] );
+                SecondDigit = create_bitmap_image ( _NumDictionary[ l_Temp / 10 ] );
                 l_Temp = pNumber % 10;
-                FirstDigit = create_bitmap_image ( _num_dictionary[ l_Temp ] );
+                FirstDigit = create_bitmap_image ( _NumDictionary[ l_Temp ] );
             }
             else if( pNumber >= 100000 && pNumber < 1000000 )
             {
-                SixthDigit = create_bitmap_image ( _num_dictionary[ pNumber / 100000 ] );
+                SixthDigit = create_bitmap_image ( _NumDictionary[ pNumber / 100000 ] );
                 l_Temp = pNumber % 100000;
-                FifthDigit = create_bitmap_image ( _num_dictionary[ l_Temp / 10000 ] );
+                FifthDigit = create_bitmap_image ( _NumDictionary[ l_Temp / 10000 ] );
                 l_Temp = pNumber % 10000;
-                ForthDigit = create_bitmap_image ( _num_dictionary[ l_Temp / 1000 ] );
+                ForthDigit = create_bitmap_image ( _NumDictionary[ l_Temp / 1000 ] );
                 l_Temp = pNumber % 1000;
-                ThirdDigit = create_bitmap_image ( _num_dictionary[ l_Temp / 100 ] );
+                ThirdDigit = create_bitmap_image ( _NumDictionary[ l_Temp / 100 ] );
                 l_Temp = pNumber % 100;
-                SecondDigit = create_bitmap_image ( _num_dictionary[ l_Temp / 10 ] );
+                SecondDigit = create_bitmap_image ( _NumDictionary[ l_Temp / 10 ] );
                 l_Temp = pNumber % 10;
-                FirstDigit = create_bitmap_image ( _num_dictionary[ l_Temp ] );
+                FirstDigit = create_bitmap_image ( _NumDictionary[ l_Temp ] );
             }
             else
             {
-                SixthDigit = create_bitmap_image ( _num_dictionary[ 9 ] );
-                FirstDigit = create_bitmap_image ( _num_dictionary[ 9 ] );
-                SecondDigit = create_bitmap_image ( _num_dictionary[ 9 ] );
-                ThirdDigit = create_bitmap_image ( _num_dictionary[ 9 ] );
-                ForthDigit = create_bitmap_image ( _num_dictionary[ 9 ] );
-                FifthDigit = create_bitmap_image ( _num_dictionary[ 9 ] );
+                SixthDigit = create_bitmap_image ( _NumDictionary[ 9 ] );
+                FirstDigit = create_bitmap_image ( _NumDictionary[ 9 ] );
+                SecondDigit = create_bitmap_image ( _NumDictionary[ 9 ] );
+                ThirdDigit = create_bitmap_image ( _NumDictionary[ 9 ] );
+                ForthDigit = create_bitmap_image ( _NumDictionary[ 9 ] );
+                FifthDigit = create_bitmap_image ( _NumDictionary[ 9 ] );
             }
         }
 
