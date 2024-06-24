@@ -16,7 +16,9 @@ using Pachislot_DataCounter.Views;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
+using System.IO.Ports;
 using System.Linq;
+using System.Windows;
 
 namespace Pachislot_DataCounter.ViewModels
 {
@@ -27,7 +29,13 @@ namespace Pachislot_DataCounter.ViewModels
         // =======================================================
         private readonly IRegionManager _RegionManager = null;
         private SerialCom _SerialCom = null;
+        private DataManager _DataManager = null;
         private string _Title = "金ぱと データカウンター";
+
+        // =======================================================
+        // delegate
+        // =======================================================
+        public delegate void ThreadReturn ( );
 
         // =======================================================
         // プロパティ
@@ -68,11 +76,11 @@ namespace Pachislot_DataCounter.ViewModels
             this._RegionManager.RegisterViewWithRegion ( "InCoinCounter", typeof ( Counter ) );
             this._RegionManager.RegisterViewWithRegion ( "OutCoinCounter", typeof ( Counter ) );
 
-            this._SerialCom = new SerialCom ( _RegionManager );
+            this._SerialCom = new SerialCom ( );
+            this._SerialCom.DataReceived += ReceivedGameData;
+            this._DataManager = new DataManager ( pRegionManager );
             this.Click_Connect = new DelegateCommand ( OnConnectClicked );
             this.Click_Exit = new DelegateCommand<MainWindow> ( OnExitClicked );
-
-
         }
 
         /// <summary>
@@ -80,7 +88,7 @@ namespace Pachislot_DataCounter.ViewModels
         /// </summary>
         private void OnConnectClicked ( )
         {
-            _SerialCom.ComStart ( );                    // シリアル通信を開始する
+            _SerialCom.ComStart ( ); // シリアル通信を開始する
         }
 
         /// <summary>
@@ -90,6 +98,13 @@ namespace Pachislot_DataCounter.ViewModels
         {
             _SerialCom.ComStop ( ); // シリアル通信を停止する
             pWindow?.Close ( );     // nullでなければウィンドウを閉じる
+        }
+
+        private void ReceivedGameData ( object sender, SerialDataReceivedEventArgs e )
+        {
+            string l_SerialMessage = _SerialCom.GetSerialMessage ( );
+            _DataManager.Convert ( l_SerialMessage );
+            Application.Current.Dispatcher.Invoke ( new ThreadReturn ( _DataManager.UpdateCounters ) );
         }
     }
 }

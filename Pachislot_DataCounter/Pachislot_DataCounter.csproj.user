@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Models\SerialCom.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Update="Views\Counter.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
