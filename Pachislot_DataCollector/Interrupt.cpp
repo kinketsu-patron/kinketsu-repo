@@ -59,23 +59,12 @@ void Intr_Init( void )
  */
 static void in_intr_occur( void )
 {
+        static ulong64 l_in_prevtime = 0U;
         ulong64 l_interval;
-        uint32 l_curr_in;
 
-        l_interval = millis() - mIN_PrevTime;           // 前回の割込みからの経過時間を計算する
-
-        if ( l_interval >= INTR_WAIT )                  // 割込み待ち時間がINTR_WAIT[ms]を超えていたら
+        if( has_passed( &l_in_prevtime ) )
         {
-                noInterrupts( );                        // 他の割り込みを禁止する
-
-                l_curr_in = Get_IN_Coin( );             // IN枚数を取得する
-                l_curr_in++;                            // 現在のIN枚数に+1する
-                Set_IN_Coin( l_curr_in );               // IN枚数を更新する
-                Serial_Write( "IN_COIN:", l_curr_in );  // 更新後のIN枚数をシリアル通信でPCへ送る
-
-                mIN_PrevTime = millis( );               // 割込み実施時間を更新する
-
-                interrupts( );                          // 他の割り込みを許可する
+                
         }
 }
 
@@ -164,4 +153,24 @@ static void bb_intr_occur( void )
 
                 interrupts( );                          // 他の割り込みを許可する
         }
+}
+
+static bool has_passed( ulong64 *pPrevTime )
+{
+        ulong64 l_interval;
+        bool l_has_passed;
+
+        l_interval = millis( ) - *pPrevTime;          // 前回の割込みからの経過時間を計算する
+
+        if ( l_interval >= INTR_WAIT )                  // 割込み待ち時間がINTR_WAIT[ms]を超えていたら
+        {
+               l_has_passed = true;
+               *pPrevTime = millis( );
+        }
+        else
+        {
+               l_has_passed = false;
+        }
+
+        return l_has_passed;
 }
