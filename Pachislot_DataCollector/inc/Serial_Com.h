@@ -17,11 +17,12 @@
 #include <Arduino.h>
 #include <Arduino_JSON.h>
 #include "vtype.h"
+#include "struct.h"
 
 // =======================================================
 // 関数宣言
 // =======================================================
 extern void    Serial_Init( void );
-extern void    Serial_Write( const char pMsg[], const uint32 pNum );
+extern void    Serial_Send( GAME_INFO *pGameInfo );
 
 #endif          __SERIAL_COM_H__

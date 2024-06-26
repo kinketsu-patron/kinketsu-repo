@@ -42,8 +42,8 @@ void Intr_Init( INTR_CALLBACK *pFunc )
         // 割り込み発生は立ち下がりエッジ(FALLING)発生時とする
         attachInterrupt( digitalPinToInterrupt( IN_PIN ),  in_intr_occur,  FALLING );
         attachInterrupt( digitalPinToInterrupt( OUT_PIN ), out_intr_occur, FALLING );
-        attachInterrupt( digitalPinToInterrupt( RB_PIN ),  rb_intr_occur,  FALLING );
-        attachInterrupt( digitalPinToInterrupt( BB_PIN ),  bb_intr_occur,  FALLING );
+        attachInterrupt( digitalPinToInterrupt( RB_PIN ),  rb_intr_occur,  CHANGE );
+        attachInterrupt( digitalPinToInterrupt( BB_PIN ),  bb_intr_occur,  CHANGE );
 }
 
 /**
@@ -87,12 +87,12 @@ static void in_intr_occur( void )
 
         if( allow_intrrput( INTR_WAIT, &l_in_prevtime ) == true )  // 前回の割り込みから時間が十分経過していたら
         {
-                _Func[ 0 ]( );                          // Func[0]：update_in()をコールバックする
+                _Func[ 1 ]( );                          // Func[1]：update_in()をコールバックする
         }
 
         if( allow_intrrput( GAMECOUNT_WAIT, &l_game_prevtime ) == true )  // 前回の割り込みから時間が十分経過していたら
         {
-                _Func[ 4 ]( );                          // Func[4]：update_game()をコールバックする
+                _Func[ 0 ]( );                          // Func[0]：update_game()をコールバックする
         }
 }
 
@@ -109,15 +109,15 @@ static void out_intr_occur( void )
 
         if( allow_intrrput( INTR_WAIT, &l_out_prevtime ) == true )
         {
-                _Func[ 1 ]( );                          // Func[1]：update_out()をコールバックする
+                _Func[ 2 ]( );                          // Func[2]：update_out()をコールバックする
         }
 }
 
 /**
  * =======================================================
  * @fn          rb_intr_occur
- * @brief       RBの外部割込み
- * @date        2024-06-10
+ * @brief       RBの両エッジ外部割込み
+ * @date        2024-06-26
  * =======================================================
  */
 static void rb_intr_occur( void )
@@ -126,15 +126,22 @@ static void rb_intr_occur( void )
 
         if( allow_intrrput( INTR_WAIT, &l_rb_prevtime ) == true )
         {
-                _Func[ 2 ]( );                          // Func[2]：update_rb()をコールバックする
+                if ( digitalRead( RB_PIN ) == LOW )
+                {
+                        _Func[ 3 ]( );                          // Func[3]：begin_rb()をコールバックする
+                }
+                else
+                {
+                        _Func[ 4 ]( );                          // Func[4]：end_rb()をコールバックする
+                }
         }
 }
 
 /**
  * =======================================================
  * @fn          bb_intr_occur
- * @brief       BBの外部割込み
- * @date        2024-06-10
+ * @brief       BBの両エッジ外部割込み
+ * @date        2024-06-26
  * =======================================================
  */
 static void bb_intr_occur( void )
@@ -143,6 +150,13 @@ static void bb_intr_occur( void )
 
         if( allow_intrrput( INTR_WAIT, &l_bb_prevtime ) == true )
         {
-                _Func[ 3 ]( );                          // Func[3]：update_bb()をコールバックする
+                if ( digitalRead( BB_PIN ) == LOW )
+                {
+                        _Func[ 5 ]( );                          // Func[5]：begin_bb()をコールバックする
+                }
+                else
+                {
+                        _Func[ 6 ]( );                          // Func[6]：end_bb()をコールバックする
+                }
         }
 }

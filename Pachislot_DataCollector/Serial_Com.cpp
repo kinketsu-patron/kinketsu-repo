@@ -27,15 +27,27 @@ void    Serial_Init( void )
 
 /**
  * =======================================================
- * @fn          Serial_Write
+ * @fn          Serial_Send
  * @brief       シリアル通信でPCにメッセージを送信する
- * @param pMsg  メッセージ前文
- * @param pNum  数値
+ * @param pGameInfo  遊戯情報
  * @date        2024-06-12
  * =======================================================
  */
-void Serial_Write( const char pMsg[], const uint32 pNum )
+void Serial_Send( GAME_INFO *pGameInfo )
 {
-        Serial.print( pMsg );   // メッセージ前文
-        Serial.println( pNum ); // 数値
+        JSONVar l_Jobj;
+        String l_SendStrMsg;
+
+        l_Jobj["game"]      = pGameInfo -> Game;
+        l_Jobj["totalgame"] = pGameInfo -> TotalGame;
+        l_Jobj["in"]        = pGameInfo -> IN;
+        l_Jobj["out"]       = pGameInfo -> OUT;
+        l_Jobj["diff"]      = pGameInfo -> Diff;
+        l_Jobj["rb"]        = pGameInfo -> RB;
+        l_Jobj["bb"]        = pGameInfo -> BB;
+        l_Jobj["duringrb"]  = pGameInfo -> DuringRB;
+        l_Jobj["duringbb"]  = pGameInfo -> DuringBB;
+
+        l_SendStrMsg = JSON.stringify( l_Jobj );        // JSON形式をString型に変換する
+        Serial.println( l_SendStrMsg );                 // String型でメッセージを送る
 }
