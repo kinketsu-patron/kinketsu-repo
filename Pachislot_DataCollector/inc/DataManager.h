@@ -20,13 +20,13 @@
 // 関数宣言
 // =======================================================
 extern void Data_Init( void );
-extern uint32 Get_IN_Coin  ( void );
-extern uint32 Get_OUT_Coin ( void );
-extern uint32 Get_RB  ( void );
-extern uint32 Get_BB  ( void );
-extern void Set_IN_Coin ( uint32 pIN_Coin );
-extern void Set_OUT_Coin( uint32 pOUT_Coin );
-extern void Set_RB ( uint32 pRB );
-extern void Set_BB ( uint32 pBB );
+extern uint32 Data_GetIN  ( void );
+extern uint32 Data_GetOUT ( void );
+extern uint32 Data_GetRB  ( void );
+extern uint32 Data_GetBB  ( void );
+extern void Data_SetIN ( uint32 pIN_Coin );
+extern void Data_SetOUT( uint32 pOUT_Coin );
+extern void Data_SetRB ( uint32 pRB );
+extern void Data_SetBB ( uint32 pBB );
 
 #endif          __DATA_H__

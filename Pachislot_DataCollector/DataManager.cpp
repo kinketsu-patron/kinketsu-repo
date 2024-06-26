@@ -38,48 +38,48 @@ void Data_Init( void )
 
 /**
  * =======================================================
- * @fn          Get_IN_Coin
+ * @fn          Data_GetIN
  * @brief       入力枚数を取得する
  * @date        2024-06-10
  * =======================================================
  */
-uint32 Get_IN_Coin ( void ) { return mIN_Coin; }
+uint32 Data_GetIN ( void ) { return mIN_Coin; }
 
 /**
  * =======================================================
- * @fn          Get_OUT_Coin
+ * @fn          Data_GetOUT
  * @brief       出力枚数を取得する
  * @date        2024-06-10
  * =======================================================
  */
-uint32 Get_OUT_Coin( void ) { return mOUT_Coin; }
+uint32 Data_GetOUT( void ) { return mOUT_Coin; }
 
 /**
  * =======================================================
- * @fn          Get_RB
+ * @fn          Data_GetRB
  * @brief       レギュラーボーナス回数を取得する
  * @date        2024-06-10
  * =======================================================
  */
-uint32 Get_RB ( void ) { return mRB; }
+uint32 Data_GetRB ( void ) { return mRB; }
 
 /**
  * =======================================================
- * @fn          Get_BB
+ * @fn          Data_GetBB
  * @brief       ビッグボーナス回数を取得する
  * @date        2024-06-10
  * =======================================================
  */
-uint32 Get_BB ( void ) { return mBB; }
+uint32 Data_GetBB ( void ) { return mBB; }
 
 /**
  * =======================================================
- * @fn          Set_IN_Coin
+ * @fn          Data_SetIN
  * @brief       入力枚数を設定する
  * @date        2024-06-10
  * =======================================================
  */
-void Set_IN_Coin( uint32 pIN_Coin )
+void Data_SetIN( uint32 pIN_Coin )
 {
         if ( pIN_Coin >= 0U )
         {
@@ -89,12 +89,12 @@ void Set_IN_Coin( uint32 pIN_Coin )
 
 /**
  * =======================================================
- * @fn          Set_OUT_Coin
+ * @fn          Data_SetOUT
  * @brief       出力枚数を設定する
  * @date        2024-06-10
  * =======================================================
  */
-void Set_OUT_Coin( uint32 pOUT_Coin )
+void Data_SetOUT( uint32 pOUT_Coin )
 {
         if ( pOUT_Coin >= 0U )
         {
@@ -104,12 +104,12 @@ void Set_OUT_Coin( uint32 pOUT_Coin )
 
 /**
  * =======================================================
- * @fn          Set_RB
+ * @fn          Data_SetRB
  * @brief       レギュラーボーナス回数を設定する
  * @date        2024-06-10
  * =======================================================
  */
-void Set_RB( uint32 pRB )
+void Data_SetRB( uint32 pRB )
 {
         if ( pRB >= 0U )
         {
@@ -119,12 +119,12 @@ void Set_RB( uint32 pRB )
 
 /**
  * =======================================================
- * @fn          Set_BB
+ * @fn          Data_SetBB
  * @brief       ビッグボーナス回数を設定する
  * @date        2024-06-10
  * =======================================================
  */
-void Set_BB( uint32 pBB )
+void Data_SetBB( uint32 pBB )
 {
         if ( pBB >= 0U )
         {

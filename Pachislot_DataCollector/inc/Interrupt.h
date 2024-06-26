@@ -20,11 +20,17 @@
 #include "DataManager.h"
 #include "Serial_Com.h"
 
-#define INTR_WAIT 80U   //80ms間は次の外部割込みをマスク
+#define INTR_WAIT 80U           // 80ms間は次の外部割込みをマスク
+#define GAMECOUNT_WAIT 500U     // 500ms間待てば3枚掛けの3パルス分は無視できる
+
+// =======================================================
+// 関数ポインタ定義
+// =======================================================
+typedef void ( *INTR_CALLBACK )( void );
 
 // =======================================================
 // 関数宣言
 // =======================================================
-extern void Intr_Init( void );
+extern void Intr_Init( INTR_CALLBACK *pFunc );
 
 #endif          __INTERRUPT_H__

@@ -16,14 +16,12 @@
 // =======================================================
 // ローカル変数
 // =======================================================
-static ulong64 mIN_PrevTime;
-static ulong64 mOUT_PrevTime;
-static ulong64 mRB_PrevTime;
-static ulong64 mBB_PrevTime;
+static INTR_CALLBACK *_Func;    // 関数ポインタ配列
 
 // =======================================================
 // ローカル関数
 // =======================================================
+static bool allow_intrrput( ulong64 pWaitTime, ulong64 *pPrevTime );
 static void in_intr_occur ( void );
 static void out_intr_occur( void );
 static void rb_intr_occur ( void );
@@ -36,141 +34,115 @@ static void bb_intr_occur ( void );
  * @date       2024-06-11
  * =======================================================
  */
-void Intr_Init( void )
+void Intr_Init( INTR_CALLBACK *pFunc )
 {
+        _Func = pFunc;          // 関数ポインタ配列のアドレスを受け取る
+
         // 3番～6番のピンを外部割込みに設定する
         // 割り込み発生は立ち下がりエッジ(FALLING)発生時とする
         attachInterrupt( digitalPinToInterrupt( IN_PIN ),  in_intr_occur,  FALLING );
         attachInterrupt( digitalPinToInterrupt( OUT_PIN ), out_intr_occur, FALLING );
         attachInterrupt( digitalPinToInterrupt( RB_PIN ),  rb_intr_occur,  FALLING );
         attachInterrupt( digitalPinToInterrupt( BB_PIN ),  bb_intr_occur,  FALLING );
-        mIN_PrevTime  = 0U;
-        mOUT_PrevTime = 0U;
-        mRB_PrevTime  = 0U;
-        mBB_PrevTime  = 0U;
+}
+
+/**
+ * =======================================================
+ * @fn          has_passed
+ * @brief       前回の割り込みからの80ms経過判定
+ * @date        2024-06-25
+ * =======================================================
+ */
+static bool allow_intrrput( ulong64 pWaitTime, ulong64 *pPrevTime )
+{
+        ulong64 l_interval;
+        bool l_allow;
+
+        l_interval = millis( ) - *pPrevTime;            // 前回の割込みからの経過時間を計算する
+
+        if ( l_interval >= pWaitTime )                  // 割込み待ち時間がINTR_WAIT[ms]を超えていたら
+        {
+               l_allow = true;
+               *pPrevTime = millis( );                  // 前回時間を更新しておく
+        }
+        else
+        {
+               l_allow = false;
+        }
+
+        return l_allow;
 }
 
 /**
  * =======================================================
  * @fn          in_intr_occur
- * @brief       INの立ち下がりエッジ発生時にINを+1する
+ * @brief       INの外部割込み
  * @date        2024-06-10
  * =======================================================
  */
 static void in_intr_occur( void )
 {
-        static ulong64 l_in_prevtime = 0U;
-        ulong64 l_interval;
+        static ulong64 l_in_prevtime = 0U;              // 前回時間を初期化する
+        static ulong64 l_game_prevtime = 0U;
 
-        if( has_passed( &l_in_prevtime ) )
+        if( allow_intrrput( INTR_WAIT, &l_in_prevtime ) == true )  // 前回の割り込みから時間が十分経過していたら
         {
-                
+                _Func[ 0 ]( );                          // Func[0]：update_in()をコールバックする
+        }
+
+        if( allow_intrrput( GAMECOUNT_WAIT, &l_game_prevtime ) == true )  // 前回の割り込みから時間が十分経過していたら
+        {
+                _Func[ 4 ]( );                          // Func[4]：update_game()をコールバックする
         }
 }
 
 /**
  * =======================================================
  * @fn          out_intr_occur
- * @brief       OUTの立ち下がりエッジ発生時にOUTを+1する
+ * @brief       OUTの外部割込み
  * @date        2024-06-10
  * =======================================================
  */
 static void out_intr_occur( void )
 {
-        ulong64 l_interval;
-        uint32 l_curr_out;
+        static ulong64 l_out_prevtime = 0U;
 
-        l_interval = millis() - mOUT_PrevTime;          // 前回の割込みからの経過時間を計算する
-
-        if ( l_interval >= INTR_WAIT )                  // 割込み待ち時間がINTR_WAIT[ms]を超えていたら
+        if( allow_intrrput( INTR_WAIT, &l_out_prevtime ) == true )
         {
-                noInterrupts( );                        // 他の割り込みを禁止する
-
-                l_curr_out = Get_OUT_Coin( );           // OUT枚数を取得する
-                l_curr_out++;                           // 現在のOUT枚数に+1する
-                Set_OUT_Coin( l_curr_out );             // OUT枚数を更新する
-                Serial_Write( "OUT_COIN:", l_curr_out );// 更新後のOUT枚数をシリアル通信でPCへ送る
-
-                mOUT_PrevTime = millis( );              // 割込み実施時間を更新する
-
-                interrupts( );                          // 他の割り込みを許可する
+                _Func[ 1 ]( );                          // Func[1]：update_out()をコールバックする
         }
 }
 
 /**
  * =======================================================
  * @fn          rb_intr_occur
- * @brief       RBの立ち下がりエッジ発生時にRBを+1する
+ * @brief       RBの外部割込み
  * @date        2024-06-10
  * =======================================================
  */
 static void rb_intr_occur( void )
 {
-        ulong64 l_interval;
-        uint32 l_curr_rb;
+        static ulong64 l_rb_prevtime = 0U;
 
-        l_interval = millis() - mRB_PrevTime;           // 前回の割込みからの経過時間を計算する
-
-        if ( l_interval >= INTR_WAIT )                  // 割込み待ち時間がINTR_WAIT[ms]を超えていたら
+        if( allow_intrrput( INTR_WAIT, &l_rb_prevtime ) == true )
         {
-                noInterrupts( );                        // 他の割り込みを禁止する
-
-                l_curr_rb = Get_RB( );                  // RB回数を取得する
-                l_curr_rb++;                            // 現在のRB回数に+1する
-                Set_RB( l_curr_rb );                    // RB回数を更新する
-                Serial_Write( "RB:", l_curr_rb );       // 更新後のRB回数をシリアル通信でPCへ送る
-
-                mRB_PrevTime = millis( );               // 割込み実施時間を更新する
-
-                interrupts( );                          // 他の割り込みを許可する
+                _Func[ 2 ]( );                          // Func[2]：update_rb()をコールバックする
         }
 }
 
 /**
  * =======================================================
  * @fn          bb_intr_occur
- * @brief       BBの立ち下がりエッジ発生時にBBを+1する
+ * @brief       BBの外部割込み
  * @date        2024-06-10
  * =======================================================
  */
 static void bb_intr_occur( void )
 {
-        ulong64 l_interval;
-        uint32 l_curr_bb;
+        static ulong64 l_bb_prevtime = 0U;
 
-        l_interval = millis() - mBB_PrevTime;           // 前回の割込みからの経過時間を計算する
-
-        if ( l_interval >= INTR_WAIT )                  // 割込み待ち時間がINTR_WAIT[ms]を超えていたら
+        if( allow_intrrput( INTR_WAIT, &l_bb_prevtime ) == true )
         {
-                noInterrupts( );                        // 他の割り込みを禁止する
-
-                l_curr_bb = Get_BB( );                  // BB回数を取得する
-                l_curr_bb++;                            // 現在のBB回数に+1する
-                Set_BB( l_curr_bb );                    // BB回数を更新する
-                Serial_Write( "BB:", l_curr_bb );       // 更新後のBB回数をシリアル通信でPCへ送る
-
-                mBB_PrevTime = millis( );               // 割込み実施時間を更新する
-
-                interrupts( );                          // 他の割り込みを許可する
+                _Func[ 3 ]( );                          // Func[3]：update_bb()をコールバックする
         }
-}
-
-static bool has_passed( ulong64 *pPrevTime )
-{
-        ulong64 l_interval;
-        bool l_has_passed;
-
-        l_interval = millis( ) - *pPrevTime;          // 前回の割込みからの経過時間を計算する
-
-        if ( l_interval >= INTR_WAIT )                  // 割込み待ち時間がINTR_WAIT[ms]を超えていたら
-        {
-               l_has_passed = true;
-               *pPrevTime = millis( );
-        }
-        else
-        {
-               l_has_passed = false;
-        }
-
-        return l_has_passed;
 }
