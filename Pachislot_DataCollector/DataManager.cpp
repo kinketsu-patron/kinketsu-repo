@@ -1,6 +1,6 @@
 /**
  * =============================================================
-* @file        DataManager.cpp
+ * @file        DataManager.cpp
  * @author      kinketsu patron (https://kinketsu-patron.com)
  * @brief       データ入出力管理
  * @version     1.0
@@ -22,8 +22,8 @@ static volatile uint32 mIN;
 static volatile uint32 mOUT;
 static volatile uint32 mRB;
 static volatile uint32 mBB;
-static volatile bool mDuringRB;
-static volatile bool mDuringBB;
+static volatile bool   mDuringRB;
+static volatile bool   mDuringBB;
 
 
 /**
@@ -35,14 +35,14 @@ static volatile bool mDuringBB;
  */
 void Data_Init( void )
 {
-        mGame       = 0U;
-        mTotalGame  = 0U;
-        mIN         = 0U;
-        mOUT        = 0U;
-        mRB         = 0U;
-        mBB         = 0U;
-        mDuringRB   = false;
-        mDuringBB   = false;
+        mGame      = 0U;
+        mTotalGame = 0U;
+        mIN        = 0U;
+        mOUT       = 0U;
+        mRB        = 0U;
+        mBB        = 0U;
+        mDuringRB  = false;
+        mDuringBB  = false;
 }
 
 /**
@@ -76,7 +76,10 @@ GAME_INFO Data_GetAllData( void )
  * @date        2024-06-26
  * =======================================================
  */
-uint32 Data_GetGame( void ) { return mGame; }
+uint32 Data_GetGame( void )
+{
+        return mGame;
+}
 
 /**
  * =======================================================
@@ -85,7 +88,10 @@ uint32 Data_GetGame( void ) { return mGame; }
  * @date        2024-06-26
  * =======================================================
  */
-uint32 Data_GetTotalGame( void ) { return mTotalGame; }
+uint32 Data_GetTotalGame( void )
+{
+        return mTotalGame;
+}
 
 /**
  * =======================================================
@@ -94,7 +100,10 @@ uint32 Data_GetTotalGame( void ) { return mTotalGame; }
  * @date        2024-06-10
  * =======================================================
  */
-uint32 Data_GetIN ( void ) { return mIN; }
+uint32 Data_GetIN( void )
+{
+        return mIN;
+}
 
 /**
  * =======================================================
@@ -103,7 +112,10 @@ uint32 Data_GetIN ( void ) { return mIN; }
  * @date        2024-06-10
  * =======================================================
  */
-uint32 Data_GetOUT( void ) { return mOUT; }
+uint32 Data_GetOUT( void )
+{
+        return mOUT;
+}
 
 /**
  * =======================================================
@@ -112,7 +124,10 @@ uint32 Data_GetOUT( void ) { return mOUT; }
  * @date        2024-06-10
  * =======================================================
  */
-uint32 Data_GetRB ( void ) { return mRB; }
+uint32 Data_GetRB( void )
+{
+        return mRB;
+}
 
 /**
  * =======================================================
@@ -121,7 +136,10 @@ uint32 Data_GetRB ( void ) { return mRB; }
  * @date        2024-06-10
  * =======================================================
  */
-uint32 Data_GetBB ( void ) { return mBB; }
+uint32 Data_GetBB( void )
+{
+        return mBB;
+}
 
 /**
  * =======================================================
@@ -130,7 +148,10 @@ uint32 Data_GetBB ( void ) { return mBB; }
  * @date        2024-06-26
  * =======================================================
  */
-bool Data_GetDuringRB ( void ) { return mDuringRB; }
+bool Data_GetDuringRB( void )
+{
+        return mDuringRB;
+}
 
 /**
  * =======================================================
@@ -139,7 +160,10 @@ bool Data_GetDuringRB ( void ) { return mDuringRB; }
  * @date        2024-06-26
  * =======================================================
  */
-bool Data_GetDuringBB ( void ) { return mDuringBB; }
+bool Data_GetDuringBB( void )
+{
+        return mDuringBB;
+}
 
 /**
  * =======================================================
@@ -151,14 +175,14 @@ bool Data_GetDuringBB ( void ) { return mDuringBB; }
 bool Data_GetDuringBonus( void )
 {
         bool l_IsBonus;
-        
+
         if ( mDuringRB == true || mDuringBB == true )        // BB中またはRB中であれば
         {
-                l_IsBonus = true;                            // ボーナス中フラグを立てる
+                l_IsBonus = true;        // ボーナス中フラグを立てる
         }
-        else                                                 // ボーナス中でなければ
+        else        // ボーナス中でなければ
         {
-                l_IsBonus = false;                           // ボーナス中フラグを下ろす
+                l_IsBonus = false;        // ボーナス中フラグを下ろす
         }
 
         return l_IsBonus;

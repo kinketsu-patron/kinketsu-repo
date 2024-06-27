@@ -20,10 +20,10 @@
  * @date       2024-06-08
  * =======================================================
  */
-void    Port_Init( void )
+void Port_Init( void )
 {
-        pinMode( IN_PIN,  INPUT );      // 6番ピンを"IN"信号の入力モードに設定する
-        pinMode( OUT_PIN, INPUT );      // 5番ピンを"OUT"信号の入力モードに設定する
-        pinMode( RB_PIN,  INPUT );      // 2番ピンを"RB"信号の入力モードに設定する
-        pinMode( BB_PIN,  INPUT );      // 3番ピンを"BB"信号の入力モードに設定する
+        pinMode( IN_PIN, INPUT );         // 6番ピンを"IN"信号の入力モードに設定する
+        pinMode( OUT_PIN, INPUT );        // 5番ピンを"OUT"信号の入力モードに設定する
+        pinMode( RB_PIN, INPUT );         // 2番ピンを"RB"信号の入力モードに設定する
+        pinMode( BB_PIN, INPUT );         // 3番ピンを"BB"信号の入力モードに設定する
 }

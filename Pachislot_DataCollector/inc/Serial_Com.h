@@ -8,8 +8,8 @@
  * =============================================================
  */
 
-#ifndef         __SERIAL_COM_H__
-#define         __SERIAL_COM_H__
+#ifndef __SERIAL_COM_H__
+#define __SERIAL_COM_H__
 
 // =======================================================
 // ヘッダインクルード
@@ -22,7 +22,7 @@
 // =======================================================
 // 関数宣言
 // =======================================================
-extern void    Serial_Init( void );
-extern void    Serial_Send( GAME_INFO *pGameInfo );
+extern void Serial_Init( void );
+extern void Serial_Send( GAME_INFO *pGameInfo );
 
-#endif          __SERIAL_COM_H__
+#endif __SERIAL_COM_H__

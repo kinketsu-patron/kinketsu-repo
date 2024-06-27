@@ -8,24 +8,25 @@
  * =============================================================
  */
 
-#ifndef         __STRUCT_H__
-#define         __STRUCT_H__
+#ifndef __STRUCT_H__
+#define __STRUCT_H__
 
 #include "vtype.h"
 
 // =======================================================
 // 構造体定義
 // =======================================================
-typedef struct {
-        uint32 Game;
-        uint32 TotalGame;
-        uint32 IN;
-        uint32 OUT;
-        sint32 Diff;
-        uint32 RB;
-        uint32 BB;
-        bool   DuringRB;
-        bool   DuringBB;
+typedef struct
+{
+                uint32 Game;
+                uint32 TotalGame;
+                uint32 IN;
+                uint32 OUT;
+                sint32 Diff;
+                uint32 RB;
+                uint32 BB;
+                bool   DuringRB;
+                bool   DuringBB;
 } GAME_INFO;
 
-#endif          __STRUCT_H__
+#endif __STRUCT_H__

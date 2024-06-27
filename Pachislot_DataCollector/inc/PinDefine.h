@@ -8,27 +8,27 @@
  * =============================================================
  */
 
-#ifndef         __PINDEFINE_H__
-#define         __PINDEFINE_H__
+#ifndef __PINDEFINE_H__
+#define __PINDEFINE_H__
 
 /** @def
  * IN入力ピン:6番ピン
  */
-#define         IN_PIN  6U
+#define IN_PIN 6U
 
 /** @def
  * OUT入力ピン:5番ピン
  */
-#define         OUT_PIN 5U
+#define OUT_PIN 5U
 
 /** @def
  * RB入力ピン:4番ピン
  */
-#define         RB_PIN  2U
+#define RB_PIN 2U
 
 /** @def
  * BB入力ピン:3番ピン
  */
-#define         BB_PIN  3U
+#define BB_PIN 3U
 
-#endif          __PINDEFINE_H__
+#endif __PINDEFINE_H__
