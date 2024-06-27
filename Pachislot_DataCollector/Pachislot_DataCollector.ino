@@ -65,8 +65,7 @@ void    setup( void )
  */
 void    loop( void )
 {
-        Serial_Send( &( Data_GetAllData( ) ) );
-        delay( 500 );           // 500ms待つ
+        // 何もしない
 }
 
 /**
@@ -89,6 +88,7 @@ static void update_game( void )
                 l_curr_game = Data_GetTotalGame( );     // 現在の累計ゲーム回数を取得する
                 l_curr_game++;                          // 現在の累計ゲーム回数に+1する
                 Data_SetTotalGame( l_curr_game );       // 累計ゲーム回数を更新する
+                Serial_Send( &( Data_GetAllData( ) ) ); // すべてのゲーム情報をPCへ送信する
                 interrupts( );                          // 他の割り込みを許可する
         }
 }
@@ -108,6 +108,7 @@ static void update_in( void )
         l_curr_in = Data_GetIN( );              // 現在のIN枚数を取得する
         l_curr_in++;                            // 現在のIN枚数に+1する
         Data_SetIN( l_curr_in );                // IN枚数を更新する
+        Serial_Send( &( Data_GetAllData( ) ) ); // すべてのゲーム情報をPCへ送信する
         interrupts( );                          // 他の割り込みを許可する
 }
 
@@ -126,6 +127,7 @@ static void update_out( void )
         l_curr_out = Data_GetOUT( );            // 現在のOUT枚数を取得する
         l_curr_out++;                           // 現在のOUT枚数に+1する
         Data_SetOUT( l_curr_out );              // OUT枚数を更新する
+        Serial_Send( &( Data_GetAllData( ) ) ); // すべてのゲーム情報をPCへ送信する
         interrupts( );                          // 他の割り込みを許可する
 }
 
@@ -145,6 +147,7 @@ static void begin_rb( void )
         l_curr_rb++;                            // 現在のRB回数に+1する
         Data_SetRB( l_curr_rb );                // RB回数を更新する
         Data_SetDuringRB( true );               // RB中フラグを立てる
+        Serial_Send( &( Data_GetAllData( ) ) ); // すべてのゲーム情報をPCへ送信する
         interrupts( );                          // 他の割り込みを許可する
 }
 
@@ -160,6 +163,7 @@ static void end_rb( void )
         noInterrupts( );                        // 他の割り込みを禁止する
         Data_SetDuringRB( false );              // RB中フラグを下ろす
         Data_SetGame( 0U );                     // ゲーム数を0にリセットする
+        Serial_Send( &( Data_GetAllData( ) ) ); // すべてのゲーム情報をPCへ送信する
         interrupts( );                          // 他の割り込みを許可する
 }
 
@@ -179,6 +183,7 @@ static void begin_bb( void )
         l_curr_bb++;                            // 現在のBB回数に+1する
         Data_SetBB( l_curr_bb );                // BB回数を更新する
         Data_SetDuringBB( true );               // BB中フラグを立てる
+        Serial_Send( &( Data_GetAllData( ) ) ); // すべてのゲーム情報をPCへ送信する
         interrupts( );                          // 他の割り込みを許可する
 }
 
@@ -194,5 +199,6 @@ static void end_bb( void )
         noInterrupts( );                        // 他の割り込みを禁止する
         Data_SetDuringBB( false );              // BB中フラグを下ろす
         Data_SetGame( 0U );                     // ゲーム数を0にリセットする
+        Serial_Send( &( Data_GetAllData( ) ) ); // すべてのゲーム情報をPCへ送信する
         interrupts( );                          // 他の割り込みを許可する
 }
