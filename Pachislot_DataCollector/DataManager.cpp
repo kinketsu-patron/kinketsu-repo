@@ -152,13 +152,13 @@ bool Data_GetDuringBonus( void )
 {
         bool l_IsBonus;
         
-        if ( mDuringRB == true || mDuringBB == true )
+        if ( mDuringRB == true || mDuringBB == true )        // BB中またはRB中であれば
         {
-                l_IsBonus = true;
+                l_IsBonus = true;                            // ボーナス中フラグを立てる
         }
-        else
+        else                                                 // ボーナス中でなければ
         {
-                l_IsBonus = false;
+                l_IsBonus = false;                           // ボーナス中フラグを下ろす
         }
 
         return l_IsBonus;
