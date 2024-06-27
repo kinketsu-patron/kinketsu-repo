@@ -79,7 +79,7 @@ static void update_game( void )
 {
         uint32 l_curr_game;
 
-        if ( Data_GetDuringBonus( ) == false )
+        if ( Data_GetDuringBonus( ) == false )          // ボーナス中はゲーム数のカウントを止める
         {
                 noInterrupts( );                        // 他の割り込みを禁止する
                 l_curr_game = Data_GetGame( );          // 現在のゲーム回数を取得する
