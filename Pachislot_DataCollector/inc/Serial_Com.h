@@ -23,6 +23,6 @@
 // 関数宣言
 // =======================================================
 extern void Serial_Init( void );
-extern void Serial_Send( GAME_INFO *pGameInfo );
+extern void Serial_Send( GAME_INFO *p_GameInfo );
 
 #endif __SERIAL_COM_H__

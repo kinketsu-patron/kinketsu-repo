@@ -16,14 +16,14 @@
 // =======================================================
 // 静的変数
 // =======================================================
-static volatile uint32 mGame;
-static volatile uint32 mTotalGame;
-static volatile uint32 mIN;
-static volatile uint32 mOUT;
-static volatile uint32 mRB;
-static volatile uint32 mBB;
-static volatile bool   mDuringRB;
-static volatile bool   mDuringBB;
+static volatile uint32 m_Game;
+static volatile uint32 m_TotalGame;
+static volatile uint32 m_IN;
+static volatile uint32 m_OUT;
+static volatile uint32 m_RB;
+static volatile uint32 m_BB;
+static volatile bool   m_DuringRB;
+static volatile bool   m_DuringBB;
 
 
 /**
@@ -35,14 +35,14 @@ static volatile bool   mDuringBB;
  */
 void Data_Init( void )
 {
-        mGame      = 0U;
-        mTotalGame = 0U;
-        mIN        = 0U;
-        mOUT       = 0U;
-        mRB        = 0U;
-        mBB        = 0U;
-        mDuringRB  = false;
-        mDuringBB  = false;
+        m_Game      = 0U;
+        m_TotalGame = 0U;
+        m_IN        = 0U;
+        m_OUT       = 0U;
+        m_RB        = 0U;
+        m_BB        = 0U;
+        m_DuringRB  = false;
+        m_DuringBB  = false;
 }
 
 /**
@@ -56,15 +56,15 @@ GAME_INFO Data_GetAllData( void )
 {
         GAME_INFO l_DataInfo;
 
-        l_DataInfo.Game      = mGame;
-        l_DataInfo.TotalGame = mTotalGame;
-        l_DataInfo.IN        = mIN;
-        l_DataInfo.OUT       = mOUT;
-        l_DataInfo.Diff      = ( sint32 )mOUT - ( sint32 )mIN;
-        l_DataInfo.RB        = mRB;
-        l_DataInfo.BB        = mBB;
-        l_DataInfo.DuringRB  = mDuringRB;
-        l_DataInfo.DuringBB  = mDuringBB;
+        l_DataInfo.Game      = m_Game;
+        l_DataInfo.TotalGame = m_TotalGame;
+        l_DataInfo.IN        = m_IN;
+        l_DataInfo.OUT       = m_OUT;
+        l_DataInfo.Diff      = ( sint32 )m_OUT - ( sint32 )m_IN;
+        l_DataInfo.RB        = m_RB;
+        l_DataInfo.BB        = m_BB;
+        l_DataInfo.DuringRB  = m_DuringRB;
+        l_DataInfo.DuringBB  = m_DuringBB;
 
         return l_DataInfo;
 }
@@ -78,7 +78,7 @@ GAME_INFO Data_GetAllData( void )
  */
 uint32 Data_GetGame( void )
 {
-        return mGame;
+        return m_Game;
 }
 
 /**
@@ -90,7 +90,7 @@ uint32 Data_GetGame( void )
  */
 uint32 Data_GetTotalGame( void )
 {
-        return mTotalGame;
+        return m_TotalGame;
 }
 
 /**
@@ -102,7 +102,7 @@ uint32 Data_GetTotalGame( void )
  */
 uint32 Data_GetIN( void )
 {
-        return mIN;
+        return m_IN;
 }
 
 /**
@@ -114,7 +114,7 @@ uint32 Data_GetIN( void )
  */
 uint32 Data_GetOUT( void )
 {
-        return mOUT;
+        return m_OUT;
 }
 
 /**
@@ -126,7 +126,7 @@ uint32 Data_GetOUT( void )
  */
 uint32 Data_GetRB( void )
 {
-        return mRB;
+        return m_RB;
 }
 
 /**
@@ -138,7 +138,7 @@ uint32 Data_GetRB( void )
  */
 uint32 Data_GetBB( void )
 {
-        return mBB;
+        return m_BB;
 }
 
 /**
@@ -150,7 +150,7 @@ uint32 Data_GetBB( void )
  */
 bool Data_GetDuringRB( void )
 {
-        return mDuringRB;
+        return m_DuringRB;
 }
 
 /**
@@ -162,7 +162,7 @@ bool Data_GetDuringRB( void )
  */
 bool Data_GetDuringBB( void )
 {
-        return mDuringBB;
+        return m_DuringBB;
 }
 
 /**
@@ -176,7 +176,7 @@ bool Data_GetDuringBonus( void )
 {
         bool l_IsBonus;
 
-        if ( mDuringRB == true || mDuringBB == true )        // BB中またはRB中であれば
+        if ( m_DuringRB == true || m_DuringBB == true )        // BB中またはRB中であれば
         {
                 l_IsBonus = true;        // ボーナス中フラグを立てる
         }
@@ -195,11 +195,11 @@ bool Data_GetDuringBonus( void )
  * @date        2024-06-26
  * =======================================================
  */
-void Data_SetGame( uint32 pGame )
+void Data_SetGame( uint32 p_Game )
 {
-        if ( pGame >= 0U )
+        if ( p_Game >= 0U )
         {
-                mGame = pGame;
+                m_Game = p_Game;
         }
 }
 
@@ -210,11 +210,11 @@ void Data_SetGame( uint32 pGame )
  * @date        2024-06-26
  * =======================================================
  */
-void Data_SetTotalGame( uint32 pTotalGame )
+void Data_SetTotalGame( uint32 p_TotalGame )
 {
-        if ( pTotalGame >= 0U )
+        if ( p_TotalGame >= 0U )
         {
-                mTotalGame = pTotalGame;
+                m_TotalGame = p_TotalGame;
         }
 }
 
@@ -225,11 +225,11 @@ void Data_SetTotalGame( uint32 pTotalGame )
  * @date        2024-06-10
  * =======================================================
  */
-void Data_SetIN( uint32 pIN )
+void Data_SetIN( uint32 p_IN )
 {
-        if ( pIN >= 0U )
+        if ( p_IN >= 0U )
         {
-                mIN = pIN;
+                m_IN = p_IN;
         }
 }
 
@@ -240,11 +240,11 @@ void Data_SetIN( uint32 pIN )
  * @date        2024-06-10
  * =======================================================
  */
-void Data_SetOUT( uint32 pOUT )
+void Data_SetOUT( uint32 p_OUT )
 {
-        if ( pOUT >= 0U )
+        if ( p_OUT >= 0U )
         {
-                mOUT = pOUT;
+                m_OUT = p_OUT;
         }
 }
 
@@ -255,11 +255,11 @@ void Data_SetOUT( uint32 pOUT )
  * @date        2024-06-10
  * =======================================================
  */
-void Data_SetRB( uint32 pRB )
+void Data_SetRB( uint32 p_RB )
 {
-        if ( pRB >= 0U )
+        if ( p_RB >= 0U )
         {
-                mRB = pRB;
+                m_RB = p_RB;
         }
 }
 
@@ -270,11 +270,11 @@ void Data_SetRB( uint32 pRB )
  * @date        2024-06-10
  * =======================================================
  */
-void Data_SetBB( uint32 pBB )
+void Data_SetBB( uint32 p_BB )
 {
-        if ( pBB >= 0U )
+        if ( p_BB >= 0U )
         {
-                mBB = pBB;
+                m_BB = p_BB;
         }
 }
 
@@ -285,9 +285,9 @@ void Data_SetBB( uint32 pBB )
  * @date        2024-06-26
  * =======================================================
  */
-void Data_SetDuringRB( bool pDuringRB )
+void Data_SetDuringRB( bool p_DuringRB )
 {
-        mDuringRB = pDuringRB;
+        m_DuringRB = p_DuringRB;
 }
 
 /**
@@ -297,7 +297,7 @@ void Data_SetDuringRB( bool pDuringRB )
  * @date        2024-06-26
  * =======================================================
  */
-void Data_SetDuringBB( bool pDuringBB )
+void Data_SetDuringBB( bool p_DuringBB )
 {
-        mDuringBB = pDuringBB;
+        m_DuringBB = p_DuringBB;
 }

@@ -2,14 +2,14 @@
 
 namespace Pachislot_DataCounter.Views
 {
-    /// <summary>
-    /// Interaction logic for Counter
-    /// </summary>
-    public partial class Counter : UserControl
-    {
-        public Counter()
+        /// <summary>
+        /// Interaction logic for Counter
+        /// </summary>
+        public partial class Counter : UserControl
         {
-            InitializeComponent();
+                public Counter( )
+                {
+                        InitializeComponent( );
+                }
         }
-    }
 }

@@ -29,24 +29,24 @@ void Serial_Init( void )
  * =======================================================
  * @fn          Serial_Send
  * @brief       シリアル通信でPCにメッセージを送信する
- * @param pGameInfo  遊戯情報
+ * @param p_GameInfo  遊戯情報
  * @date        2024-06-12
  * =======================================================
  */
-void Serial_Send( GAME_INFO *pGameInfo )
+void Serial_Send( GAME_INFO *p_GameInfo )
 {
         JSONVar l_Jobj;
         String  l_SendStrMsg;
 
-        l_Jobj[ "game" ]      = pGameInfo->Game;
-        l_Jobj[ "totalgame" ] = pGameInfo->TotalGame;
-        l_Jobj[ "in" ]        = pGameInfo->IN;
-        l_Jobj[ "out" ]       = pGameInfo->OUT;
-        l_Jobj[ "diff" ]      = pGameInfo->Diff;
-        l_Jobj[ "rb" ]        = pGameInfo->RB;
-        l_Jobj[ "bb" ]        = pGameInfo->BB;
-        l_Jobj[ "duringrb" ]  = pGameInfo->DuringRB;
-        l_Jobj[ "duringbb" ]  = pGameInfo->DuringBB;
+        l_Jobj[ "game" ]      = p_GameInfo->Game;
+        l_Jobj[ "totalgame" ] = p_GameInfo->TotalGame;
+        l_Jobj[ "in" ]        = p_GameInfo->IN;
+        l_Jobj[ "out" ]       = p_GameInfo->OUT;
+        l_Jobj[ "diff" ]      = p_GameInfo->Diff;
+        l_Jobj[ "rb" ]        = p_GameInfo->RB;
+        l_Jobj[ "bb" ]        = p_GameInfo->BB;
+        l_Jobj[ "duringrb" ]  = p_GameInfo->DuringRB;
+        l_Jobj[ "duringbb" ]  = p_GameInfo->DuringBB;
 
         l_SendStrMsg = JSON.stringify( l_Jobj );        // JSON形式をString型に変換する
         Serial.println( l_SendStrMsg );                 // String型でメッセージを送る

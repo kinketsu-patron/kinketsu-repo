@@ -16,12 +16,12 @@
 // =======================================================
 // ローカル変数
 // =======================================================
-static INTR_CALLBACK *_Func;        // 関数ポインタ配列
+static INTR_CALLBACK *m_Func;           // 関数ポインタ配列
 
 // =======================================================
 // ローカル関数
 // =======================================================
-static bool allow_intrrput( ulong64 pWaitTime, ulong64 *pPrevTime );
+static bool allow_intrrput( ulong64 p_WaitTime, ulong64 *p_PrevTime );
 static void in_intr_occur( void );
 static void out_intr_occur( void );
 static void rb_intr_occur( void );
@@ -34,9 +34,9 @@ static void bb_intr_occur( void );
  * @date       2024-06-11
  * =======================================================
  */
-void Intr_Init( INTR_CALLBACK *pFunc )
+void Intr_Init( INTR_CALLBACK *p_Func )
 {
-        _Func = pFunc;        // 関数ポインタ配列のアドレスを受け取る
+        m_Func = p_Func;        // 関数ポインタ配列のアドレスを受け取る
 
         // 3番～6番のピンを外部割込みに設定する
         // 割り込み発生は立ち下がりエッジ(FALLING)発生時とする
@@ -53,24 +53,24 @@ void Intr_Init( INTR_CALLBACK *pFunc )
  * @date        2024-06-25
  * =======================================================
  */
-static bool allow_intrrput( ulong64 pWaitTime, ulong64 *pPrevTime )
+static bool allow_intrrput( ulong64 p_WaitTime, ulong64 *p_PrevTime )
 {
-        ulong64 l_interval;
-        bool    l_allow;
+        ulong64 l_Interval;
+        bool    l_Allow;
 
-        l_interval = millis( ) - *pPrevTime;        // 前回の割込みからの経過時間を計算する
+        l_Interval = millis( ) - *p_PrevTime;   // 前回の割込みからの経過時間を計算する
 
-        if ( l_interval >= pWaitTime )        // 割込み待ち時間がINTR_WAIT[ms]を超えていたら
+        if ( l_Interval >= p_WaitTime )         // 割込み待ち時間がINTR_WAIT[ms]を超えていたら
         {
-                l_allow    = true;
-                *pPrevTime = millis( );        // 前回時間を更新しておく
+                l_Allow     = true;
+                *p_PrevTime = millis( );        // 前回時間を更新しておく
         }
         else
         {
-                l_allow = false;
+                l_Allow = false;
         }
 
-        return l_allow;
+        return l_Allow;
 }
 
 /**
@@ -82,17 +82,17 @@ static bool allow_intrrput( ulong64 pWaitTime, ulong64 *pPrevTime )
  */
 static void in_intr_occur( void )
 {
-        static ulong64 l_in_prevtime   = 0U;        // 前回時間を初期化する
-        static ulong64 l_game_prevtime = 0U;
+        static ulong64 l_INPrevtime   = 0U;        // 前回時間を初期化する
+        static ulong64 l_GamePrevtime = 0U;
 
-        if ( allow_intrrput( INTR_WAIT, &l_in_prevtime ) == true )        // 前回の割り込みから時間が十分経過していたら
+        if ( allow_intrrput( INTR_WAIT, &l_INPrevtime ) == true )        // 前回の割り込みから時間が十分経過していたら
         {
-                _Func[ 1 ]( );        // Func[1]：update_in()をコールバックする
+                m_Func[ 1 ]( );        // Func[1]：update_in()をコールバックする
         }
 
-        if ( allow_intrrput( GAMECOUNT_WAIT, &l_game_prevtime ) == true )        // 前回の割り込みから時間が十分経過していたら
+        if ( allow_intrrput( GAMECOUNT_WAIT, &l_GamePrevtime ) == true )        // 前回の割り込みから時間が十分経過していたら
         {
-                _Func[ 0 ]( );        // Func[0]：update_game()をコールバックする
+                m_Func[ 0 ]( );        // Func[0]：update_game()をコールバックする
         }
 }
 
@@ -105,11 +105,11 @@ static void in_intr_occur( void )
  */
 static void out_intr_occur( void )
 {
-        static ulong64 l_out_prevtime = 0U;
+        static ulong64 l_OUTPrevtime = 0U;
 
-        if ( allow_intrrput( INTR_WAIT, &l_out_prevtime ) == true )
+        if ( allow_intrrput( INTR_WAIT, &l_OUTPrevtime ) == true )
         {
-                _Func[ 2 ]( );        // Func[2]：update_out()をコールバックする
+                m_Func[ 2 ]( );        // Func[2]：update_out()をコールバックする
         }
 }
 
@@ -122,17 +122,17 @@ static void out_intr_occur( void )
  */
 static void rb_intr_occur( void )
 {
-        static ulong64 l_rb_prevtime = 0U;
+        static ulong64 l_RBPrevtime = 0U;
 
-        if ( allow_intrrput( INTR_WAIT, &l_rb_prevtime ) == true )
+        if ( allow_intrrput( INTR_WAIT, &l_RBPrevtime ) == true )
         {
                 if ( digitalRead( RB_PIN ) == LOW )
                 {
-                        _Func[ 3 ]( );        // Func[3]：begin_rb()をコールバックする
+                        m_Func[ 3 ]( );        // Func[3]：begin_rb()をコールバックする
                 }
                 else
                 {
-                        _Func[ 4 ]( );        // Func[4]：end_rb()をコールバックする
+                        m_Func[ 4 ]( );        // Func[4]：end_rb()をコールバックする
                 }
         }
 }
@@ -146,17 +146,17 @@ static void rb_intr_occur( void )
  */
 static void bb_intr_occur( void )
 {
-        static ulong64 l_bb_prevtime = 0U;
+        static ulong64 l_BBPrevtime = 0U;
 
-        if ( allow_intrrput( INTR_WAIT, &l_bb_prevtime ) == true )
+        if ( allow_intrrput( INTR_WAIT, &l_BBPrevtime ) == true )
         {
                 if ( digitalRead( BB_PIN ) == LOW )
                 {
-                        _Func[ 5 ]( );        // Func[5]：begin_bb()をコールバックする
+                        m_Func[ 5 ]( );        // Func[5]：begin_bb()をコールバックする
                 }
                 else
                 {
-                        _Func[ 6 ]( );        // Func[6]：end_bb()をコールバックする
+                        m_Func[ 6 ]( );        // Func[6]：end_bb()をコールバックする
                 }
         }
 }

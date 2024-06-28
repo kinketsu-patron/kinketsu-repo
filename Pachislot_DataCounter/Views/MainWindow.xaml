@@ -19,200 +19,200 @@
                    ResizeMode="CanMinimize"
                    ShowTitleBar="False">
 
-    <!--======================================-->
-    <!--アニメーション設定                    -->
-    <!--======================================-->
-    <Window.Resources>
-        <Storyboard x:Key="Bonus_Blink">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" RepeatBehavior="Forever" AutoReverse="True">
-                <LinearDoubleKeyFrame KeyTime="0" Value="1" />
-                <LinearDoubleKeyFrame KeyTime="0:0:0.5" Value="0" />
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
-    </Window.Resources>
-
-    <!--======================================-->
-    <!--ウィンドウの背景画像                  -->
-    <!--======================================-->
-    <Window.Background>
-        <ImageBrush ImageSource="/Resource/Background.png" />
-    </Window.Background>
-
-    <Grid Margin="110,80,110,90">
-        <!--列の定義-->
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.3*"/>
-            <ColumnDefinition Width="0.2*"/>
-            <ColumnDefinition Width="0.6*"/>
-            <ColumnDefinition Width="0.1*"/>
-            <ColumnDefinition Width="0.2*"/>
-            <ColumnDefinition Width="0.7*"/>
-            <ColumnDefinition Width="0.6*"/>
-        </Grid.ColumnDefinitions>
-
-        <!--行の定義-->
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="70*"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="70*"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="57*"/>
-            <RowDefinition Height="100*"/>
-        </Grid.RowDefinitions>
+        <!--======================================-->
+        <!--アニメーション設定                    -->
+        <!--======================================-->
+        <Window.Resources>
+                <Storyboard x:Key="Bonus_Blink">
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" RepeatBehavior="Forever" AutoReverse="True">
+                                <LinearDoubleKeyFrame KeyTime="0" Value="1" />
+                                <LinearDoubleKeyFrame KeyTime="0:0:0.5" Value="0" />
+                        </DoubleAnimationUsingKeyFrames>
+                </Storyboard>
+        </Window.Resources>
 
         <!--======================================-->
-        <!--左側情報                              -->
+        <!--ウィンドウの背景画像                  -->
         <!--======================================-->
+        <Window.Background>
+                <ImageBrush ImageSource="/Resource/Background.png" />
+        </Window.Background>
 
-        <!--======================================-->
-        <!--ビッグボーナスの回数                  -->
-        <!--======================================-->
-        <Image Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="3" Source="/Resource/飾り枠(セクション).png" />
-        <Image Grid.Row="1" Grid.Column="0"  Source="/Resource/BB.png" HorizontalAlignment="Left" />
-        <!--横に並べる-->
-        <StackPanel Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Orientation="Horizontal"  HorizontalAlignment="Right" VerticalAlignment="Center">
-            <StackPanel.Style>
-                <Style TargetType="StackPanel">
-                    <Style.Triggers>
-                        <!--BigBonus中になったら点滅させる-->
-                        <DataTrigger Binding="{Binding InBigBonus}" Value="true">
-                            <DataTrigger.EnterActions>
-                                <BeginStoryboard Name="BeginBB_Blink" Storyboard="{StaticResource Bonus_Blink}"/>
-                            </DataTrigger.EnterActions>
-                            <DataTrigger.ExitActions>
-                                <StopStoryboard BeginStoryboardName="BeginBB_Blink"/>
-                            </DataTrigger.ExitActions>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </StackPanel.Style>
+        <Grid Margin="110,80,110,90">
+                <!--列の定義-->
+                <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.3*"/>
+                        <ColumnDefinition Width="0.2*"/>
+                        <ColumnDefinition Width="0.6*"/>
+                        <ColumnDefinition Width="0.1*"/>
+                        <ColumnDefinition Width="0.2*"/>
+                        <ColumnDefinition Width="0.7*"/>
+                        <ColumnDefinition Width="0.6*"/>
+                </Grid.ColumnDefinitions>
 
-            <!--ユーザーコントロールのビッグボーナスカウンター-->
-            <ContentControl prism:RegionManager.RegionName="BigBonusCounter" />
-        </StackPanel>
+                <!--行の定義-->
+                <Grid.RowDefinitions>
+                        <RowDefinition Height="50*"/>
+                        <RowDefinition Height="50*"/>
+                        <RowDefinition Height="70*"/>
+                        <RowDefinition Height="50*"/>
+                        <RowDefinition Height="50*"/>
+                        <RowDefinition Height="70*"/>
+                        <RowDefinition Height="50*"/>
+                        <RowDefinition Height="50*"/>
+                        <RowDefinition Height="57*"/>
+                        <RowDefinition Height="100*"/>
+                </Grid.RowDefinitions>
 
-        <!--======================================-->
-        <!--レギュラーボーナスの回数              -->
-        <!--======================================-->
-        <Image Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Source="/Resource/飾り枠(セクション).png" />
-        <Image Grid.Row="4" Grid.Column="0" Source="/Resource/RB.png" HorizontalAlignment="Left" />
-        <StackPanel Grid.Row="4" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Orientation="Horizontal"  HorizontalAlignment="Right" VerticalAlignment="Center">
-            <StackPanel.Style>
-                <Style TargetType="StackPanel">
-                    <Style.Triggers>
-                        <!--RegularBonus中になったら点滅させる-->
-                        <DataTrigger Binding="{Binding InRegularBonus}" Value="true">
-                            <DataTrigger.EnterActions>
-                                <BeginStoryboard Name="BeginRB_Blink" Storyboard="{StaticResource Bonus_Blink}"/>
-                            </DataTrigger.EnterActions>
-                            <DataTrigger.ExitActions>
-                                <StopStoryboard BeginStoryboardName="BeginRB_Blink"/>
-                            </DataTrigger.ExitActions>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </StackPanel.Style>
+                <!--======================================-->
+                <!--左側情報                              -->
+                <!--======================================-->
 
-            <!--ユーザーコントロールのレギュラーボーナスカウンター-->
-            <ContentControl prism:RegionManager.RegionName="RegularBonusCounter" />
-        </StackPanel>
+                <!--======================================-->
+                <!--ビッグボーナスの回数                  -->
+                <!--======================================-->
+                <Image Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="3" Source="/Resource/飾り枠(セクション).png" />
+                <Image Grid.Row="1" Grid.Column="0"  Source="/Resource/BB.png" HorizontalAlignment="Left" />
+                <!--横に並べる-->
+                <StackPanel Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Orientation="Horizontal"  HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <StackPanel.Style>
+                                <Style TargetType="StackPanel">
+                                        <Style.Triggers>
+                                                <!--BigBonus中になったら点滅させる-->
+                                                <DataTrigger Binding="{Binding InBigBonus}" Value="true">
+                                                        <DataTrigger.EnterActions>
+                                                                <BeginStoryboard Name="BeginBB_Blink" Storyboard="{StaticResource Bonus_Blink}"/>
+                                                        </DataTrigger.EnterActions>
+                                                        <DataTrigger.ExitActions>
+                                                                <StopStoryboard BeginStoryboardName="BeginBB_Blink"/>
+                                                        </DataTrigger.ExitActions>
+                                                </DataTrigger>
+                                        </Style.Triggers>
+                                </Style>
+                        </StackPanel.Style>
 
-        <!--======================================-->
-        <!--ゲーム数(ボーナス間)と累計ゲーム数    -->
-        <!--======================================-->
-        <Image Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Source="/Resource/飾り枠(セクション).png" />
-        <Image Grid.Row="7" Grid.Column="0" Source="/Resource/ゲーム数.png" HorizontalAlignment="Left" />
-        <Image Grid.Row="7" Grid.Column="1" Source="/Resource/累計.png" HorizontalAlignment="Right" />
-        <!--累計ゲーム数-->
-        <StackPanel Grid.Row="7" Grid.Column="2" Orientation="Horizontal"  HorizontalAlignment="Right" VerticalAlignment="Center">
-            <!--ユーザーコントロールの累計ゲームカウンター-->
-            <ContentControl prism:RegionManager.RegionName="AllGameCounter" />
-        </StackPanel>
-        <!--現在のゲーム数-->
-        <StackPanel Grid.Row="8" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="3" Orientation="Horizontal"  HorizontalAlignment="Right" VerticalAlignment="Center" Height="130" >
-            <StackPanel.Style>
-                <Style TargetType="StackPanel">
-                    <Style.Triggers>
-                        <!--Bonus中になったら点滅させる-->
-                        <DataTrigger Binding="{Binding InBonus}" Value="true">
-                            <DataTrigger.EnterActions>
-                                <BeginStoryboard Name="BeginBonus_Blink" Storyboard="{StaticResource Bonus_Blink}"/>
-                            </DataTrigger.EnterActions>
-                            <DataTrigger.ExitActions>
-                                <StopStoryboard BeginStoryboardName="BeginBonus_Blink"/>
-                            </DataTrigger.ExitActions>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </StackPanel.Style>
+                        <!--ユーザーコントロールのビッグボーナスカウンター-->
+                        <ContentControl prism:RegionManager.RegionName="BigBonusCounter" />
+                </StackPanel>
 
-            <!--ユーザーコントロールの累計ゲームカウンター-->
-            <ContentControl prism:RegionManager.RegionName="CurrentGameCounter" />
-        </StackPanel>
+                <!--======================================-->
+                <!--レギュラーボーナスの回数              -->
+                <!--======================================-->
+                <Image Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Source="/Resource/飾り枠(セクション).png" />
+                <Image Grid.Row="4" Grid.Column="0" Source="/Resource/RB.png" HorizontalAlignment="Left" />
+                <StackPanel Grid.Row="4" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Orientation="Horizontal"  HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <StackPanel.Style>
+                                <Style TargetType="StackPanel">
+                                        <Style.Triggers>
+                                                <!--RegularBonus中になったら点滅させる-->
+                                                <DataTrigger Binding="{Binding InRegularBonus}" Value="true">
+                                                        <DataTrigger.EnterActions>
+                                                                <BeginStoryboard Name="BeginRB_Blink" Storyboard="{StaticResource Bonus_Blink}"/>
+                                                        </DataTrigger.EnterActions>
+                                                        <DataTrigger.ExitActions>
+                                                                <StopStoryboard BeginStoryboardName="BeginRB_Blink"/>
+                                                        </DataTrigger.ExitActions>
+                                                </DataTrigger>
+                                        </Style.Triggers>
+                                </Style>
+                        </StackPanel.Style>
+
+                        <!--ユーザーコントロールのレギュラーボーナスカウンター-->
+                        <ContentControl prism:RegionManager.RegionName="RegularBonusCounter" />
+                </StackPanel>
+
+                <!--======================================-->
+                <!--ゲーム数(ボーナス間)と累計ゲーム数    -->
+                <!--======================================-->
+                <Image Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Source="/Resource/飾り枠(セクション).png" />
+                <Image Grid.Row="7" Grid.Column="0" Source="/Resource/ゲーム数.png" HorizontalAlignment="Left" />
+                <Image Grid.Row="7" Grid.Column="1" Source="/Resource/累計.png" HorizontalAlignment="Right" />
+                <!--累計ゲーム数-->
+                <StackPanel Grid.Row="7" Grid.Column="2" Orientation="Horizontal"  HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <!--ユーザーコントロールの累計ゲームカウンター-->
+                        <ContentControl prism:RegionManager.RegionName="AllGameCounter" />
+                </StackPanel>
+                <!--現在のゲーム数-->
+                <StackPanel Grid.Row="8" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="3" Orientation="Horizontal"  HorizontalAlignment="Right" VerticalAlignment="Center" Height="130" >
+                        <StackPanel.Style>
+                                <Style TargetType="StackPanel">
+                                        <Style.Triggers>
+                                                <!--Bonus中になったら点滅させる-->
+                                                <DataTrigger Binding="{Binding InBonus}" Value="true">
+                                                        <DataTrigger.EnterActions>
+                                                                <BeginStoryboard Name="BeginBonus_Blink" Storyboard="{StaticResource Bonus_Blink}"/>
+                                                        </DataTrigger.EnterActions>
+                                                        <DataTrigger.ExitActions>
+                                                                <StopStoryboard BeginStoryboardName="BeginBonus_Blink"/>
+                                                        </DataTrigger.ExitActions>
+                                                </DataTrigger>
+                                        </Style.Triggers>
+                                </Style>
+                        </StackPanel.Style>
+
+                        <!--ユーザーコントロールの累計ゲームカウンター-->
+                        <ContentControl prism:RegionManager.RegionName="CurrentGameCounter" />
+                </StackPanel>
 
 
-        <!--======================================-->
-        <!--右側情報                              -->
-        <!--======================================-->
+                <!--======================================-->
+                <!--右側情報                              -->
+                <!--======================================-->
 
-        <!--======================================-->
-        <!--IN枚数                                -->
-        <!--======================================-->
-        <Image Grid.Row="0" Grid.Column="4" Margin="10" Source="/Resource/IN枚数.png" HorizontalAlignment="Left" />
-        <ContentControl Grid.Row="0" Grid.Column="5" Margin="5" HorizontalAlignment="Right" prism:RegionManager.RegionName="InCoinCounter" />
+                <!--======================================-->
+                <!--IN枚数                                -->
+                <!--======================================-->
+                <Image Grid.Row="0" Grid.Column="4" Margin="10" Source="/Resource/IN枚数.png" HorizontalAlignment="Left" />
+                <ContentControl Grid.Row="0" Grid.Column="5" Margin="5" HorizontalAlignment="Right" prism:RegionManager.RegionName="InCoinCounter" />
 
-        <!--======================================-->
-        <!--OUT枚数                               -->
-        <!--======================================-->
-        <Image Grid.Row="1" Grid.Column="4" Source="/Resource/OUT枚数.png" HorizontalAlignment="Left" />
-        <ContentControl Grid.Row="1" Grid.Column="5" Margin="5" HorizontalAlignment="Right" prism:RegionManager.RegionName="OutCoinCounter" />
+                <!--======================================-->
+                <!--OUT枚数                               -->
+                <!--======================================-->
+                <Image Grid.Row="1" Grid.Column="4" Source="/Resource/OUT枚数.png" HorizontalAlignment="Left" />
+                <ContentControl Grid.Row="1" Grid.Column="5" Margin="5" HorizontalAlignment="Right" prism:RegionManager.RegionName="OutCoinCounter" />
 
-        <!--======================================-->
-        <!--ボタン類                              -->
-        <!--======================================-->
-        <StackPanel Grid.Row="0" Grid.Column="6" Grid.RowSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-            <Button 
-                Command="{Binding Click_Connect}"
-                Content="{iconPacks:Material Kind=Connection, Width=40, Height=40}"
-                Style="{StaticResource MahApps.Styles.Button.Circle}"
-                Foreground="{StaticResource MahApps.Brushes.Accent}"
-                BorderBrush="{StaticResource MahApps.Brushes.Accent}"
-                BorderThickness="3"
-                Width="80"
-                Height="80"
-                Margin="0,0,30,0"
-                ToolTip="Connect">
-            </Button>
-            <Button 
-                Command="{Binding Click_Exit}"
-                CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:MainWindow}}"
-                Content="{iconPacks:Material Kind=ExitToApp, Width=40, Height=40}"
-                Style="{StaticResource MahApps.Styles.Button.Circle}"
-                Foreground="{StaticResource MahApps.Brushes.Accent}"
-                BorderBrush="{StaticResource MahApps.Brushes.Accent}"
-                BorderThickness="3"
-                Width="80"
-                Height="80"
-                ToolTip="Exit">
-            </Button>
-        </StackPanel>
+                <!--======================================-->
+                <!--ボタン類                              -->
+                <!--======================================-->
+                <StackPanel Grid.Row="0" Grid.Column="6" Grid.RowSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <Button 
+                                Command="{Binding Click_Connect}"
+                                Content="{iconPacks:Material Kind=Connection, Width=40, Height=40}"
+                                Style="{StaticResource MahApps.Styles.Button.Circle}"
+                                Foreground="{StaticResource MahApps.Brushes.Accent}"
+                                BorderBrush="{StaticResource MahApps.Brushes.Accent}"
+                                BorderThickness="3"
+                                Width="80"
+                                Height="80"
+                                Margin="0,0,30,0"
+                                ToolTip="Connect">
+                        </Button>
+                        <Button 
+                                Command="{Binding Click_Exit}"
+                                CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:MainWindow}}"
+                                Content="{iconPacks:Material Kind=ExitToApp, Width=40, Height=40}"
+                                Style="{StaticResource MahApps.Styles.Button.Circle}"
+                                Foreground="{StaticResource MahApps.Brushes.Accent}"
+                                BorderBrush="{StaticResource MahApps.Brushes.Accent}"
+                                BorderThickness="3"
+                                Width="80"
+                                Height="80"
+                                ToolTip="Exit">
+                        </Button>
+                </StackPanel>
 
-        <!--======================================-->
-        <!--スランプグラフ                        -->
-        <!--======================================-->
-        <ContentControl Grid.Row="2" Grid.Column="4" Grid.RowSpan="4" Grid.ColumnSpan="3" Content="{Binding SlumpGraph}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                <!--======================================-->
+                <!--スランプグラフ                        -->
+                <!--======================================-->
+                <ContentControl Grid.Row="2" Grid.Column="4" Grid.RowSpan="4" Grid.ColumnSpan="3" Content="{Binding SlumpGraph}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
-        <!--======================================-->
-        <!--ボーナス履歴                          -->
-        <!--======================================-->
-        <!--    <ScrollViewer Grid.Row="6" Grid.Column="4" Grid.RowSpan="4" Grid.ColumnSpan="3" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
-            <StackPanel VerticalAlignment="Bottom" Background="#141414">
+                <!--======================================-->
+                <!--ボーナス履歴                          -->
+                <!--======================================-->
+                <!--    <ScrollViewer Grid.Row="6" Grid.Column="4" Grid.RowSpan="4" Grid.ColumnSpan="3" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
+                <StackPanel VerticalAlignment="Bottom" Background="#141414">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="10,0,0,0">
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="10,0,0,0">
                         <Image Source="/Resource/データスランプ(Bar)_Red.png" Width="80" Margin="1"/>
                         <Image Source="/Resource/データスランプ(Bar)_Red.png" Width="80" Margin="1"/>
                         <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Width="80" Margin="1"/>
@@ -226,9 +226,9 @@
                         <Label Content="現在" FontSize="30" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
                         <Image Source="/Resource/データスランプ(BB).png"/>
                         <Label Content="128" FontSize="30" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
-                    </StackPanel>
+                        </StackPanel>
 
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="50,0,0,0">
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="50,0,0,0">
                         <Image Source="/Resource/データスランプ(Bar)_Red.png" Width="80" Margin="1"/>
                         <Image Source="/Resource/データスランプ(Bar)_Red.png" Width="80" Margin="1"/>
                         <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Width="80" Margin="1"/>
@@ -242,9 +242,9 @@
                         <Label Content="1回前" FontSize="30" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
                         <Image Source="/Resource/データスランプ(BB).png"/>
                         <Label Content="128" FontSize="30" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
-                    </StackPanel>
+                        </StackPanel>
 
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="10,0,0,0">
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="10,0,0,0">
                         <Image Source="/Resource/データスランプ(Bar)_Red.png" Width="80" Margin="1"/>
                         <Image Source="/Resource/データスランプ(Bar)_Red.png" Width="80" Margin="1"/>
                         <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Width="80" Margin="1"/>
@@ -258,9 +258,9 @@
                         <Label Content="2回前" FontSize="30" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
                         <Image Source="/Resource/データスランプ(BB).png"/>
                         <Label Content="128" FontSize="30" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
-                    </StackPanel>
+                        </StackPanel>
 
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="10,0,0,0">
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="10,0,0,0">
                         <Image Source="/Resource/データスランプ(Bar)_Red.png" Width="80" Margin="1"/>
                         <Image Source="/Resource/データスランプ(Bar)_Red.png" Width="80" Margin="1"/>
                         <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Width="80" Margin="1"/>
@@ -274,9 +274,9 @@
                         <Label Content="3回前" FontSize="30" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
                         <Image Source="/Resource/データスランプ(BB).png"/>
                         <Label Content="128" FontSize="30" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
-                    </StackPanel>
+                        </StackPanel>
 
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="10,0,0,0">
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="10,0,0,0">
                         <Image Source="/Resource/データスランプ(Bar)_Red.png" Width="80" Margin="1"/>
                         <Image Source="/Resource/データスランプ(Bar)_Red.png" Width="80" Margin="1"/>
                         <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Width="80" Margin="1"/>
@@ -290,9 +290,9 @@
                         <Label Content="4回前" FontSize="30" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
                         <Image Source="/Resource/データスランプ(BB).png"/>
                         <Label Content="128" FontSize="30" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
-                    </StackPanel>
+                        </StackPanel>
 
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="10,0,0,0">
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="10,0,0,0">
                         <Image Source="/Resource/データスランプ(Bar)_Red.png" Width="80" Margin="1"/>
                         <Image Source="/Resource/データスランプ(Bar)_Red.png" Width="80" Margin="1"/>
                         <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Width="80" Margin="1"/>
@@ -306,9 +306,9 @@
                         <Label Content="5回前" FontSize="30" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
                         <Image Source="/Resource/データスランプ(BB).png"/>
                         <Label Content="128" FontSize="30" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
-                    </StackPanel>
+                        </StackPanel>
 
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="10,0,0,0">
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="10,0,0,0">
                         <Image Source="/Resource/データスランプ(Bar)_Red.png" Width="80" Margin="1"/>
                         <Image Source="/Resource/データスランプ(Bar)_Red.png" Width="80" Margin="1"/>
                         <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Width="80" Margin="1"/>
@@ -322,9 +322,9 @@
                         <Label Content="6回前" FontSize="30" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
                         <Image Source="/Resource/データスランプ(BB).png"/>
                         <Label Content="128" FontSize="30" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
-                    </StackPanel>
+                        </StackPanel>
 
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="10,0,0,0">
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="10,0,0,0">
                         <Image Source="/Resource/データスランプ(Bar)_Red.png" Width="80" Margin="1"/>
                         <Image Source="/Resource/データスランプ(Bar)_Red.png" Width="80" Margin="1"/>
                         <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Width="80" Margin="1"/>
@@ -338,9 +338,9 @@
                         <Label Content="7回前" FontSize="30" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
                         <Image Source="/Resource/データスランプ(BB).png"/>
                         <Label Content="128" FontSize="30" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
-                    </StackPanel>
+                        </StackPanel>
 
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="10,0,0,0">
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="10,0,0,0">
                         <Image Source="/Resource/データスランプ(Bar)_Red.png" Width="80" Margin="1"/>
                         <Image Source="/Resource/データスランプ(Bar)_Red.png" Width="80" Margin="1"/>
                         <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Width="80" Margin="1"/>
@@ -354,9 +354,9 @@
                         <Label Content="8回前" FontSize="30" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
                         <Image Source="/Resource/データスランプ(BB).png"/>
                         <Label Content="128" FontSize="30" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
-                    </StackPanel>
+                        </StackPanel>
 
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="10,0,0,0">
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="10,0,0,0">
                         <Image Source="/Resource/データスランプ(Bar)_Red.png" Width="80" Margin="1"/>
                         <Image Source="/Resource/データスランプ(Bar)_Red.png" Width="80" Margin="1"/>
                         <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Width="80" Margin="1"/>
@@ -370,9 +370,9 @@
                         <Label Content="9回前" FontSize="30" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
                         <Image Source="/Resource/データスランプ(BB).png"/>
                         <Label Content="128" FontSize="30" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
-                    </StackPanel>
+                        </StackPanel>
 
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="10,0,0,0">
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="10,0,0,0">
                         <Image Source="/Resource/データスランプ(Bar)_Red.png" Width="80" Margin="1"/>
                         <Image Source="/Resource/データスランプ(Bar)_Red.png" Width="80" Margin="1"/>
                         <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Width="80" Margin="1"/>
@@ -386,9 +386,9 @@
                         <Label Content="10回前" FontSize="30" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
                         <Image Source="/Resource/データスランプ(BB).png"/>
                         <Label Content="128" FontSize="30" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
-                    </StackPanel>
+                        </StackPanel>
                 </StackPanel>
-            </StackPanel>
+                </StackPanel>
         </ScrollViewer>-->
-    </Grid>
+        </Grid>
 </metro:MetroWindow>

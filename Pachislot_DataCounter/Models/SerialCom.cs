@@ -11,74 +11,74 @@
 // =======================================================
 // using
 // =======================================================
+using Pachislot_DataCounter.ViewModels;
+using Pachislot_DataCounter.Views;
+using Prism.Regions;
 using System;
 using System.Collections.Generic;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
-using System.IO.Ports;
 using System.Threading.Tasks;
 using System.Windows;
-using Prism.Regions;
-using Pachislot_DataCounter.Views;
-using Pachislot_DataCounter.ViewModels;
 
 namespace Pachislot_DataCounter.Models
 {
-    public class SerialCom : SerialPort
-    {
-        // =======================================================
-        // メソッド
-        // =======================================================
-        /// <summary>
-        /// コンストラクタ
-        /// </summary>
-        public SerialCom ( )
+        public class SerialCom : SerialPort
         {
-            PortName = "COM3";
-            BaudRate = 9600;
-            DataBits = 8;
-            Parity = Parity.None;
-            Encoding = Encoding.UTF8;
-            WriteTimeout = 5000;
-            ReadTimeout = 5000;
-            DtrEnable = true;
-        }
-
-        public void ComStart ( )
-        {
-            try
-            {
-                Open ( );
-            }
-            catch( Exception ex )
-            {
-                MessageBox.Show ( ex.Message );
-            }
-        }
-
-        public void ComStop ( )
-        {
-            try
-            {
-                if( IsOpen )
+                // =======================================================
+                // メソッド
+                // =======================================================
+                /// <summary>
+                /// コンストラクタ
+                /// </summary>
+                public SerialCom( )
                 {
-                    Close ( );
+                        PortName = "COM3";
+                        BaudRate = 9600;
+                        DataBits = 8;
+                        Parity = Parity.None;
+                        Encoding = Encoding.UTF8;
+                        WriteTimeout = 5000;
+                        ReadTimeout = 5000;
+                        DtrEnable = true;
                 }
-            }
-            catch( Exception ex )
-            {
-                MessageBox.Show ( ex.Message );
-            }
-        }
 
-        public string GetSerialMessage ( )
-        {
-            if( IsOpen == false )
-            {
-                return null;
-            }
+                public void ComStart( )
+                {
+                        try
+                        {
+                                Open( );
+                        }
+                        catch ( Exception ex )
+                        {
+                                MessageBox.Show( ex.Message );
+                        }
+                }
 
-            return ReadLine ( );
+                public void ComStop( )
+                {
+                        try
+                        {
+                                if ( IsOpen )
+                                {
+                                        Close( );
+                                }
+                        }
+                        catch ( Exception ex )
+                        {
+                                MessageBox.Show( ex.Message );
+                        }
+                }
+
+                public string GetSerialMessage( )
+                {
+                        if ( IsOpen == false )
+                        {
+                                return null;
+                        }
+
+                        return ReadLine( );
+                }
         }
-    }
 }

@@ -19,28 +19,28 @@ using System.Windows;
 
 namespace Pachislot_DataCounter
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App : PrismApplication
-    {
         /// <summary>
-        /// Prismフレームワークで自動生成されるメソッド
-        /// アプリ開始時に起動するWindowを設定する
+        /// Interaction logic for App.xaml
         /// </summary>
-        /// <returns>MainWindowのインスタンス</returns>
-        protected override Window CreateShell ( )
+        public partial class App : PrismApplication
         {
-            return Container.Resolve<MainWindow> ( );
-        }
+                /// <summary>
+                /// Prismフレームワークで自動生成されるメソッド
+                /// アプリ開始時に起動するWindowを設定する
+                /// </summary>
+                /// <returns>MainWindowのインスタンス</returns>
+                protected override Window CreateShell( )
+                {
+                        return Container.Resolve<MainWindow>( );
+                }
 
-        /// <summary>
-        /// ViewとViewModelの関連付けを行いDIコンテナに登録する
-        /// </summary>
-        /// <param name="containerRegistry">DIコンテナ</param>
-        protected override void RegisterTypes ( IContainerRegistry containerRegistry )
-        {
-            containerRegistry.RegisterForNavigation<Counter, CounterViewModel> ( );
+                /// <summary>
+                /// ViewとViewModelの関連付けを行いDIコンテナに登録する
+                /// </summary>
+                /// <param name="containerRegistry">DIコンテナ</param>
+                protected override void RegisterTypes( IContainerRegistry containerRegistry )
+                {
+                        containerRegistry.RegisterForNavigation<Counter, CounterViewModel>( );
+                }
         }
-    }
 }

@@ -31,6 +31,6 @@ typedef void ( *INTR_CALLBACK )( void );
 // =======================================================
 // 関数宣言
 // =======================================================
-extern void Intr_Init( INTR_CALLBACK *pFunc );
+extern void Intr_Init( INTR_CALLBACK *p_Func );
 
 #endif __INTERRUPT_H__

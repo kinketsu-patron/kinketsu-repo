@@ -31,13 +31,13 @@ extern uint32    Data_GetBB( void );
 extern bool      Data_GetDuringRB( void );
 extern bool      Data_GetDuringBB( void );
 extern bool      Data_GetDuringBonus( void );
-extern void      Data_SetGame( uint32 pGame );
-extern void      Data_SetTotalGame( uint32 pTotalGame );
-extern void      Data_SetIN( uint32 pIN );
-extern void      Data_SetOUT( uint32 pOUT );
-extern void      Data_SetRB( uint32 pRB );
-extern void      Data_SetBB( uint32 pBB );
-extern void      Data_SetDuringRB( bool pDuringRB );
-extern void      Data_SetDuringBB( bool pDuringBB );
+extern void      Data_SetGame( uint32 p_Game );
+extern void      Data_SetTotalGame( uint32 p_TotalGame );
+extern void      Data_SetIN( uint32 p_IN );
+extern void      Data_SetOUT( uint32 p_OUT );
+extern void      Data_SetRB( uint32 p_RB );
+extern void      Data_SetBB( uint32 p_BB );
+extern void      Data_SetDuringRB( bool p_DuringRB );
+extern void      Data_SetDuringBB( bool p_DuringBB );
 
 #endif __DATA_H__
