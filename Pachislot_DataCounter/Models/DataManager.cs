@@ -1,3 +1,16 @@
+﻿/**
+ * =============================================================
+ * File         :DataManager.cs
+ * Summary      :データ管理クラス
+ * Author       :kinketsu patron (https://kinketsu-patron.com)
+ * Ver          :1.0
+ * Date         :2024/06/29
+ * =============================================================
+ */
+
+// =======================================================
+                // using
+                // =======================================================
 ﻿using Pachislot_DataCounter.ViewModels;
 using Pachislot_DataCounter.Views;
 using Prism.Regions;
@@ -15,13 +28,13 @@ namespace Pachislot_DataCounter.Models
                 // =======================================================
                 // メンバ変数
                 // =======================================================
-                private readonly IRegionManager m_RegionManager = null;
-                private ulong m_BigBonus = 0;
-                private ulong m_RegularBonus = 0;
-                private ulong m_AllGame = 0;
-                private ulong m_CurrentGame = 0;
-                private ulong m_InCoin = 0;
-                private ulong m_OutCoin = 0;
+                private readonly IRegionManager m_RegionManager;
+                private ulong m_BigBonus;
+                private ulong m_RegularBonus;
+                private ulong m_AllGame;
+                private ulong m_CurrentGame;
+                private ulong m_InCoin;
+                private ulong m_OutCoin;
 
                 // =======================================================
                 // プロパティ
@@ -62,7 +75,13 @@ namespace Pachislot_DataCounter.Models
                 /// </summary>
                 public DataManager( IRegionManager p_RegionManager )
                 {
-                        this.m_RegionManager = p_RegionManager;
+                        m_RegionManager = p_RegionManager;
+                        m_BigBonus      = 0;
+                        m_RegularBonus  = 0;
+                        m_AllGame       = 0;
+                        m_CurrentGame   = 0;
+                        m_InCoin        = 0;
+                        m_OutCoin       = 0;
                 }
 
                 public void Convert( string p_ReceivedData )
