@@ -35,7 +35,7 @@ namespace Pachislot_DataCounter.Models
                 public SerialCom( )
                 {
                         PortName = "COM3";
-                        BaudRate = 9600;
+                        BaudRate = 115200;
                         DataBits = 8;
                         Parity = Parity.None;
                         Encoding = Encoding.UTF8;

@@ -22,7 +22,7 @@
  */
 void Serial_Init( void )
 {
-        Serial.begin( 9600 );        // PCとのシリアル通信ボーレートを9600bpsに設定
+        Serial.begin( 115200 );        // PCとのシリアル通信ボーレートを115200bpsに設定
 }
 
 /**

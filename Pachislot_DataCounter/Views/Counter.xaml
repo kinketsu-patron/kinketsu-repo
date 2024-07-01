@@ -21,7 +21,7 @@
                                 <Style TargetType="{x:Type Image}">
                                         <Style.Triggers>
                                                 <DataTrigger Binding="{Binding SixthDigit}" Value="-1">
-                                                        <Setter Property="Source" Value="/Resource/数字/数字(0).png"/>
+                                                        <Setter Property="Visibility" Value="Hidden"/>
                                                 </DataTrigger>
                                                 <DataTrigger Binding="{Binding SixthDigit}" Value="0">
                                                         <Setter Property="Source" Value="/Resource/数字/数字(0).png"/>
@@ -57,10 +57,215 @@
                                 </Style>
                         </Image.Style>
                 </Image>
-                <Image Source="{Binding FifthDigit}" Margin="2,0,2,0" Width="Auto" />
-                <Image Source="{Binding ForthDigit}" Margin="2,0,2,0" Width="Auto" />
-                <Image Source="{Binding ThirdDigit}" Margin="2,0,2,0" Width="Auto" />
-                <Image Source="{Binding SecondDigit}" Margin="2,0,2,0" Width="Auto" />
-                <Image Source="{Binding FirstDigit}" Margin="2,0,0,0" Width="Auto" />
+
+                <Image Margin="2,0,2,0" Width="Auto" >
+                        <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                        <Style.Triggers>
+                                                <DataTrigger Binding="{Binding FifthDigit}" Value="-1">
+                                                        <Setter Property="Visibility" Value="Hidden"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding FifthDigit}" Value="0">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(0).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding FifthDigit}" Value="1">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(1).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding FifthDigit}" Value="2">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(2).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding FifthDigit}" Value="3">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(3).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding FifthDigit}" Value="4">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(4).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding FifthDigit}" Value="5">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(5).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding FifthDigit}" Value="6">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(6).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding FifthDigit}" Value="7">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(7).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding FifthDigit}" Value="8">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(8).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding FifthDigit}" Value="9">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(9).png"/>
+                                                </DataTrigger>
+                                        </Style.Triggers>
+                                </Style>
+                        </Image.Style>
+                </Image>
+
+                <Image Margin="2,0,2,0" Width="Auto"  >
+                        <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                        <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ForthDigit}" Value="-1">
+                                                        <Setter Property="Visibility" Value="Hidden"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ForthDigit}" Value="0">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(0).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ForthDigit}" Value="1">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(1).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ForthDigit}" Value="2">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(2).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ForthDigit}" Value="3">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(3).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ForthDigit}" Value="4">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(4).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ForthDigit}" Value="5">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(5).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ForthDigit}" Value="6">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(6).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ForthDigit}" Value="7">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(7).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ForthDigit}" Value="8">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(8).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ForthDigit}" Value="9">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(9).png"/>
+                                                </DataTrigger>
+                                        </Style.Triggers>
+                                </Style>
+                        </Image.Style>
+                </Image>
+
+                <Image Margin="2,0,2,0" Width="Auto"  >
+                        <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                        <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ThirdDigit}" Value="-1">
+                                                        <Setter Property="Visibility" Value="Hidden"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ThirdDigit}" Value="0">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(0).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ThirdDigit}" Value="1">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(1).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ThirdDigit}" Value="2">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(2).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ThirdDigit}" Value="3">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(3).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ThirdDigit}" Value="4">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(4).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ThirdDigit}" Value="5">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(5).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ThirdDigit}" Value="6">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(6).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ThirdDigit}" Value="7">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(7).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ThirdDigit}" Value="8">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(8).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ThirdDigit}" Value="9">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(9).png"/>
+                                                </DataTrigger>
+                                        </Style.Triggers>
+                                </Style>
+                        </Image.Style>
+                </Image>
+
+                <Image Margin="2,0,2,0" Width="Auto"  >
+                        <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                        <Style.Triggers>
+                                                <DataTrigger Binding="{Binding SecondDigit}" Value="-1">
+                                                        <Setter Property="Visibility" Value="Hidden"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding SecondDigit}" Value="0">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(0).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding SecondDigit}" Value="1">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(1).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding SecondDigit}" Value="2">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(2).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding SecondDigit}" Value="3">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(3).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding SecondDigit}" Value="4">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(4).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding SecondDigit}" Value="5">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(5).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding SecondDigit}" Value="6">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(6).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding SecondDigit}" Value="7">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(7).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding SecondDigit}" Value="8">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(8).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding SecondDigit}" Value="9">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(9).png"/>
+                                                </DataTrigger>
+                                        </Style.Triggers>
+                                </Style>
+                        </Image.Style>
+                </Image>
+
+                <Image Margin="2,0,0,0" Width="Auto"  >
+                        <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                        <Style.Triggers>
+                                                <DataTrigger Binding="{Binding FirstDigit}" Value="-1">
+                                                        <Setter Property="Visibility" Value="Hidden"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding FirstDigit}" Value="0">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(0).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding FirstDigit}" Value="1">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(1).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding FirstDigit}" Value="2">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(2).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding FirstDigit}" Value="3">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(3).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding FirstDigit}" Value="4">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(4).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding FirstDigit}" Value="5">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(5).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding FirstDigit}" Value="6">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(6).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding FirstDigit}" Value="7">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(7).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding FirstDigit}" Value="8">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(8).png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding FirstDigit}" Value="9">
+                                                        <Setter Property="Source" Value="/Resource/数字/数字(9).png"/>
+                                                </DataTrigger>
+                                        </Style.Triggers>
+                                </Style>
+                        </Image.Style>
+                </Image>
         </StackPanel>
 </UserControl>
