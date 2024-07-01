@@ -176,6 +176,18 @@
                 <!--======================================-->
                 <StackPanel Grid.Row="0" Grid.Column="6" Grid.RowSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
                         <Button 
+                                Command="{Binding Click_Test}"
+                                Content="{iconPacks:Material Kind=Sack, Width=40, Height=40}"
+                                Style="{StaticResource MahApps.Styles.Button.Circle}"
+                                Foreground="{StaticResource MahApps.Brushes.Accent}"
+                                BorderBrush="{StaticResource MahApps.Brushes.Accent}"
+                                BorderThickness="3"
+                                Width="80"
+                                Height="80"
+                                Margin="0,0,30,0"
+                                ToolTip="Test">
+                        </Button>
+                        <Button 
                                 Command="{Binding Click_Connect}"
                                 Content="{iconPacks:Material Kind=Connection, Width=40, Height=40}"
                                 Style="{StaticResource MahApps.Styles.Button.Circle}"

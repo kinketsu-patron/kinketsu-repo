@@ -51,6 +51,11 @@ namespace Pachislot_DataCounter.ViewModels
                 /// <summary>
                 /// Connectボタンクリックコマンド
                 /// </summary>
+                public DelegateCommand Click_Test { get; private set; }
+
+                /// <summary>
+                /// Connectボタンクリックコマンド
+                /// </summary>
                 public DelegateCommand Click_Connect { get; private set; }
 
                 /// <summary>
@@ -107,8 +112,19 @@ namespace Pachislot_DataCounter.ViewModels
                         m_SerialCom = new SerialCom( );
                         m_SerialCom.DataReceived += ReceivedGameData;
                         m_DataManager = new DataManager( p_RegionManager );
+                        Click_Test = new DelegateCommand( OnTestClicked );
                         Click_Connect = new DelegateCommand( OnConnectClicked );
                         Click_Exit = new DelegateCommand<MainWindow>( OnExitClicked );
+                }
+
+                /// <summary>
+                /// 接続ボタンクリック時の処理
+                /// </summary>
+                private void OnTestClicked( )
+                {
+                        m_DataManager.AllGame = m_DataManager.AllGame + 1;
+                        m_DataManager.CurrentGame = m_DataManager.AllGame + 1;
+                        m_DataManager.UpdateCounters( );
                 }
 
                 /// <summary>
