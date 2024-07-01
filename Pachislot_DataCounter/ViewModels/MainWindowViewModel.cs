@@ -41,11 +41,6 @@ namespace Pachislot_DataCounter.ViewModels
                 private bool m_DuringBonus;
 
                 // =======================================================
-                // delegate
-                // =======================================================
-                public delegate void ThreadReturn( string p_JsonMsg );
-
-                // =======================================================
                 // プロパティ
                 // =======================================================
                 /// <summary>
@@ -67,18 +62,27 @@ namespace Pachislot_DataCounter.ViewModels
                         set { SetProperty( ref m_Title, value ); }
                 }
 
+                /// <summary>
+                /// ビッグボーナス中フラグ
+                /// </summary>
                 public bool DuringBigBonus
                 {
                         get { return m_DuringBigBonus; }
                         set { SetProperty( ref m_DuringBigBonus, value ); }
                 }
 
+                /// <summary>
+                /// レギュラーボーナス中フラグ
+                /// </summary>
                 public bool DuringRegularBonus
                 {
                         get { return m_DuringRegularBonus; }
                         set { SetProperty( ref m_DuringRegularBonus, value ); }
                 }
 
+                /// <summary>
+                /// ボーナス中フラグ
+                /// </summary>
                 public bool DuringBonus
                 {
                         get { return m_DuringBonus; }
@@ -128,6 +132,11 @@ namespace Pachislot_DataCounter.ViewModels
                         p_Window?.Close( );     // nullでなければウィンドウを閉じる
                 }
 
+                /// <summary>
+                /// SerialComのデータ受信イベントの処理
+                /// </summary>
+                /// <param name="sender">SerialComのインスタンス</param>
+                /// <param name="e">SerialDataReceivedイベントデータ</param>
                 private void ReceivedGameData( object sender, SerialDataReceivedEventArgs e )
                 {
                         string l_SerialMessage = ( ( SerialCom )sender ).GetSerialMessage ( );
