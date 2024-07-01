@@ -105,7 +105,7 @@ namespace Pachislot_DataCounter.ViewModels
                         m_RegionManager.RegisterViewWithRegion( "OutCoinCounter", typeof( Counter ) );
 
                         m_SerialCom = new SerialCom( );
-                        m_SerialCom.DataReceived += ReceivedGameData;
+                        m_SerialCom.DataReceived += new SerialDataReceivedEventHandler( ReceivedGameData );
                         m_DataManager = new DataManager( p_RegionManager );
                         Click_Connect = new DelegateCommand( OnConnectClicked );
                         Click_Exit = new DelegateCommand<MainWindow>( OnExitClicked );
@@ -132,7 +132,7 @@ namespace Pachislot_DataCounter.ViewModels
                 {
                         string l_SerialMessage = ( ( SerialCom )sender ).GetSerialMessage ( );
 
-                        Application.Current.Dispatcher.BeginInvoke( ( ) =>
+                        Application.Current.Dispatcher.Invoke( ( ) =>
                         {
                                 m_DataManager.Convert( l_SerialMessage );
                                 m_DataManager.UpdateCounters( );
