@@ -16,9 +16,14 @@ using Pachislot_DataCounter.Views;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
+using System;
+using System.Diagnostics;
 using System.IO.Ports;
 using System.Linq;
+using System.Reflection;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace Pachislot_DataCounter.ViewModels
 {
@@ -27,15 +32,18 @@ namespace Pachislot_DataCounter.ViewModels
                 // =======================================================
                 // メンバ変数
                 // =======================================================
-                private readonly IRegionManager m_RegionManager = null;
-                private SerialCom m_SerialCom = null;
-                private DataManager m_DataManager = null;
-                private string m_Title = "金ぱと データカウンター";
+                private readonly IRegionManager m_RegionManager;
+                private SerialCom m_SerialCom;
+                private DataManager m_DataManager;
+                private string m_Title;
+                private bool m_DuringBigBonus;
+                private bool m_DuringRegularBonus;
+                private bool m_DuringBonus;
 
                 // =======================================================
                 // delegate
                 // =======================================================
-                public delegate void ThreadReturn( );
+                public delegate void ThreadReturn( string p_JsonMsg );
 
                 // =======================================================
                 // プロパティ
@@ -59,6 +67,24 @@ namespace Pachislot_DataCounter.ViewModels
                         set { SetProperty( ref m_Title, value ); }
                 }
 
+                public bool DuringBigBonus
+                {
+                        get { return m_DuringBigBonus; }
+                        set { SetProperty( ref m_DuringBigBonus, value ); }
+                }
+
+                public bool DuringRegularBonus
+                {
+                        get { return m_DuringRegularBonus; }
+                        set { SetProperty( ref m_DuringRegularBonus, value ); }
+                }
+
+                public bool DuringBonus
+                {
+                        get { return m_DuringBonus; }
+                        set { SetProperty( ref m_DuringBonus, value ); }
+                }
+
                 // =======================================================
                 // メソッド
                 // =======================================================
@@ -68,6 +94,8 @@ namespace Pachislot_DataCounter.ViewModels
                 /// <param name="p_RegionManager">リージョン</param>
                 public MainWindowViewModel( IRegionManager p_RegionManager )
                 {
+                        m_Title = "金ぱとデータカウンター";
+
                         m_RegionManager = p_RegionManager;
                         m_RegionManager.RegisterViewWithRegion( "BigBonusCounter", typeof( Counter ) );
                         m_RegionManager.RegisterViewWithRegion( "RegularBonusCounter", typeof( Counter ) );
@@ -102,9 +130,14 @@ namespace Pachislot_DataCounter.ViewModels
 
                 private void ReceivedGameData( object sender, SerialDataReceivedEventArgs e )
                 {
-                        string l_SerialMessage = m_SerialCom.GetSerialMessage ( );
-                        m_DataManager.Convert( l_SerialMessage );
-                        Application.Current.Dispatcher.Invoke( new ThreadReturn( m_DataManager.UpdateCounters ) );
+                        string l_SerialMessage = ( ( SerialCom )sender ).GetSerialMessage ( );
+                        Application.Current.Dispatcher.Invoke( new ThreadReturn( counter_update ), new object[ ] { l_SerialMessage } );
+                }
+
+                private void counter_update( string p_JsonMsg )
+                {
+                        m_DataManager.Convert( p_JsonMsg );
+                        m_DataManager.UpdateCounters( );
                 }
         }
 }

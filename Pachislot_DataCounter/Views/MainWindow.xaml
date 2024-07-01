@@ -79,7 +79,7 @@
                                 <Style TargetType="StackPanel">
                                         <Style.Triggers>
                                                 <!--BigBonus中になったら点滅させる-->
-                                                <DataTrigger Binding="{Binding InBigBonus}" Value="true">
+                                                <DataTrigger Binding="{Binding DuringBigBonus}" Value="true">
                                                         <DataTrigger.EnterActions>
                                                                 <BeginStoryboard Name="BeginBB_Blink" Storyboard="{StaticResource Bonus_Blink}"/>
                                                         </DataTrigger.EnterActions>
@@ -105,7 +105,7 @@
                                 <Style TargetType="StackPanel">
                                         <Style.Triggers>
                                                 <!--RegularBonus中になったら点滅させる-->
-                                                <DataTrigger Binding="{Binding InRegularBonus}" Value="true">
+                                                <DataTrigger Binding="{Binding DuringRegularBonus}" Value="true">
                                                         <DataTrigger.EnterActions>
                                                                 <BeginStoryboard Name="BeginRB_Blink" Storyboard="{StaticResource Bonus_Blink}"/>
                                                         </DataTrigger.EnterActions>
@@ -138,7 +138,7 @@
                                 <Style TargetType="StackPanel">
                                         <Style.Triggers>
                                                 <!--Bonus中になったら点滅させる-->
-                                                <DataTrigger Binding="{Binding InBonus}" Value="true">
+                                                <DataTrigger Binding="{Binding DuringBonus}" Value="true">
                                                         <DataTrigger.EnterActions>
                                                                 <BeginStoryboard Name="BeginBonus_Blink" Storyboard="{StaticResource Bonus_Blink}"/>
                                                         </DataTrigger.EnterActions>
@@ -204,7 +204,7 @@
                 <!--======================================-->
                 <!--スランプグラフ                        -->
                 <!--======================================-->
-                <ContentControl Grid.Row="2" Grid.Column="4" Grid.RowSpan="4" Grid.ColumnSpan="3" Content="{Binding SlumpGraph}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                <!--<ContentControl Grid.Row="2" Grid.Column="4" Grid.RowSpan="4" Grid.ColumnSpan="3" Content="{Binding SlumpGraph}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>-->
 
                 <!--======================================-->
                 <!--ボーナス履歴                          -->

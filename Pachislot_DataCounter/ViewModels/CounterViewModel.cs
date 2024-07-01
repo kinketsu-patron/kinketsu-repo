@@ -15,6 +15,7 @@ using Prism.Commands;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Media.Imaging;
 
@@ -222,10 +223,18 @@ namespace Pachislot_DataCounter.ViewModels
                 {
                         BitmapImage l_Img = new BitmapImage( );
 
-                        l_Img.BeginInit( );
-                        l_Img.CacheOption = BitmapCacheOption.OnLoad;
-                        l_Img.UriSource = new Uri( p_FilePath, UriKind.Absolute );
-                        l_Img.EndInit( );
+                        try
+                        {
+                                l_Img.BeginInit( );
+                                l_Img.CacheOption = BitmapCacheOption.OnLoad;
+                                l_Img.UriSource = new Uri( p_FilePath, UriKind.Absolute );
+                                l_Img.EndInit( );
+                                l_Img.Freeze( );
+                        }
+                        catch ( Exception e )
+                        {
+                                Debug.WriteLine( e.Message );
+                        }
 
                         return l_Img;
                 }
