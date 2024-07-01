@@ -26,19 +26,7 @@ namespace Pachislot_DataCounter.ViewModels
                 /// <summary>
                 /// 数字と数字画像の1対1の対応付けを行うディクショナリ
                 /// </summary>
-                private Dictionary<ulong, string> m_NumDictionary = new Dictionary<ulong, string>
-        {
-                { 0, "pack://application:,,,/Resource/数字/数字(0).png" },
-                { 1, "pack://application:,,,/Resource/数字/数字(1).png" },
-                { 2, "pack://application:,,,/Resource/数字/数字(2).png" },
-                { 3, "pack://application:,,,/Resource/数字/数字(3).png" },
-                { 4, "pack://application:,,,/Resource/数字/数字(4).png" },
-                { 5, "pack://application:,,,/Resource/数字/数字(5).png" },
-                { 6, "pack://application:,,,/Resource/数字/数字(6).png" },
-                { 7, "pack://application:,,,/Resource/数字/数字(7).png" },
-                { 8, "pack://application:,,,/Resource/数字/数字(8).png" },
-                { 9, "pack://application:,,,/Resource/数字/数字(9).png" }
-        };
+                private Dictionary<uint, BitmapImage> m_NumDictionary;
 
                 // =======================================================
                 // プロパティのメンバ変数
@@ -109,21 +97,34 @@ namespace Pachislot_DataCounter.ViewModels
                 /// </summary>
                 public CounterViewModel( )
                 {
+                        m_NumDictionary = new Dictionary<uint, BitmapImage>
+                        {
+                                { 0, create_bitmap_image( "pack://application:,,,/Resource/数字/数字(0).png" ) },
+                                { 1, create_bitmap_image( "pack://application:,,,/Resource/数字/数字(1).png" ) },
+                                { 2, create_bitmap_image( "pack://application:,,,/Resource/数字/数字(2).png" ) },
+                                { 3, create_bitmap_image( "pack://application:,,,/Resource/数字/数字(3).png" ) },
+                                { 4, create_bitmap_image( "pack://application:,,,/Resource/数字/数字(4).png" ) },
+                                { 5, create_bitmap_image( "pack://application:,,,/Resource/数字/数字(5).png" ) },
+                                { 6, create_bitmap_image( "pack://application:,,,/Resource/数字/数字(6).png" ) },
+                                { 7, create_bitmap_image( "pack://application:,,,/Resource/数字/数字(7).png" ) },
+                                { 8, create_bitmap_image( "pack://application:,,,/Resource/数字/数字(8).png" ) },
+                                { 9, create_bitmap_image( "pack://application:,,,/Resource/数字/数字(9).png" ) }
+                        };
                         SixthDigit = null;
                         FifthDigit = null;
                         ForthDigit = null;
                         ThirdDigit = null;
                         SecondDigit = null;
-                        FirstDigit = create_bitmap_image( m_NumDictionary[ 0 ] );
+                        FirstDigit = m_NumDictionary[ 0 ];
                 }
 
                 /// <summary>
                 /// 整数型の数値を設定すると適切に数値画像を選択して表示してくれる
                 /// </summary>
                 /// <param name="p_Number">カウント値</param>
-                public void SetNumber( ulong p_Number )
+                public void SetNumber( uint p_Number )
                 {
-                        ulong l_Temp;
+                        uint l_Temp;
 
                         if ( p_Number < 0 )
                         {
@@ -141,7 +142,7 @@ namespace Pachislot_DataCounter.ViewModels
                                 ForthDigit = null;
                                 ThirdDigit = null;
                                 SecondDigit = null;
-                                FirstDigit = create_bitmap_image( m_NumDictionary[ p_Number ] );
+                                FirstDigit = m_NumDictionary[ p_Number ];
                         }
                         else if ( p_Number >= 10 && p_Number < 100 )
                         {
@@ -149,68 +150,68 @@ namespace Pachislot_DataCounter.ViewModels
                                 FifthDigit = null;
                                 ForthDigit = null;
                                 ThirdDigit = null;
-                                SecondDigit = create_bitmap_image( m_NumDictionary[ p_Number / 10 ] );
+                                SecondDigit = m_NumDictionary[ p_Number / 10 ];
                                 l_Temp = p_Number % 10;
-                                FirstDigit = create_bitmap_image( m_NumDictionary[ l_Temp ] );
+                                FirstDigit = m_NumDictionary[ l_Temp ];
                         }
                         else if ( p_Number >= 100 && p_Number < 1000 )
                         {
                                 SixthDigit = null;
                                 FifthDigit = null;
                                 ForthDigit = null;
-                                ThirdDigit = create_bitmap_image( m_NumDictionary[ p_Number / 100 ] );
+                                ThirdDigit = m_NumDictionary[ p_Number / 100 ];
                                 l_Temp = p_Number % 100;
-                                SecondDigit = create_bitmap_image( m_NumDictionary[ l_Temp / 10 ] );
+                                SecondDigit = m_NumDictionary[ l_Temp / 10 ];
                                 l_Temp = p_Number % 10;
-                                FirstDigit = create_bitmap_image( m_NumDictionary[ l_Temp ] );
+                                FirstDigit = m_NumDictionary[ l_Temp ];
                         }
                         else if ( p_Number >= 1000 && p_Number < 10000 )
                         {
                                 SixthDigit = null;
                                 FifthDigit = null;
-                                ForthDigit = create_bitmap_image( m_NumDictionary[ p_Number / 1000 ] );
+                                ForthDigit = m_NumDictionary[ p_Number / 1000 ];
                                 l_Temp = p_Number % 1000;
-                                ThirdDigit = create_bitmap_image( m_NumDictionary[ l_Temp / 100 ] );
+                                ThirdDigit = m_NumDictionary[ l_Temp / 100 ];
                                 l_Temp = p_Number % 100;
-                                SecondDigit = create_bitmap_image( m_NumDictionary[ l_Temp / 10 ] );
+                                SecondDigit = m_NumDictionary[ l_Temp / 10 ];
                                 l_Temp = p_Number % 10;
-                                FirstDigit = create_bitmap_image( m_NumDictionary[ l_Temp ] );
+                                FirstDigit = m_NumDictionary[ l_Temp ];
                         }
                         else if ( p_Number >= 10000 && p_Number < 100000 )
                         {
                                 SixthDigit = null;
-                                FifthDigit = create_bitmap_image( m_NumDictionary[ p_Number / 10000 ] );
+                                FifthDigit = m_NumDictionary[ p_Number / 10000 ];
                                 l_Temp = p_Number % 10000;
-                                ForthDigit = create_bitmap_image( m_NumDictionary[ l_Temp / 1000 ] );
+                                ForthDigit = m_NumDictionary[ l_Temp / 1000 ];
                                 l_Temp = p_Number % 1000;
-                                ThirdDigit = create_bitmap_image( m_NumDictionary[ l_Temp / 100 ] );
+                                ThirdDigit = m_NumDictionary[ l_Temp / 100 ];
                                 l_Temp = p_Number % 100;
-                                SecondDigit = create_bitmap_image( m_NumDictionary[ l_Temp / 10 ] );
+                                SecondDigit = m_NumDictionary[ l_Temp / 10 ];
                                 l_Temp = p_Number % 10;
-                                FirstDigit = create_bitmap_image( m_NumDictionary[ l_Temp ] );
+                                FirstDigit = m_NumDictionary[ l_Temp ];
                         }
                         else if ( p_Number >= 100000 && p_Number < 1000000 )
                         {
-                                SixthDigit = create_bitmap_image( m_NumDictionary[ p_Number / 100000 ] );
+                                SixthDigit = m_NumDictionary[ p_Number / 100000 ];
                                 l_Temp = p_Number % 100000;
-                                FifthDigit = create_bitmap_image( m_NumDictionary[ l_Temp / 10000 ] );
+                                FifthDigit = m_NumDictionary[ l_Temp / 10000 ];
                                 l_Temp = p_Number % 10000;
-                                ForthDigit = create_bitmap_image( m_NumDictionary[ l_Temp / 1000 ] );
+                                ForthDigit = m_NumDictionary[ l_Temp / 1000 ];
                                 l_Temp = p_Number % 1000;
-                                ThirdDigit = create_bitmap_image( m_NumDictionary[ l_Temp / 100 ] );
+                                ThirdDigit = m_NumDictionary[ l_Temp / 100 ];
                                 l_Temp = p_Number % 100;
-                                SecondDigit = create_bitmap_image( m_NumDictionary[ l_Temp / 10 ] );
+                                SecondDigit = m_NumDictionary[ l_Temp / 10 ];
                                 l_Temp = p_Number % 10;
-                                FirstDigit = create_bitmap_image( m_NumDictionary[ l_Temp ] );
+                                FirstDigit = m_NumDictionary[ l_Temp ];
                         }
                         else
                         {
-                                SixthDigit = create_bitmap_image( m_NumDictionary[ 9 ] );
-                                FirstDigit = create_bitmap_image( m_NumDictionary[ 9 ] );
-                                SecondDigit = create_bitmap_image( m_NumDictionary[ 9 ] );
-                                ThirdDigit = create_bitmap_image( m_NumDictionary[ 9 ] );
-                                ForthDigit = create_bitmap_image( m_NumDictionary[ 9 ] );
-                                FifthDigit = create_bitmap_image( m_NumDictionary[ 9 ] );
+                                SixthDigit = m_NumDictionary[ 9 ];
+                                FirstDigit = m_NumDictionary[ 9 ];
+                                SecondDigit = m_NumDictionary[ 9 ];
+                                ThirdDigit = m_NumDictionary[ 9 ];
+                                ForthDigit = m_NumDictionary[ 9 ];
+                                FifthDigit = m_NumDictionary[ 9 ];
                         }
                 }
 

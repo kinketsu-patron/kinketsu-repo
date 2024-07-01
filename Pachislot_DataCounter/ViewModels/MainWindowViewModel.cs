@@ -131,23 +131,12 @@ namespace Pachislot_DataCounter.ViewModels
                 private void ReceivedGameData( object sender, SerialDataReceivedEventArgs e )
                 {
                         string l_SerialMessage = ( ( SerialCom )sender ).GetSerialMessage ( );
-                        m_DataManager.Convert( l_SerialMessage );
+
                         Application.Current.Dispatcher.BeginInvoke( ( ) =>
                         {
+                                m_DataManager.Convert( l_SerialMessage );
                                 m_DataManager.UpdateCounters( );
                         } );
                 }
-
-                //private void ReceivedGameData( object sender, SerialDataReceivedEventArgs e )
-                //{
-                //        string l_SerialMessage = ( ( SerialCom )sender ).GetSerialMessage ( );
-                //        Application.Current.Dispatcher.Invoke( new ThreadReturn( counter_update ), new object[ ] { l_SerialMessage } );
-                //}
-
-                //private void counter_update( string p_JsonMsg )
-                //{
-                //        m_DataManager.Convert( p_JsonMsg );
-                //        m_DataManager.UpdateCounters( );
-                //}
         }
 }

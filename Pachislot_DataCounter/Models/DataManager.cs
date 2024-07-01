@@ -183,7 +183,7 @@ namespace Pachislot_DataCounter.Models
                 /// </summary>
                 /// <param name="p_CounterName"></param>
                 /// <param name="p_Property"></param>
-                private void update_counter( string p_CounterName, ulong p_Property )
+                private void update_counter( string p_CounterName, uint p_Property )
                 {
                         var l_ContentRegion = m_RegionManager.Regions[ p_CounterName ];
                         var l_ContentView = l_ContentRegion.Views.FirstOrDefault ( ) as Counter;
