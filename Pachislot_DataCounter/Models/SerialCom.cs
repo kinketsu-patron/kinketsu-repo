@@ -16,6 +16,7 @@ using Pachislot_DataCounter.Views;
 using Prism.Regions;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
@@ -39,9 +40,10 @@ namespace Pachislot_DataCounter.Models
                         DataBits = 8;
                         Parity = Parity.None;
                         Encoding = Encoding.UTF8;
-                        WriteTimeout = 5000;
-                        ReadTimeout = 5000;
+                        WriteTimeout = 10000;
+                        ReadTimeout = 10000;
                         DtrEnable = true;
+                        ReadBufferSize = 4096;
                 }
 
                 public void ComStart( )
@@ -73,12 +75,16 @@ namespace Pachislot_DataCounter.Models
 
                 public string GetSerialMessage( )
                 {
+                        string l_Str;
+
                         if ( IsOpen == false )
                         {
                                 return null;
                         }
 
-                        return ReadLine( );
+                        l_Str = ReadLine( );
+
+                        return l_Str;
                 }
         }
 }

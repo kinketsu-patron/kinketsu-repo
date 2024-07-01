@@ -21,6 +21,8 @@ using System.Diagnostics;
 using System.IO.Ports;
 using System.Linq;
 using System.Reflection;
+using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
@@ -128,14 +130,29 @@ namespace Pachislot_DataCounter.ViewModels
                         p_Window?.Close( );     // nullでなければウィンドウを閉じる
                 }
 
+                StringBuilder lineBuffer = new StringBuilder();
+
                 private void ReceivedGameData( object sender, SerialDataReceivedEventArgs e )
                 {
-                        string l_SerialMessage = ( ( SerialCom )sender ).GetSerialMessage ( );
+                        var l_Sw = new System.Diagnostics.Stopwatch();
 
+                        l_Sw.Start( );
+                        Thread.Sleep( 100 );
+                        l_Sw.Stop( );
+                        Debug.WriteLine( $"スレッドスリープ時間：{l_Sw.ElapsedMilliseconds}ms" );
+
+                        l_Sw.Restart( );
+                        string l_SerialMessage = ( ( SerialCom )sender ).GetSerialMessage ( );
+                        l_Sw.Stop( );
+                        Debug.WriteLine( $"シリアル通信受信処理時間：{l_Sw.ElapsedMilliseconds}ms" );
+
+                        l_Sw.Restart( );
                         Application.Current.Dispatcher.BeginInvoke( ( ) =>
                         {
                                 m_DataManager.Convert( l_SerialMessage );
                                 m_DataManager.UpdateCounters( );
+                                l_Sw.Stop( );
+                                Debug.WriteLine( $"画面表示処理時間：{l_Sw.ElapsedMilliseconds}ms" );
                         } );
                 }
         }
