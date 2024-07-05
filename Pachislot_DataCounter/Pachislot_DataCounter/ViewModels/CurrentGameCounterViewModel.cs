@@ -1,61 +1,47 @@
 ﻿/**
  * =============================================================
- * File         :CounterViewModel.cs
- * Summary      :Counterコントロールのビューモデル
+ * File         :CurrentGameCounterViewModel.cs
+ * Summary      :CurrentGameCounterViewModelのビューモデル
  * Author       :kinketsu patron (https://kinketsu-patron.com)
  * Ver          :1.0
- * Date         :2024/06/21
+ * Date         :2024/07/05
  * =============================================================
  */
 
 // =======================================================
 // using
 // =======================================================
-using Prism.Commands;
+using Pachislot_DataCounter.Models;
 using Prism.Mvvm;
+using Reactive.Bindings;
+using Reactive.Bindings.Disposables;
+using Reactive.Bindings.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Windows.Media.Imaging;
 
 namespace Pachislot_DataCounter.ViewModels
 {
-        public class CounterViewModel : BindableBase
+        public class CurrentGameCounterViewModel : BindableBase
         {
+                // =======================================================
+                // メンバ変数
+                // =======================================================
                 /// <summary>
                 /// 数字と数字画像の1対1の対応付けを行うディクショナリ
                 /// </summary>
                 private Dictionary<uint, BitmapImage> m_NumDictionary;
-
-                // =======================================================
-                // プロパティのメンバ変数
-                // =======================================================
-                private BitmapImage m_SixthDigit;
-                private BitmapImage m_FifthDigit;
+                private DataManager m_DataManager;
+                protected CompositeDisposable m_Disposables;
                 private BitmapImage m_ForthDigit;
                 private BitmapImage m_ThirdDigit;
                 private BitmapImage m_SecondDigit;
                 private BitmapImage m_FirstDigit;
 
-                /// <summary>
-                /// 6桁目の数値
-                /// </summary>
-                public BitmapImage SixthDigit
-                {
-                        get { return m_SixthDigit; }
-                        set { SetProperty( ref m_SixthDigit, value ); }
-                }
-
-                /// <summary>
-                /// 5桁目の数値
-                /// </summary>
-                public BitmapImage FifthDigit
-                {
-                        get { return m_FifthDigit; }
-                        set { SetProperty( ref m_FifthDigit, value ); }
-                }
-
+                // =======================================================
+                // プロパティ
+                // =======================================================
                 /// <summary>
                 /// 4桁目の数値
                 /// </summary>
@@ -93,9 +79,14 @@ namespace Pachislot_DataCounter.ViewModels
                 }
 
                 /// <summary>
+                /// 現在のゲーム数
+                /// </summary>
+                public ReactiveProperty<uint> CurrentGame { get; }
+
+                /// <summary>
                 /// Counterのビューモデルのコンストラクタ
                 /// </summary>
-                public CounterViewModel( )
+                public CurrentGameCounterViewModel( DataManager p_DataManager )
                 {
                         m_NumDictionary = new Dictionary<uint, BitmapImage>
                         {
@@ -110,8 +101,11 @@ namespace Pachislot_DataCounter.ViewModels
                                 { 8, create_bitmap_image( "pack://application:,,,/Resource/数字/数字(8).png" ) },
                                 { 9, create_bitmap_image( "pack://application:,,,/Resource/数字/数字(9).png" ) }
                         };
-                        SixthDigit = null;
-                        FifthDigit = null;
+
+                        m_DataManager = p_DataManager;
+                        m_Disposables = new CompositeDisposable( );
+                        CurrentGame = m_DataManager.ToReactivePropertyAsSynchronized( m => m.CurrentGame ).AddTo( m_Disposables );
+                        CurrentGame.Subscribe( currentgame => set_number( currentgame ) );
                         ForthDigit = null;
                         ThirdDigit = null;
                         SecondDigit = null;
@@ -122,14 +116,12 @@ namespace Pachislot_DataCounter.ViewModels
                 /// 整数型の数値を設定すると適切に数値画像を選択して表示してくれる
                 /// </summary>
                 /// <param name="p_Number">カウント値</param>
-                public void SetNumber( uint p_Number )
+                private void set_number( uint p_Number )
                 {
                         uint l_Temp;
 
                         if ( p_Number < 0 )
                         {
-                                SixthDigit = null;
-                                FifthDigit = null;
                                 ForthDigit = null;
                                 ThirdDigit = null;
                                 SecondDigit = null;
@@ -137,8 +129,6 @@ namespace Pachislot_DataCounter.ViewModels
                         }
                         else if ( p_Number >= 0 && p_Number < 10 )
                         {
-                                SixthDigit = null;
-                                FifthDigit = null;
                                 ForthDigit = null;
                                 ThirdDigit = null;
                                 SecondDigit = null;
@@ -146,8 +136,6 @@ namespace Pachislot_DataCounter.ViewModels
                         }
                         else if ( p_Number >= 10 && p_Number < 100 )
                         {
-                                SixthDigit = null;
-                                FifthDigit = null;
                                 ForthDigit = null;
                                 ThirdDigit = null;
                                 SecondDigit = m_NumDictionary[ p_Number / 10 ];
@@ -156,8 +144,6 @@ namespace Pachislot_DataCounter.ViewModels
                         }
                         else if ( p_Number >= 100 && p_Number < 1000 )
                         {
-                                SixthDigit = null;
-                                FifthDigit = null;
                                 ForthDigit = null;
                                 ThirdDigit = m_NumDictionary[ p_Number / 100 ];
                                 l_Temp = p_Number % 100;
@@ -167,36 +153,7 @@ namespace Pachislot_DataCounter.ViewModels
                         }
                         else if ( p_Number >= 1000 && p_Number < 10000 )
                         {
-                                SixthDigit = null;
-                                FifthDigit = null;
                                 ForthDigit = m_NumDictionary[ p_Number / 1000 ];
-                                l_Temp = p_Number % 1000;
-                                ThirdDigit = m_NumDictionary[ l_Temp / 100 ];
-                                l_Temp = p_Number % 100;
-                                SecondDigit = m_NumDictionary[ l_Temp / 10 ];
-                                l_Temp = p_Number % 10;
-                                FirstDigit = m_NumDictionary[ l_Temp ];
-                        }
-                        else if ( p_Number >= 10000 && p_Number < 100000 )
-                        {
-                                SixthDigit = null;
-                                FifthDigit = m_NumDictionary[ p_Number / 10000 ];
-                                l_Temp = p_Number % 10000;
-                                ForthDigit = m_NumDictionary[ l_Temp / 1000 ];
-                                l_Temp = p_Number % 1000;
-                                ThirdDigit = m_NumDictionary[ l_Temp / 100 ];
-                                l_Temp = p_Number % 100;
-                                SecondDigit = m_NumDictionary[ l_Temp / 10 ];
-                                l_Temp = p_Number % 10;
-                                FirstDigit = m_NumDictionary[ l_Temp ];
-                        }
-                        else if ( p_Number >= 100000 && p_Number < 1000000 )
-                        {
-                                SixthDigit = m_NumDictionary[ p_Number / 100000 ];
-                                l_Temp = p_Number % 100000;
-                                FifthDigit = m_NumDictionary[ l_Temp / 10000 ];
-                                l_Temp = p_Number % 10000;
-                                ForthDigit = m_NumDictionary[ l_Temp / 1000 ];
                                 l_Temp = p_Number % 1000;
                                 ThirdDigit = m_NumDictionary[ l_Temp / 100 ];
                                 l_Temp = p_Number % 100;
@@ -206,12 +163,10 @@ namespace Pachislot_DataCounter.ViewModels
                         }
                         else
                         {
-                                SixthDigit = m_NumDictionary[ 9 ];
                                 FirstDigit = m_NumDictionary[ 9 ];
                                 SecondDigit = m_NumDictionary[ 9 ];
                                 ThirdDigit = m_NumDictionary[ 9 ];
                                 ForthDigit = m_NumDictionary[ 9 ];
-                                FifthDigit = m_NumDictionary[ 9 ];
                         }
                 }
 

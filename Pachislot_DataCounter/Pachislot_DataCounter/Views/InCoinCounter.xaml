@@ -1,19 +1,19 @@
 ﻿<!--============================================================-->
-<!--File        :Counter.xaml                                   -->
-<!--Summary     :回数表示(ユーザーコントロール)                 -->
+<!--File        :InCoinCounter.xaml                             -->
+<!--Summary     :IN枚数表示                                     -->
 <!--Author      :kinketsu patron (https://kinketsu-patron.com)  -->
 <!--Ver         :1.0                                            -->
-<!--Date        :2024/06/20                                     -->
+<!--Date        :2024/07/06                                     -->
 <!--============================================================-->
-<UserControl x:Class="Pachislot_DataCounter.Views.Counter"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:prism="http://prismlibrary.com/"
-             mc:Ignorable="d" 
-             d:DesignHeight="200" d:DesignWidth="900"
-             prism:ViewModelLocator.AutoWireViewModel="True">
+<UserControl    x:Class="Pachislot_DataCounter.Views.InCoinCounter"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:prism="http://prismlibrary.com/"
+                mc:Ignorable="d" 
+                d:DesignHeight="200" d:DesignWidth="900"
+                prism:ViewModelLocator.AutoWireViewModel="True">
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Image Source="{Binding SixthDigit, TargetNullValue={x:Null}}" Margin="0,0,2,0" Width="Auto" />

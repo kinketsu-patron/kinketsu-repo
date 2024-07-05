@@ -11,24 +11,16 @@
 // =======================================================
 // using
 // =======================================================
-using Pachislot_DataCounter.ViewModels;
-using Pachislot_DataCounter.Views;
-using Prism.Regions;
 using System;
-using System.Collections.Generic;
 using System.IO.Ports;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Text.Json;
 using System.Windows;
 
 namespace Pachislot_DataCounter.Models
 {
         public class SerialCom : SerialPort
         {
-                // =======================================================
-                // メソッド
-                // =======================================================
                 /// <summary>
                 /// コンストラクタ
                 /// </summary>
@@ -44,6 +36,9 @@ namespace Pachislot_DataCounter.Models
                         DtrEnable = true;
                 }
 
+                /// <summary>
+                /// 通信スタート
+                /// </summary>
                 public void ComStart( )
                 {
                         try
@@ -56,6 +51,9 @@ namespace Pachislot_DataCounter.Models
                         }
                 }
 
+                /// <summary>
+                /// 通信ストップ
+                /// </summary>
                 public void ComStop( )
                 {
                         try
@@ -71,14 +69,29 @@ namespace Pachislot_DataCounter.Models
                         }
                 }
 
-                public string GetSerialMessage( )
+                /// <summary>
+                /// シリアル通信で取得したJSONメッセージから各種ゲームデータのオブジェクトを生成して返す
+                /// </summary>
+                /// <returns>ゲーム情報のインスタンス</returns>
+                public GameInfo GetGameInfo( )
                 {
+                        string l_Message;
+                        GameInfo l_GameInfo;
+
                         if ( IsOpen == false )
                         {
                                 return null;
                         }
 
-                        return ReadLine( );
+                        l_Message = ReadLine( );
+                        if ( String.IsNullOrEmpty( l_Message ) )
+                        {
+                                return null;
+                        }
+
+                        l_GameInfo = JsonSerializer.Deserialize<GameInfo>( l_Message );
+
+                        return l_GameInfo;
                 }
         }
 }

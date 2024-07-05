@@ -3,11 +3,11 @@
 namespace Pachislot_DataCounter.Views
 {
         /// <summary>
-        /// Interaction logic for Counter
+        /// Interaction logic for OutCoinCounter
         /// </summary>
-        public partial class Counter : UserControl
+        public partial class OutCoinCounter : UserControl
         {
-                public Counter( )
+                public OutCoinCounter( )
                 {
                         InitializeComponent( );
                 }
