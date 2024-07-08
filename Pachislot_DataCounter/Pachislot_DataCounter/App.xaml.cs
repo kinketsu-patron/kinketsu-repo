@@ -27,7 +27,7 @@ namespace Pachislot_DataCounter
         /// </summary>
         public partial class App : PrismApplication
         {
-                private Mutex m_Mutex = new Mutex( false, "test" );
+                private Mutex m_Mutex = new Mutex( false, "Pachislot_DataCounter" );
 
                 /// <summary>
                 /// Prismフレームワークで自動生成されるメソッド
