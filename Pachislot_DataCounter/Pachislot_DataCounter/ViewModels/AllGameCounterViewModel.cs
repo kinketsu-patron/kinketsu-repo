@@ -19,6 +19,7 @@ using Reactive.Bindings.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Windows;
 using System.Windows.Media.Imaging;
 
 namespace Pachislot_DataCounter.ViewModels
@@ -217,9 +218,9 @@ namespace Pachislot_DataCounter.ViewModels
                                 l_Img.EndInit( );
                                 l_Img.Freeze( );
                         }
-                        catch ( Exception e )
+                        catch ( Exception ex )
                         {
-                                Debug.WriteLine( e.Message );
+                                MessageBox.Show( ex.Message );
                         }
 
                         return l_Img;

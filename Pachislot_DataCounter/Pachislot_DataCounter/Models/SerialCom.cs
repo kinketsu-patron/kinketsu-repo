@@ -45,9 +45,9 @@ namespace Pachislot_DataCounter.Models
                         {
                                 Open( );
                         }
-                        catch ( Exception ex )
+                        catch
                         {
-                                MessageBox.Show( ex.Message );
+                                throw;
                         }
                 }
 
@@ -63,9 +63,9 @@ namespace Pachislot_DataCounter.Models
                                         Close( );
                                 }
                         }
-                        catch ( Exception ex )
+                        catch
                         {
-                                MessageBox.Show( ex.Message );
+                                throw;
                         }
                 }
 
@@ -76,20 +76,17 @@ namespace Pachislot_DataCounter.Models
                 public GameInfo GetGameInfo( )
                 {
                         string l_Message;
-                        GameInfo l_GameInfo;
+                        GameInfo l_GameInfo = null;
 
-                        if ( IsOpen == false )
+                        try
                         {
-                                return null;
+                                l_Message = ReadLine( );
+                                l_GameInfo = JsonSerializer.Deserialize<GameInfo>( l_Message );
                         }
-
-                        l_Message = ReadLine( );
-                        if ( String.IsNullOrEmpty( l_Message ) )
+                        catch
                         {
-                                return null;
+                                throw;
                         }
-
-                        l_GameInfo = JsonSerializer.Deserialize<GameInfo>( l_Message );
 
                         return l_GameInfo;
                 }

@@ -17,6 +17,7 @@ using Pachislot_DataCounter.Views;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Unity;
+using System.Threading;
 using System.Windows;
 
 namespace Pachislot_DataCounter
@@ -26,6 +27,8 @@ namespace Pachislot_DataCounter
         /// </summary>
         public partial class App : PrismApplication
         {
+                private Mutex m_Mutex = new Mutex( false, "test" );
+
                 /// <summary>
                 /// Prismフレームワークで自動生成されるメソッド
                 /// アプリ開始時に起動するWindowを設定する
@@ -57,6 +60,37 @@ namespace Pachislot_DataCounter
                 /// <param name="p_ModuleCatalog"></param>
                 protected override void ConfigureModuleCatalog( IModuleCatalog p_ModuleCatalog )
                 {
+                }
+
+                /// <summary>
+                /// スタートアップ時の処理
+                /// </summary>
+                /// <param name="sender">イベント元オブジェクト</param>
+                /// <param name="e">スタートアップイベントデータ</param>
+                private void PrismApplication_Startup( object sender, StartupEventArgs e )
+                {
+                        if ( m_Mutex.WaitOne( 0, false ) )
+                        {
+                                return;
+                        }
+                        MessageBox.Show( "二重起動できません", "情報", MessageBoxButton.OK, MessageBoxImage.Information );
+                        m_Mutex.Close( );
+                        m_Mutex = null;
+                        Shutdown( );
+                }
+
+                /// <summary>
+                /// アプリ終了時の処理
+                /// </summary>
+                /// <param name="sender">イベント元オブジェクト</param>
+                /// <param name="e">終了イベントデータ</param>
+                private void PrismApplication_Exit( object sender, ExitEventArgs e )
+                {
+                        if ( m_Mutex != null )
+                        {
+                                m_Mutex.ReleaseMutex( );
+                                m_Mutex.Close( );
+                        }
                 }
         }
 }

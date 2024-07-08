@@ -11,6 +11,8 @@
 // =======================================================
 // using
 // =======================================================
+using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 using Pachislot_DataCounter.Models;
 using Pachislot_DataCounter.Views;
 using Prism.Commands;
@@ -19,6 +21,7 @@ using Prism.Regions;
 using Reactive.Bindings;
 using Reactive.Bindings.Disposables;
 using Reactive.Bindings.Extensions;
+using System;
 using System.IO.Ports;
 using System.Windows;
 
@@ -32,6 +35,7 @@ namespace Pachislot_DataCounter.ViewModels
                 private SerialCom m_SerialCom;
                 private DataManager m_DataManager;
                 private string m_Title;
+                private MetroWindow m_MetroWindow;
                 protected CompositeDisposable m_Disposables;
 
                 // =======================================================
@@ -91,6 +95,7 @@ namespace Pachislot_DataCounter.ViewModels
 
                         m_Title = "金ぱとデータカウンター";
 
+                        m_MetroWindow = Application.Current.MainWindow as MetroWindow;
                         m_DataManager = p_DataManager;
                         m_SerialCom = new SerialCom( );
                         m_Disposables = new CompositeDisposable( );
@@ -109,7 +114,16 @@ namespace Pachislot_DataCounter.ViewModels
                 /// </summary>
                 private void OnConnectClicked( )
                 {
-                        m_SerialCom.ComStart( ); // シリアル通信を開始する
+                        try
+                        {
+                                m_SerialCom.ComStart( ); // シリアル通信を開始する
+                        }
+                        catch ( Exception ex )
+                        {
+                                ShowMessageBox( "エラー", ex.Message );
+                        }
+
+
                 }
 
                 /// <summary>
@@ -128,13 +142,29 @@ namespace Pachislot_DataCounter.ViewModels
                 /// <param name="e">SerialDataReceivedイベントデータ</param>
                 private void ReceivedGameData( object sender, SerialDataReceivedEventArgs e )
                 {
-                        GameInfo l_GameInfo = ( ( SerialCom )sender ).GetGameInfo( );
-
-                        Application.Current.Dispatcher.Invoke( ( ) =>
+                        try
                         {
-                                m_DataManager.Store( l_GameInfo );
-                        } );
+                                GameInfo l_GameInfo = ( ( SerialCom )sender ).GetGameInfo( );
 
+                                Application.Current.Dispatcher.Invoke( ( ) =>
+                                {
+                                        m_DataManager.Store( l_GameInfo );
+                                } );
+                        }
+                        catch ( Exception ex )
+                        {
+                                ShowMessageBox( "エラー", ex.Message );
+                        }
+                }
+
+                /// <summary>
+                /// メッセージダイアログを表示
+                /// </summary>
+                /// <param name="p_Title">メッセージボックスタイトル</param>
+                /// <param name="p_Message">メッセージ</param>
+                private async void ShowMessageBox( string p_Title, string p_Message )
+                {
+                        await m_MetroWindow.ShowMessageAsync( p_Title, p_Message );
                 }
         }
 }
