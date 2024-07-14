@@ -224,7 +224,7 @@
                         <!--X軸-->
                         <lvc:CartesianChart.AxisX>
                                 <lvc:Axis 
-                                        Title="ゲーム数" 
+                                        Title="ゲーム数"
                                         IsMerged="False"
                                         Foreground="Azure"
                                         FontSize="16"
@@ -258,11 +258,7 @@
                                 </lvc:Axis>
                         </lvc:CartesianChart.AxisY>
                 </lvc:CartesianChart>
-                <!--<plot:WpfPlot Grid.Row="2" Grid.Column="4" Grid.RowSpan="4" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-                        <plot:WpfPlot.Foreground>
-                                <SolidColorBrush Color="Green"/>
-                        </plot:WpfPlot.Foreground>
-                </plot:WpfPlot>-->
+                
                 <!--======================================-->
                 <!--ボーナス履歴                          -->
                 <!--======================================-->
