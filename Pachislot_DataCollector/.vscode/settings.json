@@ -1,0 +1,18 @@
+{
+        "editor.fontFamily": "Moralerspace Neon HWJPDOC",
+        "editor.tabSize": 8,
+        "arduino.useArduinoCli": true,
+        "editor.fontSize": 20,
+        "arduino.commandPath": "arduino-cli.exe",
+        "arduino.path": "C:\\Program Files\\Arduino CLI",
+        "arduino.clearOutputOnBuild": false,
+        "arduino.enableUSBDetection": true,
+        "C_Cpp.intelliSenseEngine": "Tag Parser",
+        "editor.renderWhitespace": "boundary",
+        "C_Cpp.default.browse.path": [
+                "C:\\Users\\WACC\\AppData\\Local\\Arduino15\\"
+        ],
+        "editor.detectIndentation": false,
+        "files.encoding": "utf8",
+        "C_Cpp.formatting": "clangFormat",
+}

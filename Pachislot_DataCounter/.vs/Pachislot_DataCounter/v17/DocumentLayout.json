@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\WACC\\Documents\\kinketsu-repo\\Pachislot_DataCounter\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D31F387A-0D3E-4F2D-9C9A-2A9446345202}|Pachislot_DataCounter\\Pachislot_DataCounter.csproj|c:\\users\\wacc\\documents\\kinketsu-repo\\pachislot_datacounter\\pachislot_datacounter\\viewmodels\\allgamecounterviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D31F387A-0D3E-4F2D-9C9A-2A9446345202}|Pachislot_DataCounter\\Pachislot_DataCounter.csproj|solutionrelative:pachislot_datacounter\\viewmodels\\allgamecounterviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AllGameCounterViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\WACC\\Documents\\kinketsu-repo\\Pachislot_DataCounter\\Pachislot_DataCounter\\ViewModels\\AllGameCounterViewModel.cs",
+              "RelativeDocumentMoniker": "Pachislot_DataCounter\\ViewModels\\AllGameCounterViewModel.cs",
+              "ToolTip": "C:\\Users\\WACC\\Documents\\kinketsu-repo\\Pachislot_DataCounter\\Pachislot_DataCounter\\ViewModels\\AllGameCounterViewModel.cs",
+              "RelativeToolTip": "Pachislot_DataCounter\\ViewModels\\AllGameCounterViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-14T08:50:06.785Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
