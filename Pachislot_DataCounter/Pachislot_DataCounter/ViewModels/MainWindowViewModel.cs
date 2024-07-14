@@ -11,6 +11,7 @@
 // =======================================================
 // using
 // =======================================================
+using LiveCharts;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using Pachislot_DataCounter.Models;
@@ -23,6 +24,7 @@ using Reactive.Bindings.Disposables;
 using Reactive.Bindings.Extensions;
 using System;
 using System.IO.Ports;
+using System.Linq;
 using System.Windows;
 
 namespace Pachislot_DataCounter.ViewModels
@@ -36,6 +38,10 @@ namespace Pachislot_DataCounter.ViewModels
                 private DataManager m_DataManager;
                 private string m_Title;
                 private MetroWindow m_MetroWindow;
+                private ChartValues<int> m_CoinDiff;
+                private int m_Max_X;
+                private int m_Min_Y;
+                private int m_Max_Y;
                 protected CompositeDisposable m_Disposables;
 
                 // =======================================================
@@ -78,6 +84,40 @@ namespace Pachislot_DataCounter.ViewModels
                 /// </summary>
                 public ReactiveProperty<bool> DuringBonus { get; }
 
+                public ReactiveProperty<uint> CurrentGame { get; }
+
+                /// <summary>
+                /// コイン差枚数
+                /// </summary>
+                public ReactiveProperty<int> Diff { get; }
+
+                /// <summary>
+                /// コイン差枚数
+                /// </summary>
+                public ChartValues<int> CoinDiff
+                {
+                        get { return m_CoinDiff; }
+                        set { SetProperty( ref m_CoinDiff, value ); }
+                }
+
+                public int Max_X
+                {
+                        get { return m_Max_X; }
+                        set { SetProperty( ref m_Max_X, value ); }
+                }
+
+                public int Min_Y
+                {
+                        get { return m_Min_Y; }
+                        set { SetProperty( ref m_Min_Y, value ); }
+                }
+
+                public int Max_Y
+                {
+                        get { return m_Max_Y; }
+                        set { SetProperty( ref m_Max_Y, value ); }
+                }
+
                 // =======================================================
                 // メソッド
                 // =======================================================
@@ -94,6 +134,7 @@ namespace Pachislot_DataCounter.ViewModels
                         p_RegionManager.RegisterViewWithRegion( "OutCoinCounter", typeof( OutCoinCounter ) );
 
                         m_Title = "金ぱとデータカウンター";
+                        m_CoinDiff = new ChartValues<int>( );
 
                         m_MetroWindow = Application.Current.MainWindow as MetroWindow;
                         m_DataManager = p_DataManager;
@@ -107,6 +148,9 @@ namespace Pachislot_DataCounter.ViewModels
                         DuringBigBonus = m_DataManager.ToReactivePropertyAsSynchronized( m => m.DuringBB ).AddTo( m_Disposables );
                         DuringRegularBonus = m_DataManager.ToReactivePropertyAsSynchronized( m => m.DuringRB ).AddTo( m_Disposables );
                         DuringBonus = m_DataManager.ToReactivePropertyAsSynchronized( m => m.DuringBonus ).AddTo( m_Disposables );
+                        Diff = m_DataManager.ToReactivePropertyAsSynchronized( m => m.Diff ).AddTo( m_Disposables );
+                        CurrentGame = m_DataManager.ToReactivePropertyAsSynchronized( m => m.CurrentGame ).AddTo( m_Disposables );
+                        CurrentGame.Subscribe( _ => DrawGraph( Diff.Value ) );
                 }
 
                 /// <summary>
@@ -165,6 +209,18 @@ namespace Pachislot_DataCounter.ViewModels
                 private async void ShowMessageBox( string p_Title, string p_Message )
                 {
                         await m_MetroWindow.ShowMessageAsync( p_Title, p_Message );
+                }
+
+                /// <summary>
+                /// グラフを描画・更新
+                /// </summary>
+                /// <param name="p_CoinDiff">追加する差枚数情報</param>
+                private void DrawGraph( int p_CoinDiff )
+                {
+                        Max_X = ( decimal.ToInt32( Math.Truncate( ( ( decimal )m_CoinDiff.Count * 10 / 8 ) / 200 ) ) + 1 ) * 200;
+                        Min_Y = -1000;
+                        Max_Y = 1000;
+                        CoinDiff.Add( p_CoinDiff );
                 }
         }
 }

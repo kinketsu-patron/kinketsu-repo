@@ -10,6 +10,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:Pachislot_DataCounter.Views"
         xmlns:prism="http://prismlibrary.com/"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         prism:ViewModelLocator.AutoWireViewModel="True"
@@ -204,8 +205,64 @@
                 <!--======================================-->
                 <!--スランプグラフ                        -->
                 <!--======================================-->
-                <!--<ContentControl Grid.Row="2" Grid.Column="4" Grid.RowSpan="4" Grid.ColumnSpan="3" Content="{Binding SlumpGraph}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>-->
-
+                <lvc:CartesianChart 
+                        Grid.Row="2"
+                        Grid.Column="4"
+                        Grid.RowSpan="4"
+                        Grid.ColumnSpan="3"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        LegendLocation="None">
+                        <!--凡例-->
+                        <lvc:CartesianChart.Series>
+                                <lvc:LineSeries Values="{ Binding CoinDiff }"
+                                                PointGeometry="{x:Null}"
+                                                StrokeThickness="4"
+                                                Stroke="Red"
+                                                Fill="Transparent"/>
+                        </lvc:CartesianChart.Series>
+                        <!--X軸-->
+                        <lvc:CartesianChart.AxisX>
+                                <lvc:Axis 
+                                        Title="ゲーム数" 
+                                        IsMerged="False"
+                                        Foreground="Azure"
+                                        FontSize="16"
+                                        FontFamily="BIZ UDゴシック"
+                                        MinValue="0"
+                                        MaxValue="{Binding Max_X}">
+                                        <lvc:Axis.Separator>
+                                                <lvc:Separator
+                                                        Stroke="Goldenrod"
+                                                        StrokeThickness="1"
+                                                        StrokeDashArray="2"/>
+                                        </lvc:Axis.Separator>
+                                </lvc:Axis>
+                        </lvc:CartesianChart.AxisX>
+                        <!--Y軸-->
+                        <lvc:CartesianChart.AxisY>
+                                <lvc:Axis
+                                        Title="差枚数"
+                                        IsMerged="False"
+                                        Foreground="Azure"
+                                        FontSize="16"
+                                        FontFamily="BIZ UDゴシック"
+                                        MinValue="{Binding Min_Y}"
+                                        MaxValue="{Binding Max_Y}">
+                                        <lvc:Axis.Separator>
+                                                <lvc:Separator
+                                                        Stroke="Goldenrod"
+                                                        StrokeThickness="1"
+                                                        StrokeDashArray="2"/>
+                                        </lvc:Axis.Separator>
+                                </lvc:Axis>
+                        </lvc:CartesianChart.AxisY>
+                </lvc:CartesianChart>
+                <!--<plot:WpfPlot Grid.Row="2" Grid.Column="4" Grid.RowSpan="4" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                        <plot:WpfPlot.Foreground>
+                                <SolidColorBrush Color="Green"/>
+                        </plot:WpfPlot.Foreground>
+                </plot:WpfPlot>-->
                 <!--======================================-->
                 <!--ボーナス履歴                          -->
                 <!--======================================-->
