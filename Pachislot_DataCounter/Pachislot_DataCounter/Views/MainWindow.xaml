@@ -17,6 +17,7 @@
         Title="{Binding Title}" Height="900" Width="1600"
         GlowBrush="{DynamicResource MahApps.Brushes.Accent}"
         WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
         ResizeMode="CanMinimize"
         ShowTitleBar="False">
 

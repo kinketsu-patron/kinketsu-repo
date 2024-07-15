@@ -1,5 +1,4 @@
 ﻿using MahApps.Metro.Controls;
-using System.Windows;
 
 namespace Pachislot_DataCounter.Views
 {

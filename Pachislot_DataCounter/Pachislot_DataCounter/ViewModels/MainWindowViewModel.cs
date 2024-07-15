@@ -140,6 +140,9 @@ namespace Pachislot_DataCounter.ViewModels
                         m_DataManager = p_DataManager;
                         m_SerialCom = new SerialCom( );
                         m_Disposables = new CompositeDisposable( );
+                        Max_X = 1000;
+                        Max_Y = 1000;
+                        Min_Y = -1000;
 
                         m_SerialCom.DataReceived += new SerialDataReceivedEventHandler( ReceivedGameData );
                         Click_Connect = new DelegateCommand( OnConnectClicked );
@@ -158,12 +161,9 @@ namespace Pachislot_DataCounter.ViewModels
                 /// </summary>
                 private void OnConnectClicked( )
                 {
-                        try
-                        {
+                        try {
                                 m_SerialCom.ComStart( ); // シリアル通信を開始する
-                        }
-                        catch ( Exception ex )
-                        {
+                        } catch( Exception ex ) {
                                 ShowMessageBox( "エラー", ex.Message );
                         }
 
@@ -186,17 +186,14 @@ namespace Pachislot_DataCounter.ViewModels
                 /// <param name="e">SerialDataReceivedイベントデータ</param>
                 private void ReceivedGameData( object sender, SerialDataReceivedEventArgs e )
                 {
-                        try
-                        {
+                        try {
                                 GameInfo l_GameInfo = ( ( SerialCom )sender ).GetGameInfo( );
 
                                 Application.Current.Dispatcher.Invoke( ( ) =>
                                 {
                                         m_DataManager.Store( l_GameInfo );
                                 } );
-                        }
-                        catch ( Exception ex )
-                        {
+                        } catch( Exception ex ) {
                                 ShowMessageBox( "エラー", ex.Message );
                         }
                 }
@@ -217,10 +214,19 @@ namespace Pachislot_DataCounter.ViewModels
                 /// <param name="p_CoinDiff">追加する差枚数情報</param>
                 private void DrawGraph( int p_CoinDiff )
                 {
-                        Max_X = ( decimal.ToInt32( Math.Truncate( ( ( decimal )m_CoinDiff.Count * 10 / 8 ) / 200 ) ) + 1 ) * 200;
-                        Min_Y = -1000;
-                        Max_Y = 1000;
                         CoinDiff.Add( p_CoinDiff );
+
+                        if ( m_CoinDiff.Count >= ( Max_X * 0.8 ) ) {
+                                Max_X = Max_X * 2;
+                        }
+
+                        if ( m_CoinDiff.Min( ) <= ( Min_Y * 0.8 ) ) {
+                                Min_Y = Min_Y * 2;
+                        }
+
+                        if ( m_CoinDiff.Max( ) >= ( Max_Y * 0.8 ) ) {
+                                Max_Y = Max_Y * 2;
+                        }
                 }
         }
 }
