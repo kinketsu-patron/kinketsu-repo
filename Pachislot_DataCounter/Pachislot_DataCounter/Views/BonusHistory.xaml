@@ -1,0 +1,210 @@
+﻿<!--============================================================-->
+<!--File        :BonusHistory.xaml                              -->
+<!--Summary     :ボーナス履歴表示                               -->
+<!--Author      :kinketsu patron (https://kinketsu-patron.com)  -->
+<!--Ver         :1.0                                            -->
+<!--Date        :2024/07/15                                     -->
+<!--============================================================-->
+<UserControl x:Class="Pachislot_DataCounter.Views.BonusHistory"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"             
+             prism:ViewModelLocator.AutoWireViewModel="True">
+
+        <Grid HorizontalAlignment="Left" Background="#1f1f1f">
+                <!--列の定義-->
+                <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <!--現在のゲーム数-->
+                <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Bottom" Margin="10,0,50,0">
+                        <Image Visibility="{Binding Bar_CurTen}" Source="/Resource/データスランプ(Bar)_Red.png" Margin="1"/>
+                        <Image Visibility="{Binding Bar_CurNine}" Source="/Resource/データスランプ(Bar)_Red.png" Margin="1"/>
+                        <Image Visibility="{Binding Bar_CurEight}" Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Visibility="{Binding Bar_CurSeven}" Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Visibility="{Binding Bar_CurSix}" Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Visibility="{Binding Bar_CurFive}" Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Visibility="{Binding Bar_CurFour}" Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Image Visibility="{Binding Bar_CurThree}" Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Image Visibility="{Binding Bar_CurTwo}" Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Image Visibility="{Binding Bar_CurOne}" Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Label Content="現在" FontSize="24" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
+                        <Label />
+                        <Label />
+                        <Label />
+                        <Label Content="{Binding CurrentGame.Value}" FontSize="24" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2" Orientation="Vertical" VerticalAlignment="Bottom" Margin="10,0,0,0">
+                        <Image Source="/Resource/データスランプ(Bar)_Red.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Red.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Label Content="1回前" FontSize="24" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
+                        <Image Source="/Resource/データスランプ(BB).png"/>
+                        <Label Content="128" FontSize="24" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="3" Orientation="Vertical" VerticalAlignment="Bottom" Margin="10,0,0,0">
+                        <Image Source="/Resource/データスランプ(Bar)_Red.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Red.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Label Content="2回前" FontSize="24" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
+                        <Image Source="/Resource/データスランプ(BB).png"/>
+                        <Label Content="128" FontSize="24" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="4" Orientation="Vertical" VerticalAlignment="Bottom" Margin="10,0,0,0">
+                        <Image Source="/Resource/データスランプ(Bar)_Red.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Red.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Label Content="3回前" FontSize="24" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
+                        <Image Source="/Resource/データスランプ(BB).png"/>
+                        <Label Content="128" FontSize="24" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="5" Orientation="Vertical" VerticalAlignment="Bottom" Margin="10,0,0,0">
+                        <Image Source="/Resource/データスランプ(Bar)_Red.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Red.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Label Content="4回前" FontSize="24" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
+                        <Image Source="/Resource/データスランプ(BB).png"/>
+                        <Label Content="128" FontSize="24" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="6" Orientation="Vertical" VerticalAlignment="Bottom" Margin="10,0,0,0">
+                        <Image Source="/Resource/データスランプ(Bar)_Red.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Red.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Label Content="5回前" FontSize="24" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
+                        <Image Source="/Resource/データスランプ(BB).png"/>
+                        <Label Content="128" FontSize="24" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="7" Orientation="Vertical" VerticalAlignment="Bottom" Margin="10,0,0,0">
+                        <Image Source="/Resource/データスランプ(Bar)_Red.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Red.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Label Content="6回前" FontSize="24" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
+                        <Image Source="/Resource/データスランプ(BB).png"/>
+                        <Label Content="128" FontSize="24" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="8" Orientation="Vertical" VerticalAlignment="Bottom" Margin="10,0,0,0">
+                        <Image Source="/Resource/データスランプ(Bar)_Red.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Red.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Label Content="7回前" FontSize="24" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
+                        <Image Source="/Resource/データスランプ(BB).png"/>
+                        <Label Content="128" FontSize="24" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="9" Orientation="Vertical" VerticalAlignment="Bottom" Margin="10,0,0,0">
+                        <Image Source="/Resource/データスランプ(Bar)_Red.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Red.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Label Content="8回前" FontSize="24" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
+                        <Image Source="/Resource/データスランプ(BB).png"/>
+                        <Label Content="128" FontSize="24" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="10" Orientation="Vertical" VerticalAlignment="Bottom" Margin="10,0,0,0">
+                        <Image Source="/Resource/データスランプ(Bar)_Red.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Red.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Label Content="9回前" FontSize="24" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
+                        <Image Source="/Resource/データスランプ(BB).png"/>
+                        <Label Content="128" FontSize="24" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="11" Orientation="Vertical" VerticalAlignment="Bottom" Margin="10,0,10,0">
+                        <Image Source="/Resource/データスランプ(Bar)_Red.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Red.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Image Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
+                        <Label Content="10回前" FontSize="24" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
+                        <Image Source="/Resource/データスランプ(BB).png"/>
+                        <Label Content="128" FontSize="24" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
+                </StackPanel>
+        </Grid>
+</UserControl>

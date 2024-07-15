@@ -39,9 +39,12 @@ namespace Pachislot_DataCounter.Models
                 /// </summary>
                 public void ComStart( )
                 {
-                        try {
+                        try
+                        {
                                 Open( );
-                        } catch {
+                        }
+                        catch
+                        {
                                 throw;
                         }
                 }
@@ -51,11 +54,15 @@ namespace Pachislot_DataCounter.Models
                 /// </summary>
                 public void ComStop( )
                 {
-                        try {
-                                if ( IsOpen ) {
+                        try
+                        {
+                                if ( IsOpen )
+                                {
                                         Close( );
                                 }
-                        } catch {
+                        }
+                        catch
+                        {
                                 throw;
                         }
                 }
@@ -69,10 +76,13 @@ namespace Pachislot_DataCounter.Models
                         string l_Message;
                         GameInfo l_GameInfo = null;
 
-                        try {
+                        try
+                        {
                                 l_Message = ReadLine( );
                                 l_GameInfo = JsonSerializer.Deserialize<GameInfo>( l_Message );
-                        } catch {
+                        }
+                        catch
+                        {
                                 throw;
                         }
 

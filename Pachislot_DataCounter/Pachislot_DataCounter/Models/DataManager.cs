@@ -148,9 +148,12 @@ namespace Pachislot_DataCounter.Models
                         DuringRB = p_GameInfo.DuringRB;
                         DuringBB = p_GameInfo.DuringBB;
 
-                        if ( DuringBB || DuringRB ) {
+                        if ( DuringBB || DuringRB )
+                        {
                                 DuringBonus = true;
-                        } else {
+                        }
+                        else
+                        {
                                 DuringBonus = false;
                         }
                 }

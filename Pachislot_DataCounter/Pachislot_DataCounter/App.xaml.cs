@@ -52,6 +52,7 @@ namespace Pachislot_DataCounter
                         p_ContainerRegistry.RegisterForNavigation<InCoinCounter, InCoinCounterViewModel>( );
                         p_ContainerRegistry.RegisterForNavigation<OutCoinCounter, OutCoinCounterViewModel>( );
                         p_ContainerRegistry.RegisterForNavigation<RBCounter, RBCounterViewModel>( );
+                        p_ContainerRegistry.RegisterForNavigation<BonusHistory, BonusHistoryViewModel>( );
                 }
 
                 /// <summary>
@@ -69,7 +70,8 @@ namespace Pachislot_DataCounter
                 /// <param name="e">スタートアップイベントデータ</param>
                 private void PrismApplication_Startup( object sender, StartupEventArgs e )
                 {
-                        if ( m_Mutex.WaitOne( 0, false ) ) {
+                        if ( m_Mutex.WaitOne( 0, false ) )
+                        {
                                 return;
                         }
                         MessageBox.Show( "二重起動できません", "情報", MessageBoxButton.OK, MessageBoxImage.Information );
@@ -85,7 +87,8 @@ namespace Pachislot_DataCounter
                 /// <param name="e">終了イベントデータ</param>
                 private void PrismApplication_Exit( object sender, ExitEventArgs e )
                 {
-                        if ( m_Mutex != null ) {
+                        if ( m_Mutex != null )
+                        {
                                 m_Mutex.ReleaseMutex( );
                                 m_Mutex.Close( );
                         }

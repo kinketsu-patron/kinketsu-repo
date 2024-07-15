@@ -132,6 +132,7 @@ namespace Pachislot_DataCounter.ViewModels
                         p_RegionManager.RegisterViewWithRegion( "CurrentGameCounter", typeof( CurrentGameCounter ) );
                         p_RegionManager.RegisterViewWithRegion( "InCoinCounter", typeof( InCoinCounter ) );
                         p_RegionManager.RegisterViewWithRegion( "OutCoinCounter", typeof( OutCoinCounter ) );
+                        p_RegionManager.RegisterViewWithRegion( "BonusHistory", typeof( BonusHistory ) );
 
                         m_Title = "金ぱとデータカウンター";
                         m_CoinDiff = new ChartValues<int>( );
@@ -161,9 +162,12 @@ namespace Pachislot_DataCounter.ViewModels
                 /// </summary>
                 private void OnConnectClicked( )
                 {
-                        try {
+                        try
+                        {
                                 m_SerialCom.ComStart( ); // シリアル通信を開始する
-                        } catch ( Exception ex ) {
+                        }
+                        catch ( Exception ex )
+                        {
                                 ShowMessageBox( "エラー", ex.Message );
                         }
 
@@ -186,14 +190,17 @@ namespace Pachislot_DataCounter.ViewModels
                 /// <param name="e">SerialDataReceivedイベントデータ</param>
                 private void ReceivedGameData( object sender, SerialDataReceivedEventArgs e )
                 {
-                        try {
+                        try
+                        {
                                 GameInfo l_GameInfo = ( ( SerialCom )sender ).GetGameInfo( );
 
                                 Application.Current.Dispatcher.Invoke( ( ) =>
                                 {
                                         m_DataManager.Store( l_GameInfo );
                                 } );
-                        } catch ( Exception ex ) {
+                        }
+                        catch ( Exception ex )
+                        {
                                 ShowMessageBox( "エラー", ex.Message );
                         }
                 }
@@ -216,15 +223,18 @@ namespace Pachislot_DataCounter.ViewModels
                 {
                         CoinDiff.Add( p_CoinDiff );
 
-                        if ( m_CoinDiff.Count >= ( Max_X * 0.8 ) ) {
+                        if ( m_CoinDiff.Count >= ( Max_X * 0.8 ) )
+                        {
                                 Max_X = Max_X * 2;
                         }
 
-                        if ( m_CoinDiff.Min( ) <= ( Min_Y * 0.8 ) ) {
+                        if ( m_CoinDiff.Min( ) <= ( Min_Y * 0.8 ) )
+                        {
                                 Min_Y = Min_Y * 2;
                         }
 
-                        if ( m_CoinDiff.Max( ) >= ( Max_Y * 0.8 ) ) {
+                        if ( m_CoinDiff.Max( ) >= ( Max_Y * 0.8 ) )
+                        {
                                 Max_Y = Max_Y * 2;
                         }
                 }

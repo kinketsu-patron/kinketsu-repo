@@ -7,10 +7,18 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Views\BonusHistory.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="Views\AllGameCounter.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\BBCounter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\BonusHistory.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\CurrentGameCounter.xaml">

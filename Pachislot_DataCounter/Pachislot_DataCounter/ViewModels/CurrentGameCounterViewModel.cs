@@ -120,30 +120,39 @@ namespace Pachislot_DataCounter.ViewModels
                 {
                         uint l_Temp;
 
-                        if ( p_Number < 0 ) {
+                        if ( p_Number < 0 )
+                        {
                                 ForthDigit = null;
                                 ThirdDigit = null;
                                 SecondDigit = null;
                                 FirstDigit = null;
-                        } else if ( p_Number >= 0 && p_Number < 10 ) {
+                        }
+                        else if ( p_Number >= 0 && p_Number < 10 )
+                        {
                                 ForthDigit = null;
                                 ThirdDigit = null;
                                 SecondDigit = null;
                                 FirstDigit = m_NumDictionary[ p_Number ];
-                        } else if ( p_Number >= 10 && p_Number < 100 ) {
+                        }
+                        else if ( p_Number >= 10 && p_Number < 100 )
+                        {
                                 ForthDigit = null;
                                 ThirdDigit = null;
                                 SecondDigit = m_NumDictionary[ p_Number / 10 ];
                                 l_Temp = p_Number % 10;
                                 FirstDigit = m_NumDictionary[ l_Temp ];
-                        } else if ( p_Number >= 100 && p_Number < 1000 ) {
+                        }
+                        else if ( p_Number >= 100 && p_Number < 1000 )
+                        {
                                 ForthDigit = null;
                                 ThirdDigit = m_NumDictionary[ p_Number / 100 ];
                                 l_Temp = p_Number % 100;
                                 SecondDigit = m_NumDictionary[ l_Temp / 10 ];
                                 l_Temp = p_Number % 10;
                                 FirstDigit = m_NumDictionary[ l_Temp ];
-                        } else if ( p_Number >= 1000 && p_Number < 10000 ) {
+                        }
+                        else if ( p_Number >= 1000 && p_Number < 10000 )
+                        {
                                 ForthDigit = m_NumDictionary[ p_Number / 1000 ];
                                 l_Temp = p_Number % 1000;
                                 ThirdDigit = m_NumDictionary[ l_Temp / 100 ];
@@ -151,7 +160,9 @@ namespace Pachislot_DataCounter.ViewModels
                                 SecondDigit = m_NumDictionary[ l_Temp / 10 ];
                                 l_Temp = p_Number % 10;
                                 FirstDigit = m_NumDictionary[ l_Temp ];
-                        } else {
+                        }
+                        else
+                        {
                                 FirstDigit = m_NumDictionary[ 9 ];
                                 SecondDigit = m_NumDictionary[ 9 ];
                                 ThirdDigit = m_NumDictionary[ 9 ];
@@ -168,13 +179,16 @@ namespace Pachislot_DataCounter.ViewModels
                 {
                         BitmapImage l_Img = new BitmapImage( );
 
-                        try {
+                        try
+                        {
                                 l_Img.BeginInit( );
                                 l_Img.CacheOption = BitmapCacheOption.OnLoad;
                                 l_Img.UriSource = new Uri( p_FilePath, UriKind.Absolute );
                                 l_Img.EndInit( );
                                 l_Img.Freeze( );
-                        } catch ( Exception e ) {
+                        }
+                        catch ( Exception e )
+                        {
                                 Debug.WriteLine( e.Message );
                         }
 
