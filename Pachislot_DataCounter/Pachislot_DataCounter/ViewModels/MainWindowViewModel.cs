@@ -163,7 +163,7 @@ namespace Pachislot_DataCounter.ViewModels
                 {
                         try {
                                 m_SerialCom.ComStart( ); // シリアル通信を開始する
-                        } catch( Exception ex ) {
+                        } catch ( Exception ex ) {
                                 ShowMessageBox( "エラー", ex.Message );
                         }
 
@@ -193,7 +193,7 @@ namespace Pachislot_DataCounter.ViewModels
                                 {
                                         m_DataManager.Store( l_GameInfo );
                                 } );
-                        } catch( Exception ex ) {
+                        } catch ( Exception ex ) {
                                 ShowMessageBox( "エラー", ex.Message );
                         }
                 }

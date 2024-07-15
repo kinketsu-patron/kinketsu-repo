@@ -69,7 +69,7 @@ namespace Pachislot_DataCounter
                 /// <param name="e">スタートアップイベントデータ</param>
                 private void PrismApplication_Startup( object sender, StartupEventArgs e )
                 {
-                        if( m_Mutex.WaitOne( 0, false ) ) {
+                        if ( m_Mutex.WaitOne( 0, false ) ) {
                                 return;
                         }
                         MessageBox.Show( "二重起動できません", "情報", MessageBoxButton.OK, MessageBoxImage.Information );
@@ -85,7 +85,7 @@ namespace Pachislot_DataCounter
                 /// <param name="e">終了イベントデータ</param>
                 private void PrismApplication_Exit( object sender, ExitEventArgs e )
                 {
-                        if( m_Mutex != null ) {
+                        if ( m_Mutex != null ) {
                                 m_Mutex.ReleaseMutex( );
                                 m_Mutex.Close( );
                         }

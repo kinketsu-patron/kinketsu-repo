@@ -52,7 +52,7 @@ namespace Pachislot_DataCounter.Models
                 public void ComStop( )
                 {
                         try {
-                                if( IsOpen ) {
+                                if ( IsOpen ) {
                                         Close( );
                                 }
                         } catch {

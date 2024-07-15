@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\suzuha\\Documents\\kinketsu-repo\\Pachislot_DataCounter\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{D31F387A-0D3E-4F2D-9C9A-2A9446345202}|Pachislot_DataCounter\\Pachislot_DataCounter.csproj|c:\\users\\suzuha\\documents\\kinketsu-repo\\pachislot_datacounter\\pachislot_datacounter\\views\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D31F387A-0D3E-4F2D-9C9A-2A9446345202}|Pachislot_DataCounter\\Pachislot_DataCounter.csproj|solutionrelative:pachislot_datacounter\\views\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D31F387A-0D3E-4F2D-9C9A-2A9446345202}|Pachislot_DataCounter\\Pachislot_DataCounter.csproj|c:\\users\\suzuha\\documents\\kinketsu-repo\\pachislot_datacounter\\pachislot_datacounter\\viewmodels\\mainwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D31F387A-0D3E-4F2D-9C9A-2A9446345202}|Pachislot_DataCounter\\Pachislot_DataCounter.csproj|solutionrelative:pachislot_datacounter\\viewmodels\\mainwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D31F387A-0D3E-4F2D-9C9A-2A9446345202}|Pachislot_DataCounter\\Pachislot_DataCounter.csproj|c:\\users\\suzuha\\documents\\kinketsu-repo\\pachislot_datacounter\\pachislot_datacounter\\views\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{D31F387A-0D3E-4F2D-9C9A-2A9446345202}|Pachislot_DataCounter\\Pachislot_DataCounter.csproj|solutionrelative:pachislot_datacounter\\views\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{D31F387A-0D3E-4F2D-9C9A-2A9446345202}|Pachislot_DataCounter\\Pachislot_DataCounter.csproj|c:\\users\\suzuha\\documents\\kinketsu-repo\\pachislot_datacounter\\pachislot_datacounter\\models\\datamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D31F387A-0D3E-4F2D-9C9A-2A9446345202}|Pachislot_DataCounter\\Pachislot_DataCounter.csproj|solutionrelative:pachislot_datacounter\\models\\datamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +26,20 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
+              "Title": "DataManager.cs",
+              "DocumentMoniker": "C:\\Users\\suzuha\\Documents\\kinketsu-repo\\Pachislot_DataCounter\\Pachislot_DataCounter\\Models\\DataManager.cs",
+              "RelativeDocumentMoniker": "Pachislot_DataCounter\\Models\\DataManager.cs",
+              "ToolTip": "C:\\Users\\suzuha\\Documents\\kinketsu-repo\\Pachislot_DataCounter\\Pachislot_DataCounter\\Models\\DataManager.cs",
+              "RelativeToolTip": "Pachislot_DataCounter\\Models\\DataManager.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACcAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-15T06:18:14.77Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\suzuha\\Documents\\kinketsu-repo\\Pachislot_DataCounter\\Pachislot_DataCounter\\Views\\MainWindow.xaml",
               "RelativeDocumentMoniker": "Pachislot_DataCounter\\Views\\MainWindow.xaml",
@@ -34,13 +51,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "MainWindowViewModel.cs",
               "DocumentMoniker": "C:\\Users\\suzuha\\Documents\\kinketsu-repo\\Pachislot_DataCounter\\Pachislot_DataCounter\\ViewModels\\MainWindowViewModel.cs",
               "RelativeDocumentMoniker": "Pachislot_DataCounter\\ViewModels\\MainWindowViewModel.cs",
               "ToolTip": "C:\\Users\\suzuha\\Documents\\kinketsu-repo\\Pachislot_DataCounter\\Pachislot_DataCounter\\ViewModels\\MainWindowViewModel.cs",
               "RelativeToolTip": "Pachislot_DataCounter\\ViewModels\\MainWindowViewModel.cs",
-              "ViewState": "AQIAAHAAAAAAAAAAAAAAAN8AAAAyAAAA",
+              "ViewState": "AQIAAHAAAAAAAAAAAAAAAHgAAABKAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-14T09:11:36.016Z",
               "EditorCaption": ""
