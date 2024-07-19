@@ -25,6 +25,7 @@ namespace Pachislot_DataCounter.ViewModels
 {
         public class InCoinCounterViewModel : BindableBase
         {
+                #region メンバ変数
                 // =======================================================
                 // メンバ変数
                 // =======================================================
@@ -40,7 +41,9 @@ namespace Pachislot_DataCounter.ViewModels
                 private BitmapImage m_ThirdDigit;
                 private BitmapImage m_SecondDigit;
                 private BitmapImage m_FirstDigit;
+                #endregion
 
+                #region プロパティ
                 // =======================================================
                 // プロパティ
                 // =======================================================
@@ -52,7 +55,6 @@ namespace Pachislot_DataCounter.ViewModels
                         get { return m_SixthDigit; }
                         set { SetProperty( ref m_SixthDigit, value ); }
                 }
-
                 /// <summary>
                 /// 5桁目の数値
                 /// </summary>
@@ -61,7 +63,6 @@ namespace Pachislot_DataCounter.ViewModels
                         get { return m_FifthDigit; }
                         set { SetProperty( ref m_FifthDigit, value ); }
                 }
-
                 /// <summary>
                 /// 4桁目の数値
                 /// </summary>
@@ -70,7 +71,6 @@ namespace Pachislot_DataCounter.ViewModels
                         get { return m_ForthDigit; }
                         set { SetProperty( ref m_ForthDigit, value ); }
                 }
-
                 /// <summary>
                 /// 3桁目の数値
                 /// </summary>
@@ -79,7 +79,6 @@ namespace Pachislot_DataCounter.ViewModels
                         get { return m_ThirdDigit; }
                         set { SetProperty( ref m_ThirdDigit, value ); }
                 }
-
                 /// <summary>
                 /// 2桁目の数値
                 /// </summary>
@@ -88,7 +87,6 @@ namespace Pachislot_DataCounter.ViewModels
                         get { return m_SecondDigit; }
                         set { SetProperty( ref m_SecondDigit, value ); }
                 }
-
                 /// <summary>
                 /// 1桁目の数値
                 /// </summary>
@@ -97,12 +95,13 @@ namespace Pachislot_DataCounter.ViewModels
                         get { return m_FirstDigit; }
                         set { SetProperty( ref m_FirstDigit, value ); }
                 }
-
                 /// <summary>
                 /// IN枚数
                 /// </summary>
                 public ReactiveProperty<uint> InCoin { get; }
+                #endregion
 
+                #region 公開メソッド
                 /// <summary>
                 /// コンストラクタ
                 /// </summary>
@@ -133,7 +132,9 @@ namespace Pachislot_DataCounter.ViewModels
                         SecondDigit = null;
                         FirstDigit = m_NumDictionary[ 0 ];
                 }
+                #endregion
 
+                #region 非公開メソッド
                 /// <summary>
                 /// 整数型の数値を設定すると適切に数値画像を選択して表示してくれる
                 /// </summary>
@@ -255,5 +256,6 @@ namespace Pachislot_DataCounter.ViewModels
 
                         return l_Img;
                 }
+                #endregion
         }
 }

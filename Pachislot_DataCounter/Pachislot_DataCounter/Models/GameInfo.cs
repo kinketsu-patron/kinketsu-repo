@@ -20,6 +20,7 @@ namespace Pachislot_DataCounter.Models
         /// </summary>
         public class GameInfo
         {
+                #region プロパティ
                 [JsonPropertyName( "game" )]
                 public uint Game { get; set; }
 
@@ -46,5 +47,6 @@ namespace Pachislot_DataCounter.Models
 
                 [JsonPropertyName( "duringbb" )]
                 public bool DuringBB { get; set; }
+                #endregion
         }
 }

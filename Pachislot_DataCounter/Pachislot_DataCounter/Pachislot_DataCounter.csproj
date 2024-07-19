@@ -15,6 +15,7 @@
                 <None Remove="Resource\データスランプ%28Bar%29_Red.png" />
                 <None Remove="Resource\データスランプ%28Bar%29_Yellow.png" />
                 <None Remove="Resource\データスランプ%28BB%29.png" />
+                <None Remove="Resource\データスランプ%28NONE%29.png" />
                 <None Remove="Resource\データスランプ%28RB%29.png" />
                 <None Remove="Resource\完全勝利.mov" />
                 <None Remove="Resource\差枚数.png" />
@@ -32,6 +33,11 @@
                 <None Remove="Resource\累計.png" />
                 <None Remove="Resource\終了.png" />
                 <None Remove="Resource\飾り枠%28セクション%29.png" />
+        </ItemGroup>
+        <ItemGroup>
+          <Resource Include="Resource\データスランプ(NONE).png">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+          </Resource>
         </ItemGroup>
         <ItemGroup>
                 <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />

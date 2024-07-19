@@ -17,6 +17,7 @@ namespace Pachislot_DataCounter.Models
 {
         public class DataManager : BindableBase
         {
+                #region メンバ変数
                 // =======================================================
                 // メンバ変数
                 // =======================================================
@@ -30,7 +31,9 @@ namespace Pachislot_DataCounter.Models
                 private bool m_DuringRB;
                 private bool m_DuringBB;
                 private bool m_DuringBonus;
+                #endregion
 
+                #region プロパティ
                 // =======================================================
                 // プロパティ
                 // =======================================================
@@ -114,7 +117,9 @@ namespace Pachislot_DataCounter.Models
                         get { return m_DuringBonus; }
                         set { SetProperty( ref m_DuringBonus, value ); }
                 }
+                #endregion
 
+                #region 公開メソッド
                 /// <summary>
                 /// コンストラクタ
                 /// </summary>
@@ -138,13 +143,6 @@ namespace Pachislot_DataCounter.Models
                 /// <param name="p_GameInfo">ゲーム情報</param>
                 public void Store( GameInfo p_GameInfo )
                 {
-                        CurrentGame = p_GameInfo.Game;
-                        AllGame = p_GameInfo.TotalGame;
-                        InCoin = p_GameInfo.In;
-                        OutCoin = p_GameInfo.Out;
-                        Diff = p_GameInfo.Diff;
-                        RegularBonus = p_GameInfo.RB;
-                        BigBonus = p_GameInfo.BB;
                         DuringRB = p_GameInfo.DuringRB;
                         DuringBB = p_GameInfo.DuringBB;
 
@@ -156,6 +154,15 @@ namespace Pachislot_DataCounter.Models
                         {
                                 DuringBonus = false;
                         }
+
+                        CurrentGame = p_GameInfo.Game;
+                        AllGame = p_GameInfo.TotalGame;
+                        InCoin = p_GameInfo.In;
+                        OutCoin = p_GameInfo.Out;
+                        Diff = p_GameInfo.Diff;
+                        RegularBonus = p_GameInfo.RB;
+                        BigBonus = p_GameInfo.BB;
                 }
+                #endregion
         }
 }

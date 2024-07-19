@@ -21,6 +21,7 @@
         ResizeMode="CanMinimize"
         ShowTitleBar="False">
 
+        <!--#region リソース-->
         <!--======================================-->
         <!--アニメーション設定                    -->
         <!--======================================-->
@@ -32,15 +33,20 @@
                         </DoubleAnimationUsingKeyFrames>
                 </Storyboard>
         </Window.Resources>
+        <!--#endregion-->
 
+        <!--#region ウィンドウの背景画像設定-->
         <!--======================================-->
         <!--ウィンドウの背景画像                  -->
         <!--======================================-->
         <Window.Background>
                 <ImageBrush ImageSource="/Resource/Background.png" />
         </Window.Background>
+        <!--#endregion-->
 
+        <!--#region ウィンドウ本体-->
         <Grid>
+                <!--#region グリッドサイズ設定-->
                 <!--列の定義-->
                 <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.2*"/>
@@ -69,11 +75,9 @@
                         <RowDefinition Height="100*"/>
                         <RowDefinition Height="60*"/>
                 </Grid.RowDefinitions>
+                <!--#endregion-->
 
-                <!--======================================-->
-                <!--左側情報                              -->
-                <!--======================================-->
-
+                <!--#region ビッグボーナス回数-->
                 <!--======================================-->
                 <!--ビッグボーナスの回数                  -->
                 <!--======================================-->
@@ -100,7 +104,9 @@
                         <!--ユーザーコントロールのビッグボーナスカウンター-->
                         <ContentControl prism:RegionManager.RegionName="BigBonusCounter" />
                 </StackPanel>
+                <!--#endregion-->
 
+                <!--#region レギュラーボーナス回数-->
                 <!--======================================-->
                 <!--レギュラーボーナスの回数              -->
                 <!--======================================-->
@@ -126,7 +132,9 @@
                         <!--ユーザーコントロールのレギュラーボーナスカウンター-->
                         <ContentControl prism:RegionManager.RegionName="RegularBonusCounter" />
                 </StackPanel>
+                <!--#endregion-->
 
+                <!--#region ゲーム数表示-->
                 <!--======================================-->
                 <!--ゲーム数(ボーナス間)と累計ゲーム数    -->
                 <!--======================================-->
@@ -159,24 +167,25 @@
                         <!--ユーザーコントロールの累計ゲームカウンター-->
                         <ContentControl prism:RegionManager.RegionName="CurrentGameCounter" />
                 </StackPanel>
+                <!--#endregion-->
 
-
-                <!--======================================-->
-                <!--右側情報                              -->
-                <!--======================================-->
-
+                <!--#region 入力枚数表示-->
                 <!--======================================-->
                 <!--IN枚数                                -->
                 <!--======================================-->
                 <Image Grid.Row="1" Grid.Column="5" Margin="10" Source="/Resource/IN枚数.png" HorizontalAlignment="Left" />
                 <ContentControl Grid.Row="1" Grid.Column="6" Margin="5" HorizontalAlignment="Right" prism:RegionManager.RegionName="InCoinCounter" />
+                <!--#endregion-->
 
+                <!--#region 出力枚数表示-->
                 <!--======================================-->
                 <!--OUT枚数                               -->
                 <!--======================================-->
                 <Image Grid.Row="2" Grid.Column="5" Source="/Resource/OUT枚数.png" HorizontalAlignment="Left" />
                 <ContentControl Grid.Row="2" Grid.Column="6" Margin="5" HorizontalAlignment="Right" prism:RegionManager.RegionName="OutCoinCounter" />
+                <!--#endregion-->
 
+                <!--#region ボタン-->
                 <!--======================================-->
                 <!--ボタン類                              -->
                 <!--======================================-->
@@ -206,7 +215,9 @@
                                 ToolTip="Exit">
                         </Button>
                 </StackPanel>
+                <!--#endregion-->
 
+                <!--#region スランプグラフ表示-->
                 <!--======================================-->
                 <!--スランプグラフ                        -->
                 <!--======================================-->
@@ -263,12 +274,16 @@
                                 </lvc:Axis>
                         </lvc:CartesianChart.AxisY>
                 </lvc:CartesianChart>
+                <!--#endregion-->
 
+                <!--#region ボーナス履歴-->
                 <!--======================================-->
                 <!--ボーナス履歴                          -->
                 <!--======================================-->
                 <ScrollViewer Grid.Row="7" Grid.Column="5" Grid.RowSpan="4" Grid.ColumnSpan="3" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
                         <ContentControl HorizontalAlignment="Left" prism:RegionManager.RegionName="BonusHistory" />
                 </ScrollViewer>
+                <!--#endregion-->
         </Grid>
+        <!--#endregion-->
 </metro:MetroWindow>

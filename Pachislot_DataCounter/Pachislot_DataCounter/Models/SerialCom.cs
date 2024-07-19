@@ -19,6 +19,7 @@ namespace Pachislot_DataCounter.Models
 {
         public class SerialCom : SerialPort
         {
+                #region 公開メソッド
                 /// <summary>
                 /// コンストラクタ
                 /// </summary>
@@ -88,5 +89,6 @@ namespace Pachislot_DataCounter.Models
 
                         return l_GameInfo;
                 }
+                #endregion
         }
 }

@@ -31,6 +31,7 @@ namespace Pachislot_DataCounter.ViewModels
 {
         public class MainWindowViewModel : BindableBase
         {
+                #region メンバ変数
                 // =======================================================
                 // メンバ変数
                 // =======================================================
@@ -43,7 +44,9 @@ namespace Pachislot_DataCounter.ViewModels
                 private int m_Min_Y;
                 private int m_Max_Y;
                 protected CompositeDisposable m_Disposables;
+                #endregion
 
+                #region コマンド
                 // =======================================================
                 // コマンド
                 // =======================================================
@@ -51,12 +54,13 @@ namespace Pachislot_DataCounter.ViewModels
                 /// Connectボタンクリックコマンド
                 /// </summary>
                 public DelegateCommand Click_Connect { get; private set; }
-
                 /// <summary>
                 /// Exitボタンクリックコマンド
                 /// </summary>
                 public DelegateCommand<MainWindow> Click_Exit { get; private set; }
+                #endregion
 
+                #region プロパティ
                 // =======================================================
                 // プロパティ
                 // =======================================================
@@ -68,56 +72,61 @@ namespace Pachislot_DataCounter.ViewModels
                         get { return m_Title; }
                         set { SetProperty( ref m_Title, value ); }
                 }
-
                 /// <summary>
                 /// ビッグボーナス中フラグ
                 /// </summary>
                 public ReactiveProperty<bool> DuringBigBonus { get; }
-
                 /// <summary>
                 /// レギュラーボーナス中フラグ
                 /// </summary>
                 public ReactiveProperty<bool> DuringRegularBonus { get; }
-
                 /// <summary>
                 /// ボーナス中フラグ
                 /// </summary>
                 public ReactiveProperty<bool> DuringBonus { get; }
-
+                /// <summary>
+                /// 現在のゲーム数
+                /// </summary>
                 public ReactiveProperty<uint> CurrentGame { get; }
-
                 /// <summary>
                 /// コイン差枚数
                 /// </summary>
                 public ReactiveProperty<int> Diff { get; }
-
                 /// <summary>
-                /// コイン差枚数
+                /// コイン差枚数(チャート表示用)
                 /// </summary>
                 public ChartValues<int> CoinDiff
                 {
                         get { return m_CoinDiff; }
                         set { SetProperty( ref m_CoinDiff, value ); }
                 }
-
+                /// <summary>
+                /// X軸最大値(チャート表示用)
+                /// </summary>
                 public int Max_X
                 {
                         get { return m_Max_X; }
                         set { SetProperty( ref m_Max_X, value ); }
                 }
-
+                /// <summary>
+                /// Y軸最小値(チャート表示用)
+                /// </summary>
                 public int Min_Y
                 {
                         get { return m_Min_Y; }
                         set { SetProperty( ref m_Min_Y, value ); }
                 }
-
+                /// <summary>
+                /// Y軸最大値(チャート表示用)
+                /// </summary>
                 public int Max_Y
                 {
                         get { return m_Max_Y; }
                         set { SetProperty( ref m_Max_Y, value ); }
                 }
+                #endregion
 
+                #region 公開メソッド
                 // =======================================================
                 // メソッド
                 // =======================================================
@@ -156,7 +165,9 @@ namespace Pachislot_DataCounter.ViewModels
                         CurrentGame = m_DataManager.ToReactivePropertyAsSynchronized( m => m.CurrentGame ).AddTo( m_Disposables );
                         CurrentGame.Subscribe( _ => DrawGraph( Diff.Value ) );
                 }
+                #endregion
 
+                #region 非公開メソッド
                 /// <summary>
                 /// 接続ボタンクリック時の処理
                 /// </summary>
@@ -238,5 +249,6 @@ namespace Pachislot_DataCounter.ViewModels
                                 Max_Y = Max_Y * 2;
                         }
                 }
+                #endregion
         }
 }
