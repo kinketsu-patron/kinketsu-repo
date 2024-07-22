@@ -43,7 +43,7 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="0,0,70,0">
+                                        <StackPanel Width="80" Orientation="Vertical" VerticalAlignment="Bottom" Margin="0,0,70,0">
                                                 <Image Visibility="{Binding Bar_Ten}" Source="/Resource/データスランプ(Bar)_Red.png" Margin="1"/>
                                                 <Image Visibility="{Binding Bar_Nine}" Source="/Resource/データスランプ(Bar)_Red.png" Margin="1"/>
                                                 <Image Visibility="{Binding Bar_Eight}" Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
@@ -54,9 +54,9 @@
                                                 <Image Visibility="{Binding Bar_Three}" Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
                                                 <Image Visibility="{Binding Bar_Two}" Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
                                                 <Image Visibility="{Binding Bar_One}" Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
-                                                <Label Content="現在" FontSize="24" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
+                                                <Label Content="現在" FontSize="20" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
                                                 <Image Visibility="Hidden" Source="/Resource/データスランプ(BB).png" />
-                                                <Label Content="{Binding Games}" FontSize="24" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
+                                                <Label Content="{Binding Games}" FontSize="20" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
                                         </StackPanel>
                                 </DataTemplate>
                         </ItemsControl.ItemTemplate>
@@ -78,7 +78,7 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                        <StackPanel Width="100" Orientation="Vertical" VerticalAlignment="Bottom" Margin="5,0,5,0">
+                                        <StackPanel Width="80" Orientation="Vertical" VerticalAlignment="Bottom" Margin="5,0,5,0">
                                                 <Image Visibility="{Binding Bar_Ten}" Source="/Resource/データスランプ(Bar)_Red.png" Margin="1"/>
                                                 <Image Visibility="{Binding Bar_Nine}" Source="/Resource/データスランプ(Bar)_Red.png" Margin="1"/>
                                                 <Image Visibility="{Binding Bar_Eight}" Source="/Resource/データスランプ(Bar)_Yellow.png" Margin="1"/>
@@ -89,7 +89,7 @@
                                                 <Image Visibility="{Binding Bar_Three}" Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
                                                 <Image Visibility="{Binding Bar_Two}" Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
                                                 <Image Visibility="{Binding Bar_One}" Source="/Resource/データスランプ(Bar)_Green.png" Margin="1"/>
-                                                <Label Content="{Binding TimesAgo}" FontSize="24" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
+                                                <Label Content="{Binding TimesAgo}" FontSize="20" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
                                                 <Image >
                                                         <Image.Style>
                                                                 <Style TargetType="{x:Type Image}">
@@ -107,7 +107,7 @@
                                                                 </Style>
                                                         </Image.Style>
                                                 </Image>
-                                                <Label Content="{Binding Games}" FontSize="24" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
+                                                <Label Content="{Binding Games}" FontSize="20" FontFamily="トガリテ Heavy" HorizontalAlignment="Center"/>
                                         </StackPanel>
                                 </DataTemplate>
                         </ItemsControl.ItemTemplate>
