@@ -11,7 +11,6 @@
 // =======================================================
 // using
 // =======================================================
-using ControlzEx.Standard;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using Pachislot_DataCounter.Models;
@@ -30,7 +29,6 @@ using System.IO.Ports;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Windows;
-using System.Windows.Documents;
 
 namespace Pachislot_DataCounter.ViewModels
 {
@@ -45,6 +43,7 @@ namespace Pachislot_DataCounter.ViewModels
                 private string m_Title;
                 private MetroWindow m_MetroWindow;
                 private WpfPlot m_SlumpGraph;
+                private List<uint> m_GamesList;
                 private List<int> m_CoinDiffList;
                 protected CompositeDisposable m_Disposables;
                 #endregion
@@ -104,6 +103,14 @@ namespace Pachislot_DataCounter.ViewModels
                         set { SetProperty( ref m_SlumpGraph, value ); }
                 }
                 /// <summary>
+                /// ゲーム数(スランプグラフ表示用)
+                /// </summary>
+                public List<uint> GamesList
+                {
+                        get { return m_GamesList; }
+                        set { SetProperty( ref m_GamesList, value ); }
+                }
+                /// <summary>
                 /// コイン差枚数(スランプグラフ表示用)
                 /// </summary>
                 public List<int> CoinDiffList
@@ -136,6 +143,7 @@ namespace Pachislot_DataCounter.ViewModels
                         m_DataManager = p_DataManager;
                         m_SerialCom = new SerialCom( );
                         m_SlumpGraph = new WpfPlot( );
+                        m_GamesList = new List<uint>( ) { 0 };
                         m_CoinDiffList = new List<int>( ) { 0 };
                         m_Disposables = new CompositeDisposable( );
 
@@ -150,7 +158,8 @@ namespace Pachislot_DataCounter.ViewModels
                         DuringBonus = m_DataManager.ToReactivePropertyAsSynchronized( m => m.DuringBonus ).AddTo( m_Disposables );
                         Diff = m_DataManager.ToReactivePropertyAsSynchronized( m => m.Diff ).AddTo( m_Disposables );
                         CurrentGame = m_DataManager.ToReactivePropertyAsSynchronized( m => m.CurrentGame ).AddTo( m_Disposables );
-                        CurrentGame.Skip( 1 ).Subscribe( _ => DrawGraph( Diff.Value ) );        // 最初のコンストラクタが走った時はDrawGraphを呼ばない
+                        // 最初のコンストラクタが走った時を除き、10の倍数回のときにDrawGraphを呼ぶ
+                        CurrentGame.Skip( 1 ).Where( game => game % 10 == 0 ).Subscribe( game => DrawGraph( game, Diff.Value ) );
                 }
                 #endregion
 
@@ -201,7 +210,7 @@ namespace Pachislot_DataCounter.ViewModels
                         SlumpGraph.Plot.Axes.SetLimits( 0, 1000, -1000, 1000 );
 
                         // 初期データを設定
-                        var l_Line = SlumpGraph.Plot.Add.Signal( CoinDiffList );
+                        var l_Line = SlumpGraph.Plot.Add.ScatterLine( GamesList, CoinDiffList );
                         l_Line.Color = Colors.Gold;
                         l_Line.LineWidth = 6;
                         l_Line.MarkerSize = 0;
@@ -269,11 +278,13 @@ namespace Pachislot_DataCounter.ViewModels
                 /// <summary>
                 /// グラフを描画・更新
                 /// </summary>
+                /// <param name="p_Game">追加するゲーム数情報</param>
                 /// <param name="p_CoinDiff">追加する差枚数情報</param>
-                private void DrawGraph( int p_CoinDiff )
+                private void DrawGraph( uint p_Game, int p_CoinDiff )
                 {
+                        GamesList.Add( p_Game );
                         CoinDiffList.Add( p_CoinDiff );
-                        var l_Line = SlumpGraph.Plot.Add.Signal( CoinDiffList );
+                        var l_Line = SlumpGraph.Plot.Add.ScatterLine( GamesList, CoinDiffList );
                         l_Line.Color = Colors.Gold;
                         l_Line.LineWidth = 6;
                         l_Line.MarkerSize = 0;
