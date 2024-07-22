@@ -10,7 +10,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:Pachislot_DataCounter.Views"
         xmlns:prism="http://prismlibrary.com/"
-        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         prism:ViewModelLocator.AutoWireViewModel="True"
@@ -221,7 +220,15 @@
                 <!--======================================-->
                 <!--スランプグラフ                        -->
                 <!--======================================-->
-                <lvc:CartesianChart 
+                <ContentControl
+                        Grid.Row="3"
+                        Grid.Column="5"
+                        Grid.RowSpan="4"
+                        Grid.ColumnSpan="3"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Content="{Binding SlumpGraph}" />
+                <!--<lvc:CartesianChart 
                         Grid.Row="3"
                         Grid.Column="5"
                         Grid.RowSpan="4"
@@ -229,7 +236,9 @@
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
                         LegendLocation="None">
-                        <!--凡例-->
+                        -->
+                <!--凡例-->
+                <!--
                         <lvc:CartesianChart.Series>
                                 <lvc:LineSeries Values="{ Binding CoinDiff }"
                                                 PointGeometry="{x:Null}"
@@ -237,7 +246,9 @@
                                                 Stroke="Red"
                                                 Fill="Transparent"/>
                         </lvc:CartesianChart.Series>
-                        <!--X軸-->
+                        -->
+                <!--X軸-->
+                <!--
                         <lvc:CartesianChart.AxisX>
                                 <lvc:Axis 
                                         Title="ゲーム数"
@@ -255,7 +266,9 @@
                                         </lvc:Axis.Separator>
                                 </lvc:Axis>
                         </lvc:CartesianChart.AxisX>
-                        <!--Y軸-->
+                        -->
+                <!--Y軸-->
+                <!--
                         <lvc:CartesianChart.AxisY>
                                 <lvc:Axis
                                         Title="差枚数"
@@ -273,7 +286,7 @@
                                         </lvc:Axis.Separator>
                                 </lvc:Axis>
                         </lvc:CartesianChart.AxisY>
-                </lvc:CartesianChart>
+                </lvc:CartesianChart>-->
                 <!--#endregion-->
 
                 <!--#region ボーナス履歴-->

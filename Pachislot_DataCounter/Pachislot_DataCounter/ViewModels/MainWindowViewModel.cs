@@ -11,7 +11,7 @@
 // =======================================================
 // using
 // =======================================================
-using LiveCharts;
+using ControlzEx.Standard;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using Pachislot_DataCounter.Models;
@@ -22,10 +22,15 @@ using Prism.Regions;
 using Reactive.Bindings;
 using Reactive.Bindings.Disposables;
 using Reactive.Bindings.Extensions;
+using ScottPlot;
+using ScottPlot.WPF;
 using System;
+using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Windows;
+using System.Windows.Documents;
 
 namespace Pachislot_DataCounter.ViewModels
 {
@@ -39,10 +44,8 @@ namespace Pachislot_DataCounter.ViewModels
                 private DataManager m_DataManager;
                 private string m_Title;
                 private MetroWindow m_MetroWindow;
-                private ChartValues<int> m_CoinDiff;
-                private int m_Max_X;
-                private int m_Min_Y;
-                private int m_Max_Y;
+                private WpfPlot m_SlumpGraph;
+                private List<int> m_CoinDiffList;
                 protected CompositeDisposable m_Disposables;
                 #endregion
 
@@ -93,36 +96,20 @@ namespace Pachislot_DataCounter.ViewModels
                 /// </summary>
                 public ReactiveProperty<int> Diff { get; }
                 /// <summary>
-                /// コイン差枚数(チャート表示用)
+                /// スランプグラフ
                 /// </summary>
-                public ChartValues<int> CoinDiff
+                public WpfPlot SlumpGraph
                 {
-                        get { return m_CoinDiff; }
-                        set { SetProperty( ref m_CoinDiff, value ); }
+                        get { return m_SlumpGraph; }
+                        set { SetProperty( ref m_SlumpGraph, value ); }
                 }
                 /// <summary>
-                /// X軸最大値(チャート表示用)
+                /// コイン差枚数(スランプグラフ表示用)
                 /// </summary>
-                public int Max_X
+                public List<int> CoinDiffList
                 {
-                        get { return m_Max_X; }
-                        set { SetProperty( ref m_Max_X, value ); }
-                }
-                /// <summary>
-                /// Y軸最小値(チャート表示用)
-                /// </summary>
-                public int Min_Y
-                {
-                        get { return m_Min_Y; }
-                        set { SetProperty( ref m_Min_Y, value ); }
-                }
-                /// <summary>
-                /// Y軸最大値(チャート表示用)
-                /// </summary>
-                public int Max_Y
-                {
-                        get { return m_Max_Y; }
-                        set { SetProperty( ref m_Max_Y, value ); }
+                        get { return m_CoinDiffList; }
+                        set { SetProperty( ref m_CoinDiffList, value ); }
                 }
                 #endregion
 
@@ -144,15 +131,15 @@ namespace Pachislot_DataCounter.ViewModels
                         p_RegionManager.RegisterViewWithRegion( "BonusHistory", typeof( BonusHistory ) );
 
                         m_Title = "金ぱとデータカウンター";
-                        m_CoinDiff = new ChartValues<int>( );
 
                         m_MetroWindow = Application.Current.MainWindow as MetroWindow;
                         m_DataManager = p_DataManager;
                         m_SerialCom = new SerialCom( );
+                        m_SlumpGraph = new WpfPlot( );
+                        m_CoinDiffList = new List<int>( ) { 0 };
                         m_Disposables = new CompositeDisposable( );
-                        Max_X = 1000;
-                        Max_Y = 1000;
-                        Min_Y = -1000;
+
+                        Initialize_SlumpGraph( );
 
                         m_SerialCom.DataReceived += new SerialDataReceivedEventHandler( ReceivedGameData );
                         Click_Connect = new DelegateCommand( OnConnectClicked );
@@ -163,11 +150,64 @@ namespace Pachislot_DataCounter.ViewModels
                         DuringBonus = m_DataManager.ToReactivePropertyAsSynchronized( m => m.DuringBonus ).AddTo( m_Disposables );
                         Diff = m_DataManager.ToReactivePropertyAsSynchronized( m => m.Diff ).AddTo( m_Disposables );
                         CurrentGame = m_DataManager.ToReactivePropertyAsSynchronized( m => m.CurrentGame ).AddTo( m_Disposables );
-                        CurrentGame.Subscribe( _ => DrawGraph( Diff.Value ) );
+                        CurrentGame.Skip( 1 ).Subscribe( _ => DrawGraph( Diff.Value ) );        // 最初のコンストラクタが走った時はDrawGraphを呼ばない
                 }
                 #endregion
 
                 #region 非公開メソッド
+                /// <summary>
+                /// スランプグラフの初期設定
+                /// </summary>
+                private void Initialize_SlumpGraph( )
+                {
+                        // Y軸
+                        SlumpGraph.Plot.Axes.Left.Label.Text = "差枚数";
+                        SlumpGraph.Plot.Axes.Left.Label.FontName = "BIZ UDゴシック";
+                        SlumpGraph.Plot.Axes.Left.Label.ForeColor = Colors.Azure;
+                        SlumpGraph.Plot.Axes.Left.Label.FontSize = 20;
+                        SlumpGraph.Plot.Axes.Left.Label.Bold = true;
+                        SlumpGraph.Plot.Axes.Left.MajorTickStyle.Color = Colors.GoldenRod;
+                        SlumpGraph.Plot.Axes.Left.MinorTickStyle.Color = Colors.Transparent;
+                        SlumpGraph.Plot.Axes.Left.MinorTickStyle.Length = 0;
+                        SlumpGraph.Plot.Axes.Left.TickLabelStyle.ForeColor = Colors.Azure;
+                        SlumpGraph.Plot.Axes.Left.TickLabelStyle.FontSize = 20;
+                        SlumpGraph.Plot.Axes.Left.TickLabelStyle.Bold = true;
+                        SlumpGraph.Plot.Axes.Left.FrameLineStyle.Color = Colors.Azure;
+                        SlumpGraph.Plot.Axes.Left.FrameLineStyle.Width = 4;
+
+                        // X軸
+                        SlumpGraph.Plot.Axes.Bottom.Label.Text = "ゲーム数";
+                        SlumpGraph.Plot.Axes.Bottom.Label.FontName = "BIZ UDゴシック";
+                        SlumpGraph.Plot.Axes.Bottom.Label.ForeColor = Colors.Azure;
+                        SlumpGraph.Plot.Axes.Bottom.Label.FontSize = 20;
+                        SlumpGraph.Plot.Axes.Bottom.Label.Bold = true;
+                        SlumpGraph.Plot.Axes.Bottom.MajorTickStyle.Color = Colors.GoldenRod;
+                        SlumpGraph.Plot.Axes.Bottom.MinorTickStyle.Color = Colors.Transparent;
+                        SlumpGraph.Plot.Axes.Bottom.MinorTickStyle.Length = 0;
+                        SlumpGraph.Plot.Axes.Bottom.TickLabelStyle.ForeColor = Colors.Azure;
+                        SlumpGraph.Plot.Axes.Bottom.TickLabelStyle.FontSize = 20;
+                        SlumpGraph.Plot.Axes.Bottom.TickLabelStyle.Bold = true;
+                        SlumpGraph.Plot.Axes.Bottom.FrameLineStyle.Color = Colors.Azure;
+                        SlumpGraph.Plot.Axes.Bottom.FrameLineStyle.Width = 4;
+
+                        // グリッド
+                        SlumpGraph.Plot.Grid.MajorLineColor = Colors.Azure.WithOpacity( 0.2 );
+
+                        // 全体
+                        SlumpGraph.Plot.FigureBackground.Color = Colors.Transparent;
+                        SlumpGraph.Plot.DataBackground.Color = Color.FromHex( "#1F1F1F" );
+
+                        // 最初の軸最大最小を設定
+                        SlumpGraph.Plot.Axes.SetLimits( 0, 1000, -1000, 1000 );
+
+                        // 初期データを設定
+                        var l_Line = SlumpGraph.Plot.Add.Signal( CoinDiffList );
+                        l_Line.Color = Colors.Gold;
+                        l_Line.LineWidth = 6;
+                        l_Line.MarkerSize = 0;
+                        SlumpGraph.Refresh( );
+                }
+
                 /// <summary>
                 /// 接続ボタンクリック時の処理
                 /// </summary>
@@ -232,22 +272,35 @@ namespace Pachislot_DataCounter.ViewModels
                 /// <param name="p_CoinDiff">追加する差枚数情報</param>
                 private void DrawGraph( int p_CoinDiff )
                 {
-                        CoinDiff.Add( p_CoinDiff );
+                        CoinDiffList.Add( p_CoinDiff );
+                        var l_Line = SlumpGraph.Plot.Add.Signal( CoinDiffList );
+                        l_Line.Color = Colors.Gold;
+                        l_Line.LineWidth = 6;
+                        l_Line.MarkerSize = 0;
 
-                        if ( m_CoinDiff.Count >= ( Max_X * 0.8 ) )
+                        AxisLimits l_Limits = SlumpGraph.Plot.Axes.GetLimits( );
+                        double l_Min_X = l_Limits.Left;
+                        double l_Max_X = l_Limits.Right;
+                        double l_Min_Y = l_Limits.Bottom;
+                        double l_Max_Y = l_Limits.Top;
+
+                        if ( CoinDiffList.Count >= ( l_Max_X * 0.8 ) )
                         {
-                                Max_X = Max_X * 2;
+                                l_Max_X = l_Max_X * 2.0;
                         }
 
-                        if ( m_CoinDiff.Min( ) <= ( Min_Y * 0.8 ) )
+                        if ( CoinDiffList.Min( ) <= ( l_Min_Y * 0.8 ) )
                         {
-                                Min_Y = Min_Y * 2;
+                                l_Min_Y = l_Min_Y * 2.0;
                         }
 
-                        if ( m_CoinDiff.Max( ) >= ( Max_Y * 0.8 ) )
+                        if ( CoinDiffList.Max( ) >= ( l_Max_Y * 0.8 ) )
                         {
-                                Max_Y = Max_Y * 2;
+                                l_Max_Y = l_Max_Y * 2.0;
                         }
+
+                        SlumpGraph.Plot.Axes.SetLimits( l_Min_X, l_Max_X, l_Min_Y, l_Max_Y );
+                        SlumpGraph.Refresh( );
                 }
                 #endregion
         }
