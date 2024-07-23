@@ -36,7 +36,9 @@
                 <None Remove="Resource\飾り枠%28セクション%29.png" />
         </ItemGroup>
         <ItemGroup>
-          <Content Include="Resource\Togalite-Heavy.otf" />
+          <Resource Include="Resource\Togalite-Heavy.otf">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+          </Resource>
         </ItemGroup>
         <ItemGroup>
           <Resource Include="Resource\データスランプ(NONE).png">

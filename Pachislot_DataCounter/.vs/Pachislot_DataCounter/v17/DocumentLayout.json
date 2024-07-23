@@ -1,36 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\WACC\\Documents\\kinketsu-repo\\Pachislot_DataCounter\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{D31F387A-0D3E-4F2D-9C9A-2A9446345202}|Pachislot_DataCounter\\Pachislot_DataCounter.csproj|c:\\users\\wacc\\documents\\kinketsu-repo\\pachislot_datacounter\\pachislot_datacounter\\views\\bonushistory.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{D31F387A-0D3E-4F2D-9C9A-2A9446345202}|Pachislot_DataCounter\\Pachislot_DataCounter.csproj|solutionrelative:pachislot_datacounter\\views\\bonushistory.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "BonusHistory.xaml",
-              "DocumentMoniker": "C:\\Users\\WACC\\Documents\\kinketsu-repo\\Pachislot_DataCounter\\Pachislot_DataCounter\\Views\\BonusHistory.xaml",
-              "RelativeDocumentMoniker": "Pachislot_DataCounter\\Views\\BonusHistory.xaml",
-              "ToolTip": "C:\\Users\\WACC\\Documents\\kinketsu-repo\\Pachislot_DataCounter\\Pachislot_DataCounter\\Views\\BonusHistory.xaml",
-              "RelativeToolTip": "Pachislot_DataCounter\\Views\\BonusHistory.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-07-23T13:35:11.801Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }
