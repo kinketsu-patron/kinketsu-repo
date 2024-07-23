@@ -10,6 +10,7 @@
                 <None Remove="Resource\IN枚数.png" />
                 <None Remove="Resource\OUT枚数.png" />
                 <None Remove="Resource\RB.png" />
+                <None Remove="Resource\Togalite-Heavy.otf" />
                 <None Remove="Resource\ゲーム数.png" />
                 <None Remove="Resource\データスランプ%28Bar%29_Green.png" />
                 <None Remove="Resource\データスランプ%28Bar%29_Red.png" />
@@ -33,6 +34,9 @@
                 <None Remove="Resource\累計.png" />
                 <None Remove="Resource\終了.png" />
                 <None Remove="Resource\飾り枠%28セクション%29.png" />
+        </ItemGroup>
+        <ItemGroup>
+          <Content Include="Resource\Togalite-Heavy.otf" />
         </ItemGroup>
         <ItemGroup>
           <Resource Include="Resource\データスランプ(NONE).png">
