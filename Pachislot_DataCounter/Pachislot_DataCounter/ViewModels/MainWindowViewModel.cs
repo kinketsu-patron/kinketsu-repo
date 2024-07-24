@@ -295,7 +295,7 @@ namespace Pachislot_DataCounter.ViewModels
                         double l_Min_Y = l_Limits.Bottom;
                         double l_Max_Y = l_Limits.Top;
 
-                        if ( CoinDiffList.Count >= ( l_Max_X * 0.8 ) )
+                        if ( p_Game >= ( l_Max_X * 0.8 ) )
                         {
                                 l_Max_X = l_Max_X * 2.0;
                         }
