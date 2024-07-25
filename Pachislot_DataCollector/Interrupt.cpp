@@ -21,7 +21,7 @@ static INTR_CALLBACK *m_Func;           // 関数ポインタ配列
 // =======================================================
 // ローカル関数
 // =======================================================
-static bool allow_intrrput( ulong64 p_WaitTime, ulong64 *p_PrevTime );
+static bool allow_intrrput( ulong32 p_WaitTime, ulong32 *p_PrevTime );
 static void in_intr_occur( void );
 static void out_intr_occur( void );
 static void rb_intr_occur( void );
@@ -53,9 +53,9 @@ void Intr_Init( INTR_CALLBACK *p_Func )
  * @date        2024-06-25
  * =======================================================
  */
-static bool allow_intrrput( ulong64 p_WaitTime, ulong64 *p_PrevTime )
+static bool allow_intrrput( ulong32 p_WaitTime, ulong32 *p_PrevTime )
 {
-        ulong64 l_Interval;
+        ulong32 l_Interval;
         bool    l_Allow;
 
         l_Interval = millis( ) - *p_PrevTime;   // 前回の割込みからの経過時間を計算する
@@ -82,8 +82,8 @@ static bool allow_intrrput( ulong64 p_WaitTime, ulong64 *p_PrevTime )
  */
 static void in_intr_occur( void )
 {
-        static ulong64 l_INPrevtime   = 0U;        // 前回時間を初期化する
-        static ulong64 l_GamePrevtime = 0U;
+        static ulong32 l_INPrevtime   = 0U;        // 前回時間を初期化する
+        static ulong32 l_GamePrevtime = 0U;
 
         if ( allow_intrrput( INTR_WAIT, &l_INPrevtime ) == true )        // 前回の割り込みから時間が十分経過していたら
         {
@@ -105,7 +105,7 @@ static void in_intr_occur( void )
  */
 static void out_intr_occur( void )
 {
-        static ulong64 l_OUTPrevtime = 0U;
+        static ulong32 l_OUTPrevtime = 0U;
 
         if ( allow_intrrput( INTR_WAIT, &l_OUTPrevtime ) == true )
         {
@@ -122,7 +122,7 @@ static void out_intr_occur( void )
  */
 static void rb_intr_occur( void )
 {
-        static ulong64 l_RBPrevtime = 0U;
+        static ulong32 l_RBPrevtime = 0U;
 
         if ( allow_intrrput( INTR_WAIT, &l_RBPrevtime ) == true )
         {
@@ -146,7 +146,7 @@ static void rb_intr_occur( void )
  */
 static void bb_intr_occur( void )
 {
-        static ulong64 l_BBPrevtime = 0U;
+        static ulong32 l_BBPrevtime = 0U;
 
         if ( allow_intrrput( INTR_WAIT, &l_BBPrevtime ) == true )
         {

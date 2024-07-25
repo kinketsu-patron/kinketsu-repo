@@ -76,7 +76,7 @@ void loop( void )
  */
 static void update_game( void )
 {
-        uint32 l_CurrentGame;
+        ulong32 l_CurrentGame;
 
         if ( Data_GetDuringBonus( ) == false )        // ボーナス中はゲーム数のカウントを止める
         {
@@ -101,7 +101,7 @@ static void update_game( void )
  */
 static void update_in( void )
 {
-        uint32 l_CurrentIN;
+        ulong32 l_CurrentIN;
 
         noInterrupts( );                               // 他の割り込みを禁止する
         l_CurrentIN = Data_GetIN( );                   // 現在のIN枚数を取得する
@@ -120,7 +120,7 @@ static void update_in( void )
  */
 static void update_out( void )
 {
-        uint32 l_CurrentOUT;
+        ulong32 l_CurrentOUT;
 
         noInterrupts( );                               // 他の割り込みを禁止する
         l_CurrentOUT = Data_GetOUT( );                 // 現在のOUT枚数を取得する
@@ -139,7 +139,7 @@ static void update_out( void )
  */
 static void begin_rb( void )
 {
-        uint32 l_CurrentRB;
+        ulong32 l_CurrentRB;
 
         noInterrupts( );                               // 他の割り込みを禁止する
         l_CurrentRB = Data_GetRB( );                   // 現在のRB回数を取得する
@@ -175,7 +175,7 @@ static void end_rb( void )
  */
 static void begin_bb( void )
 {
-        uint32 l_CurrentBB;
+        ulong32 l_CurrentBB;
 
         noInterrupts( );                               // 他の割り込みを禁止する
         l_CurrentBB = Data_GetBB( );                   // 現在のBB回数を取得する

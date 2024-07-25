@@ -22,21 +22,21 @@
 // =======================================================
 extern void      Data_Init( void );
 extern GAME_INFO Data_GetAllData( void );
-extern uint32    Data_GetGame( void );
-extern uint32    Data_GetTotalGame( void );
-extern uint32    Data_GetIN( void );
-extern uint32    Data_GetOUT( void );
-extern uint32    Data_GetRB( void );
-extern uint32    Data_GetBB( void );
+extern ulong32    Data_GetGame( void );
+extern ulong32    Data_GetTotalGame( void );
+extern ulong32    Data_GetIN( void );
+extern ulong32    Data_GetOUT( void );
+extern ulong32    Data_GetRB( void );
+extern ulong32    Data_GetBB( void );
 extern bool      Data_GetDuringRB( void );
 extern bool      Data_GetDuringBB( void );
 extern bool      Data_GetDuringBonus( void );
-extern void      Data_SetGame( uint32 p_Game );
-extern void      Data_SetTotalGame( uint32 p_TotalGame );
-extern void      Data_SetIN( uint32 p_IN );
-extern void      Data_SetOUT( uint32 p_OUT );
-extern void      Data_SetRB( uint32 p_RB );
-extern void      Data_SetBB( uint32 p_BB );
+extern void      Data_SetGame( ulong32 p_Game );
+extern void      Data_SetTotalGame( ulong32 p_TotalGame );
+extern void      Data_SetIN( ulong32 p_IN );
+extern void      Data_SetOUT( ulong32 p_OUT );
+extern void      Data_SetRB( ulong32 p_RB );
+extern void      Data_SetBB( ulong32 p_BB );
 extern void      Data_SetDuringRB( bool p_DuringRB );
 extern void      Data_SetDuringBB( bool p_DuringBB );
 

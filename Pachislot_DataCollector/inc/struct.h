@@ -18,13 +18,13 @@
 // =======================================================
 typedef struct
 {
-                uint32 Game;
-                uint32 TotalGame;
-                uint32 IN;
-                uint32 OUT;
-                sint32 Diff;
-                uint32 RB;
-                uint32 BB;
+                ulong32 Game;
+                ulong32 TotalGame;
+                ulong32 IN;
+                ulong32 OUT;
+                slong32 Diff;
+                ulong32 RB;
+                ulong32 BB;
                 bool   DuringRB;
                 bool   DuringBB;
 } GAME_INFO;

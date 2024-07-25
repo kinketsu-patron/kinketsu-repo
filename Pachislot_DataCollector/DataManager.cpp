@@ -16,12 +16,12 @@
 // =======================================================
 // 静的変数
 // =======================================================
-static volatile uint32 m_Game;
-static volatile uint32 m_TotalGame;
-static volatile uint32 m_IN;
-static volatile uint32 m_OUT;
-static volatile uint32 m_RB;
-static volatile uint32 m_BB;
+static volatile ulong32 m_Game;
+static volatile ulong32 m_TotalGame;
+static volatile ulong32 m_IN;
+static volatile ulong32 m_OUT;
+static volatile ulong32 m_RB;
+static volatile ulong32 m_BB;
 static volatile bool   m_DuringRB;
 static volatile bool   m_DuringBB;
 
@@ -60,7 +60,7 @@ GAME_INFO Data_GetAllData( void )
         l_DataInfo.TotalGame = m_TotalGame;
         l_DataInfo.IN        = m_IN;
         l_DataInfo.OUT       = m_OUT;
-        l_DataInfo.Diff      = ( sint32 )m_OUT - ( sint32 )m_IN;
+        l_DataInfo.Diff      = ( slong32 )m_OUT - ( slong32 )m_IN;
         l_DataInfo.RB        = m_RB;
         l_DataInfo.BB        = m_BB;
         l_DataInfo.DuringRB  = m_DuringRB;
@@ -76,7 +76,7 @@ GAME_INFO Data_GetAllData( void )
  * @date        2024-06-26
  * =======================================================
  */
-uint32 Data_GetGame( void )
+ulong32 Data_GetGame( void )
 {
         return m_Game;
 }
@@ -88,7 +88,7 @@ uint32 Data_GetGame( void )
  * @date        2024-06-26
  * =======================================================
  */
-uint32 Data_GetTotalGame( void )
+ulong32 Data_GetTotalGame( void )
 {
         return m_TotalGame;
 }
@@ -100,7 +100,7 @@ uint32 Data_GetTotalGame( void )
  * @date        2024-06-10
  * =======================================================
  */
-uint32 Data_GetIN( void )
+ulong32 Data_GetIN( void )
 {
         return m_IN;
 }
@@ -112,7 +112,7 @@ uint32 Data_GetIN( void )
  * @date        2024-06-10
  * =======================================================
  */
-uint32 Data_GetOUT( void )
+ulong32 Data_GetOUT( void )
 {
         return m_OUT;
 }
@@ -124,7 +124,7 @@ uint32 Data_GetOUT( void )
  * @date        2024-06-10
  * =======================================================
  */
-uint32 Data_GetRB( void )
+ulong32 Data_GetRB( void )
 {
         return m_RB;
 }
@@ -136,7 +136,7 @@ uint32 Data_GetRB( void )
  * @date        2024-06-10
  * =======================================================
  */
-uint32 Data_GetBB( void )
+ulong32 Data_GetBB( void )
 {
         return m_BB;
 }
@@ -195,7 +195,7 @@ bool Data_GetDuringBonus( void )
  * @date        2024-06-26
  * =======================================================
  */
-void Data_SetGame( uint32 p_Game )
+void Data_SetGame( ulong32 p_Game )
 {
         if ( p_Game >= 0U )
         {
@@ -210,7 +210,7 @@ void Data_SetGame( uint32 p_Game )
  * @date        2024-06-26
  * =======================================================
  */
-void Data_SetTotalGame( uint32 p_TotalGame )
+void Data_SetTotalGame( ulong32 p_TotalGame )
 {
         if ( p_TotalGame >= 0U )
         {
@@ -225,7 +225,7 @@ void Data_SetTotalGame( uint32 p_TotalGame )
  * @date        2024-06-10
  * =======================================================
  */
-void Data_SetIN( uint32 p_IN )
+void Data_SetIN( ulong32 p_IN )
 {
         if ( p_IN >= 0U )
         {
@@ -240,7 +240,7 @@ void Data_SetIN( uint32 p_IN )
  * @date        2024-06-10
  * =======================================================
  */
-void Data_SetOUT( uint32 p_OUT )
+void Data_SetOUT( ulong32 p_OUT )
 {
         if ( p_OUT >= 0U )
         {
@@ -255,7 +255,7 @@ void Data_SetOUT( uint32 p_OUT )
  * @date        2024-06-10
  * =======================================================
  */
-void Data_SetRB( uint32 p_RB )
+void Data_SetRB( ulong32 p_RB )
 {
         if ( p_RB >= 0U )
         {
@@ -270,7 +270,7 @@ void Data_SetRB( uint32 p_RB )
  * @date        2024-06-10
  * =======================================================
  */
-void Data_SetBB( uint32 p_BB )
+void Data_SetBB( ulong32 p_BB )
 {
         if ( p_BB >= 0U )
         {

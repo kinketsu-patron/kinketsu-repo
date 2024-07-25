@@ -16,12 +16,12 @@
 // =======================================================
 typedef signed char    schar8;
 typedef signed short   sshort16;
-typedef signed int     sint32;
-typedef signed long    slong64;
+typedef signed int     sint16;
+typedef signed long    slong32;
 typedef unsigned char  uchar8;
 typedef unsigned short ushort16;
-typedef unsigned int   uint32;
-typedef unsigned long  ulong64;
+typedef unsigned int   uint16;
+typedef unsigned long  ulong32;
 
 typedef float  float32;
 typedef double double64;
