@@ -184,6 +184,11 @@ namespace Pachislot_DataCounter.ViewModels
                         SlumpGraph.Plot.Axes.Left.FrameLineStyle.Color = Colors.Azure;
                         SlumpGraph.Plot.Axes.Left.FrameLineStyle.Width = 4;
 
+                        ScottPlot.TickGenerators.NumericAutomatic l_TickGenY = new ScottPlot.TickGenerators.NumericAutomatic();
+                        l_TickGenY.TargetTickCount = 5;
+                        SlumpGraph.Plot.Axes.Left.TickGenerator = l_TickGenY;
+
+
                         // X軸
                         SlumpGraph.Plot.Axes.Bottom.Label.Text = "ゲーム数";
                         SlumpGraph.Plot.Axes.Bottom.Label.FontName = "BIZ UDゴシック";
@@ -198,6 +203,10 @@ namespace Pachislot_DataCounter.ViewModels
                         SlumpGraph.Plot.Axes.Bottom.TickLabelStyle.Bold = true;
                         SlumpGraph.Plot.Axes.Bottom.FrameLineStyle.Color = Colors.Azure;
                         SlumpGraph.Plot.Axes.Bottom.FrameLineStyle.Width = 4;
+
+                        ScottPlot.TickGenerators.NumericAutomatic l_TickGenX = new ScottPlot.TickGenerators.NumericAutomatic();
+                        l_TickGenX.TargetTickCount = 6;
+                        SlumpGraph.Plot.Axes.Bottom.TickGenerator = l_TickGenX;
 
                         // グリッド
                         SlumpGraph.Plot.Grid.MajorLineColor = Colors.Azure.WithOpacity( 0.2 );
