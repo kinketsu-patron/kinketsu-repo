@@ -87,9 +87,9 @@ namespace Pachislot_DataCounter.ViewModels
                 /// </summary>
                 public ReactiveProperty<bool> DuringBonus { get; }
                 /// <summary>
-                /// 現在のゲーム数
+                /// 累計ゲーム数
                 /// </summary>
-                public ReactiveProperty<uint> CurrentGame { get; }
+                public ReactiveProperty<uint> AllGame { get; }
                 /// <summary>
                 /// コイン差枚数
                 /// </summary>
@@ -157,9 +157,9 @@ namespace Pachislot_DataCounter.ViewModels
                         DuringRegularBonus = m_DataManager.ToReactivePropertyAsSynchronized( m => m.DuringRB ).AddTo( m_Disposables );
                         DuringBonus = m_DataManager.ToReactivePropertyAsSynchronized( m => m.DuringBonus ).AddTo( m_Disposables );
                         Diff = m_DataManager.ToReactivePropertyAsSynchronized( m => m.Diff ).AddTo( m_Disposables );
-                        CurrentGame = m_DataManager.ToReactivePropertyAsSynchronized( m => m.CurrentGame ).AddTo( m_Disposables );
+                        AllGame = m_DataManager.ToReactivePropertyAsSynchronized( m => m.AllGame ).AddTo( m_Disposables );
                         // 最初のコンストラクタが走った時を除き、10の倍数回のときにDrawGraphを呼ぶ
-                        CurrentGame.Skip( 1 ).Where( game => game % 10 == 0 ).Subscribe( game => DrawGraph( game, Diff.Value ) );
+                        AllGame.Skip( 1 ).Where( game => game % 10 == 0 ).Subscribe( game => DrawGraph( game, Diff.Value ) );
                 }
                 #endregion
 

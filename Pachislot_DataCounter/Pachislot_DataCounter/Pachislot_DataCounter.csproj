@@ -5,6 +5,7 @@
                 <UseWPF>true</UseWPF>
                 <Platforms>AnyCPU;x64;x86</Platforms>
                 <Configurations>Debug;Release;test</Configurations>
+                <ApplicationIcon>favicon.ico</ApplicationIcon>
         </PropertyGroup>
         <ItemGroup>
                 <None Remove="Resource\Background.png" />
@@ -38,14 +39,17 @@
                 <None Remove="Resource\飾り枠%28セクション%29.png" />
         </ItemGroup>
         <ItemGroup>
-          <Resource Include="Resource\Togalite-Heavy.otf">
-            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-          </Resource>
+                <Content Include="favicon.ico" />
         </ItemGroup>
         <ItemGroup>
-          <Resource Include="Resource\データスランプ(NONE).png">
-            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-          </Resource>
+                <Resource Include="Resource\Togalite-Heavy.otf">
+                        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+                </Resource>
+        </ItemGroup>
+        <ItemGroup>
+                <Resource Include="Resource\データスランプ(NONE).png">
+                        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+                </Resource>
         </ItemGroup>
         <ItemGroup>
                 <PackageReference Include="MahApps.Metro" Version="2.4.10" />
@@ -100,34 +104,34 @@
                         <CopyToOutputDirectory>Never</CopyToOutputDirectory>
                 </Resource>
                 <Resource Include="Resource\数字\数字(0).png">
-                  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+                        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
                 </Resource>
                 <Resource Include="Resource\数字\数字(1).png">
-                  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+                        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
                 </Resource>
                 <Resource Include="Resource\数字\数字(2).png">
-                  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+                        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
                 </Resource>
                 <Resource Include="Resource\数字\数字(3).png">
-                  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+                        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
                 </Resource>
                 <Resource Include="Resource\数字\数字(4).png">
-                  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+                        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
                 </Resource>
                 <Resource Include="Resource\数字\数字(5).png">
-                  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+                        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
                 </Resource>
                 <Resource Include="Resource\数字\数字(6).png">
-                  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+                        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
                 </Resource>
                 <Resource Include="Resource\数字\数字(7).png">
-                  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+                        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
                 </Resource>
                 <Resource Include="Resource\数字\数字(8).png">
-                  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+                        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
                 </Resource>
                 <Resource Include="Resource\数字\数字(9).png">
-                  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+                        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
                 </Resource>
                 <Resource Include="Resource\累計.png">
                         <CopyToOutputDirectory>Never</CopyToOutputDirectory>
@@ -140,8 +144,8 @@
                 </Resource>
         </ItemGroup>
         <ItemGroup>
-          <Compile Update="Models\SerialCom.cs">
-            <SubType>Component</SubType>
-          </Compile>
+                <Compile Update="Models\SerialCom.cs">
+                        <SubType>Component</SubType>
+                </Compile>
         </ItemGroup>
 </Project>

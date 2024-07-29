@@ -5,7 +5,7 @@ VisualStudioVersion = 17.9.34902.65
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pachislot_DataCounter", "Pachislot_DataCounter\Pachislot_DataCounter.csproj", "{D31F387A-0D3E-4F2D-9C9A-2A9446345202}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Pachislot_DataCounter-v1.0.0-win-x64-installer", "Pachislot_DataCounter-v1.0.0-win-x64-installer\Pachislot_DataCounter-v1.0.0-win-x64-installer.vdproj", "{C3CF5A7D-8F45-4DCA-B8F5-DE6FD7338AE6}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Pachislot_DataCounter-v1.0.0-win-installer", "Pachislot_DataCounter-v1.0.0-win-x64-installer\Pachislot_DataCounter-v1.0.0-win-x64-installer.vdproj", "{C3CF5A7D-8F45-4DCA-B8F5-DE6FD7338AE6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +33,7 @@ Global
 		{C3CF5A7D-8F45-4DCA-B8F5-DE6FD7338AE6}.Debug|x64.ActiveCfg = Debug
 		{C3CF5A7D-8F45-4DCA-B8F5-DE6FD7338AE6}.Debug|x86.ActiveCfg = Debug
 		{C3CF5A7D-8F45-4DCA-B8F5-DE6FD7338AE6}.Release|Any CPU.ActiveCfg = Release
+		{C3CF5A7D-8F45-4DCA-B8F5-DE6FD7338AE6}.Release|Any CPU.Build.0 = Release
 		{C3CF5A7D-8F45-4DCA-B8F5-DE6FD7338AE6}.Release|x64.ActiveCfg = Release
 		{C3CF5A7D-8F45-4DCA-B8F5-DE6FD7338AE6}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
